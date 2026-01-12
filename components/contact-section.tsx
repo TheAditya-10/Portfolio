@@ -7,14 +7,17 @@ import { cn } from "@/lib/utils"
 import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
 import { Textarea } from "@/components/ui/textarea"
-import { Mail, Github, Linkedin, Send, MapPin, Phone } from "lucide-react"
+import { Mail, Github, Linkedin, Send, MapPin, Phone, AlertCircle } from "lucide-react"
 import Link from "next/link"
+import emailjs from "@emailjs/browser"
 
 export function ContactSection() {
   const [isVisible, setIsVisible] = useState(false)
   const [isSubmitting, setIsSubmitting] = useState(false)
   const [submitted, setSubmitted] = useState(false)
+  const [error, setError] = useState<string | null>(null)
   const sectionRef = useRef<HTMLElement>(null)
+  const formRef = useRef<HTMLFormElement>(null)
 
   useEffect(() => {
     const observer = new IntersectionObserver(
@@ -36,10 +39,29 @@ export function ContactSection() {
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault()
     setIsSubmitting(true)
-    // Simulate form submission
-    await new Promise((resolve) => setTimeout(resolve, 1000))
-    setIsSubmitting(false)
-    setSubmitted(true)
+    setError(null)
+
+    try {
+      // Initialize EmailJS with your public key
+      emailjs.init(process.env.NEXT_PUBLIC_EMAILJS_PUBLIC_KEY!)
+
+      // Send email using EmailJS
+      const result = await emailjs.sendForm(
+        process.env.NEXT_PUBLIC_EMAILJS_SERVICE_ID!,
+        process.env.NEXT_PUBLIC_EMAILJS_TEMPLATE_ID!,
+        formRef.current!,
+        process.env.NEXT_PUBLIC_EMAILJS_PUBLIC_KEY!,
+      )
+
+      console.log("Email sent successfully:", result.text)
+      setSubmitted(true)
+      formRef.current?.reset()
+    } catch (err) {
+      console.error("Failed to send email:", err)
+      setError("Failed to send message. Please try again or contact me directly via email.")
+    } finally {
+      setIsSubmitting(false)
+    }
   }
 
   return (
@@ -155,12 +177,26 @@ export function ContactSection() {
                   </div>
                   <h3 className="text-xl font-semibold text-foreground">Message Sent!</h3>
                   <p className="text-muted-foreground">Thank you for reaching out. I'll get back to you soon.</p>
-                  <Button variant="outline" onClick={() => setSubmitted(false)} className="mt-4">
+                  <Button
+                    variant="outline"
+                    onClick={() => {
+                      setSubmitted(false)
+                      setError(null)
+                    }}
+                    className="mt-4"
+                  >
                     Send Another Message
                   </Button>
                 </div>
               ) : (
-                <form onSubmit={handleSubmit} className="space-y-6">
+                <form ref={formRef} onSubmit={handleSubmit} className="space-y-6">
+                  {error && (
+                    <div className="p-4 rounded-lg bg-destructive/10 border border-destructive/20 flex items-start gap-3">
+                      <AlertCircle className="h-5 w-5 text-destructive flex-shrink-0 mt-0.5" />
+                      <p className="text-sm text-destructive">{error}</p>
+                    </div>
+                  )}
+
                   <div className="grid md:grid-cols-2 gap-4">
                     <div className="space-y-2">
                       <label htmlFor="name" className="text-sm font-medium text-foreground">
@@ -168,6 +204,7 @@ export function ContactSection() {
                       </label>
                       <Input
                         id="name"
+                        name="from_name"
                         placeholder="Your name"
                         required
                         className="bg-secondary/50 border-border focus:border-primary"
@@ -179,6 +216,7 @@ export function ContactSection() {
                       </label>
                       <Input
                         id="email"
+                        name="reply_to"
                         type="email"
                         placeholder="your@email.com"
                         required
@@ -193,6 +231,7 @@ export function ContactSection() {
                     </label>
                     <Input
                       id="subject"
+                      name="subject"
                       placeholder="What's this about?"
                       required
                       className="bg-secondary/50 border-border focus:border-primary"
@@ -205,6 +244,7 @@ export function ContactSection() {
                     </label>
                     <Textarea
                       id="message"
+                      name="message"
                       placeholder="Tell me about your project..."
                       rows={5}
                       required
