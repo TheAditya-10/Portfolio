@@ -5,6 +5,7 @@ import { SkillsSection } from "@/components/skills-section"
 import { ExperienceSection } from "@/components/experience-section"
 import { EducationSection } from "@/components/education-section"
 import { ProjectsSection } from "@/components/projects-section"
+import { ActivitySection } from "@/components/activity-section"
 import { ServicesSection } from "@/components/services-section"
 import { LeadershipSection } from "@/components/leadership-section"
 import { AchievementsSection } from "@/components/achievements-section"
@@ -20,6 +21,7 @@ export default function Home() {
       <AboutSection />
       <ExperienceSection />
       <ProjectsSection />
+      <ActivitySection />
       <SkillsSection />
       <EducationSection />
       <ServicesSection />
