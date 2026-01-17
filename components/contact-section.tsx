@@ -7,9 +7,76 @@ import { cn } from "@/lib/utils"
 import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
 import { Textarea } from "@/components/ui/textarea"
-import { Mail, Github, Linkedin, Send, MapPin, Phone, AlertCircle } from "lucide-react"
+import type { LucideIcon } from "lucide-react"
+import {
+  AlertCircle,
+  BookOpen,
+  Code2,
+  Github,
+  Instagram,
+  Linkedin,
+  Mail,
+  MapPin,
+  MessageCircle,
+  Phone,
+  Send,
+  Trophy,
+  Twitter,
+  Youtube,
+} from "lucide-react"
 import Link from "next/link"
 import emailjs from "@emailjs/browser"
+
+type SocialLink = {
+  label: string
+  href: string
+  icon: LucideIcon
+  external?: boolean
+}
+
+type SocialGroup = {
+  title: string
+  subtitle: string
+  links: SocialLink[]
+  spanFull?: boolean
+}
+
+const socialGroups: SocialGroup[] = [
+  {
+    title: "Code & Practice",
+    subtitle: "Daily builds, contests, and growth logs.",
+    links: [
+      { label: "GitHub", href: "https://github.com/TheAditya-10", icon: Github, external: true },
+      { label: "LeetCode", href: "https://leetcode.com/TheAditya_10", icon: Code2, external: true },
+      { label: "Codeforces", href: "https://codeforces.com/profile/TheAditya_10", icon: Trophy, external: true },
+      { label: "GFG", href: "https://auth.geeksforgeeks.org/user/TheAditya_10/", icon: BookOpen, external: true },
+    ],
+  },
+  {
+    title: "Social & Media",
+    subtitle: "Stories, updates, and behind the scenes.",
+    links: [
+      {
+        label: "LinkedIn",
+        href: "https://www.linkedin.com/in/aditya-pratap-singh-tomar-693444204/",
+        icon: Linkedin,
+        external: true,
+      },
+      { label: "Instagram", href: "https://www.instagram.com/theaditya.10/", icon: Instagram, external: true },
+      { label: "X", href: "https://x.com/TheAditya_10", icon: Twitter, external: true },
+      { label: "YouTube", href: "https://www.youtube.com/@TheAditya_10", icon: Youtube, external: true },
+    ],
+  },
+  {
+    title: "Direct Connect",
+    subtitle: "Fastest ways to reach me personally.",
+    spanFull: true,
+    links: [
+      { label: "Email", href: "mailto:aditya.pratap.singh.tomar.1082006@email.com", icon: Mail },
+      { label: "WhatsApp", href: "https://wa.me/917898292920", icon: MessageCircle, external: true },
+    ],
+  },
+]
 
 export function ContactSection() {
   const [isVisible, setIsVisible] = useState(false)
@@ -133,32 +200,50 @@ export function ContactSection() {
               </div>
             </div>
 
-            <div className="flex gap-4">
-              <Link
-                href="https://github.com/TheAditya-10"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="p-3 rounded-xl bg-card border border-border text-muted-foreground hover:text-primary hover:border-primary/50 transition-all"
-              >
-                <Github className="h-5 w-5" />
-                <span className="sr-only">GitHub</span>
-              </Link>
-              <Link
-                href="https://www.linkedin.com/in/aditya-pratap-singh-tomar-693444204/"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="p-3 rounded-xl bg-card border border-border text-muted-foreground hover:text-primary hover:border-primary/50 transition-all"
-              >
-                <Linkedin className="h-5 w-5" />
-                <span className="sr-only">LinkedIn</span>
-              </Link>
-              <Link
-                href="mailto:aditya.pratap.singh.tomar.1082006@email.com"
-                className="p-3 rounded-xl bg-card border border-border text-muted-foreground hover:text-primary hover:border-primary/50 transition-all"
-              >
-                <Mail className="h-5 w-5" />
-                <span className="sr-only">Email</span>
-              </Link>
+            <div className="rounded-2xl border border-border bg-card p-6 space-y-6">
+              <div className="flex flex-wrap items-center justify-between gap-3">
+                <div className="space-y-1">
+                  <p className="text-primary font-mono text-xs tracking-[0.2em]">SOCIALS</p>
+                  <h4 className="text-lg font-semibold text-foreground">Find Me Online</h4>
+                </div>
+                <p className="text-xs text-muted-foreground max-w-xs">
+                  Split by how we can connect, collaborate, or keep in touch.
+                </p>
+              </div>
+
+              <div className="grid gap-4 sm:grid-cols-2">
+                {socialGroups.map((group) => (
+                  <div
+                    key={group.title}
+                    className={cn(
+                      "rounded-xl border border-border/70 bg-secondary/40 p-4 space-y-3",
+                      group.spanFull ? "sm:col-span-2" : "",
+                    )}
+                  >
+                    <div className="space-y-1">
+                      <p className="text-xs font-mono tracking-[0.2em] text-primary/80">{group.title}</p>
+                      <p className="text-xs text-muted-foreground">{group.subtitle}</p>
+                    </div>
+                    <div className="flex flex-wrap gap-2">
+                      {group.links.map((link) => {
+                        const Icon = link.icon
+                        return (
+                          <Link
+                            key={link.label}
+                            href={link.href}
+                            target={link.external ? "_blank" : undefined}
+                            rel={link.external ? "noopener noreferrer" : undefined}
+                            className="group inline-flex items-center gap-2 rounded-full border border-border bg-background/70 px-3 py-1.5 text-xs font-medium text-muted-foreground transition hover:border-primary/40 hover:bg-background hover:text-foreground"
+                          >
+                            <Icon className="h-3.5 w-3.5 text-muted-foreground group-hover:text-foreground" />
+                            {link.label}
+                          </Link>
+                        )
+                      })}
+                    </div>
+                  </div>
+                ))}
+              </div>
             </div>
           </div>
 

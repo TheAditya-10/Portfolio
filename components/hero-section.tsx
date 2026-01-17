@@ -4,8 +4,38 @@ import type React from "react"
 
 import { useEffect, useRef } from "react"
 import { Button } from "@/components/ui/button"
-import { Github, Linkedin, Mail, Download, ArrowDown } from "lucide-react"
+import type { LucideIcon } from "lucide-react"
+import { ArrowDown, Code2, Download, Github, Instagram, Linkedin, Mail, Twitter } from "lucide-react"
 import Link from "next/link"
+
+type QuickLink = {
+  label: string
+  href: string
+  icon: LucideIcon
+  external?: boolean
+}
+
+const quickGroups: { label: string; links: QuickLink[] }[] = [
+  {
+    label: "CODE",
+    links: [
+      { label: "GitHub", href: "https://github.com/TheAditya-10", icon: Github, external: true },
+      { label: "LeetCode", href: "https://leetcode.com/TheAditya_10", icon: Code2, external: true },
+    ],
+  },
+  {
+    label: "SOCIAL",
+    links: [
+      { label: "LinkedIn", href: "https://www.linkedin.com/in/aditya-pratap-singh-tomar-693444204/", icon: Linkedin, external: true },
+      { label: "Instagram", href: "https://www.instagram.com/theaditya.10/", icon: Instagram, external: true },
+      { label: "X", href: "https://x.com/TheAditya_10", icon: Twitter, external: true },
+    ],
+  },
+  {
+    label: "CONNECT",
+    links: [{ label: "Email", href: "mailto:aditya.pratap.singh.tomar.1082006@email.com", icon: Mail }],
+  },
+]
 
 export function HeroSection() {
   const heroRef = useRef<HTMLDivElement>(null)
@@ -86,35 +116,29 @@ export function HeroSection() {
               </Button>
             </div>
 
-            <div
-              className="flex gap-4 justify-center md:justify-start pt-4 animate-fade-in-up"
-              style={{ animationDelay: "0.4s" }}
-            >
-              <Link
-                href="https://github.com/TheAditya-10"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="text-muted-foreground hover:text-foreground transition-colors p-2 rounded-lg hover:bg-secondary"
-              >
-                <Github className="h-5 w-5" />
-                <span className="sr-only">GitHub</span>
-              </Link>
-              <Link
-                href="https://www.linkedin.com/in/aditya-pratap-singh-tomar-693444204/"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="text-muted-foreground hover:text-foreground transition-colors p-2 rounded-lg hover:bg-secondary"
-              >
-                <Linkedin className="h-5 w-5" />
-                <span className="sr-only">LinkedIn</span>
-              </Link>
-              <Link
-                href="mailto:aditya.pratap.singh.tomar.1082006@email.com"
-                className="text-muted-foreground hover:text-foreground transition-colors p-2 rounded-lg hover:bg-secondary"
-              >
-                <Mail className="h-5 w-5" />
-                <span className="sr-only">Email</span>
-              </Link>
+            <div className="space-y-4 pt-4 animate-fade-in-up" style={{ animationDelay: "0.4s" }}>
+              {quickGroups.map((group) => (
+                <div key={group.label} className="flex flex-wrap items-center gap-3">
+                  <span className="text-xs font-mono tracking-[0.3em] text-muted-foreground">{group.label}</span>
+                  <div className="flex flex-wrap gap-2">
+                    {group.links.map((link) => {
+                      const Icon = link.icon
+                      return (
+                        <Link
+                          key={link.label}
+                          href={link.href}
+                          target={link.external ? "_blank" : undefined}
+                          rel={link.external ? "noopener noreferrer" : undefined}
+                          className="group inline-flex items-center gap-2 rounded-full border border-border bg-card/60 px-3 py-1.5 text-xs font-medium text-muted-foreground transition hover:border-primary/40 hover:bg-secondary/70 hover:text-foreground"
+                        >
+                          <Icon className="h-3.5 w-3.5 text-muted-foreground group-hover:text-foreground" />
+                          {link.label}
+                        </Link>
+                      )
+                    })}
+                  </div>
+                </div>
+              ))}
             </div>
           </div>
 

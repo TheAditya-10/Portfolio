@@ -7,9 +7,10 @@ import { cn } from "@/lib/utils"
 import { Button } from "@/components/ui/button"
 
 const githubUsername = "TheAditya-10"
-const leetcodeUsername = "TheAditya-10"
+const leetcodeUsername = "TheAditya_10"
 
-const githubHeatmapUrl = `https://ghchart.rshah.org/0ea5e9/${githubUsername}`
+const githubHeatmapLightUrl = `https://ghchart.rshah.org/0ea5e9/${githubUsername}`
+const githubHeatmapDarkUrl = `https://ghchart.rshah.org/22d3ee/${githubUsername}`
 const leetcodeHeatmapLightUrl = `https://leetcard.jacoblin.cool/${leetcodeUsername}?theme=light&font=Geist%20Mono&ext=heatmap`
 const leetcodeHeatmapDarkUrl = `https://leetcard.jacoblin.cool/${leetcodeUsername}?theme=dark&font=Geist%20Mono&ext=heatmap`
 
@@ -73,13 +74,21 @@ export function ActivitySection() {
                 </Button>
               </div>
 
-              <div className="rounded-xl border border-border bg-secondary/60 p-4">
-                <img
-                  src={githubHeatmapUrl}
-                  alt="GitHub contribution calendar"
-                  className="w-full h-auto"
-                  loading="lazy"
-                />
+              <div className="rounded-xl border border-border/70 bg-gradient-to-br from-background/80 via-secondary/70 to-background/80 p-4">
+                <div className="flex h-40 sm:h-44 lg:h-48 items-center justify-center">
+                  <img
+                    src={githubHeatmapLightUrl}
+                    alt="GitHub contribution calendar"
+                    className="h-full w-full object-contain dark:hidden"
+                    loading="lazy"
+                  />
+                  <img
+                    src={githubHeatmapDarkUrl}
+                    alt="GitHub contribution calendar"
+                    className="hidden h-full w-full object-contain dark:block"
+                    loading="lazy"
+                  />
+                </div>
               </div>
 
               <div className="flex items-center justify-between text-xs text-muted-foreground">
@@ -117,19 +126,21 @@ export function ActivitySection() {
                 </Button>
               </div>
 
-              <div className="rounded-xl border border-border bg-secondary/60 p-4">
-                <img
-                  src={leetcodeHeatmapLightUrl}
-                  alt="LeetCode activity calendar"
-                  className="w-full h-auto dark:hidden"
-                  loading="lazy"
-                />
-                <img
-                  src={leetcodeHeatmapDarkUrl}
-                  alt="LeetCode activity calendar"
-                  className="hidden w-full h-auto dark:block"
-                  loading="lazy"
-                />
+              <div className="rounded-xl border border-border/70 bg-gradient-to-br from-background/80 via-secondary/70 to-background/80 p-4">
+                <div className="flex h-40 sm:h-44 lg:h-48 items-center justify-center">
+                  <img
+                    src={leetcodeHeatmapLightUrl}
+                    alt="LeetCode activity calendar"
+                    className="h-full w-full object-contain dark:hidden"
+                    loading="lazy"
+                  />
+                  <img
+                    src={leetcodeHeatmapDarkUrl}
+                    alt="LeetCode activity calendar"
+                    className="hidden h-full w-full object-contain dark:block"
+                    loading="lazy"
+                  />
+                </div>
               </div>
 
               <p className="text-xs text-muted-foreground">
