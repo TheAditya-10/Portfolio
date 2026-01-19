@@ -79,13 +79,7 @@ export function ActivitySection() {
                   <img
                     src={githubHeatmapLightUrl}
                     alt="GitHub contribution calendar"
-                    className="h-full w-full object-contain dark:hidden"
-                    loading="lazy"
-                  />
-                  <img
-                    src={githubHeatmapDarkUrl}
-                    alt="GitHub contribution calendar"
-                    className="hidden h-full w-full object-contain dark:block"
+                    className="h-full w-full object-contain dark:invert"
                     loading="lazy"
                   />
                 </div>
