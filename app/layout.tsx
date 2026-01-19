@@ -24,6 +24,9 @@ export const metadata: Metadata = {
     "TensorFlow",
   ],
   authors: [{ name: "Aditya Pratap Singh Tomar" }],
+  verification: {
+    google: "omdc3wbmImxNA17_x4PEczQXLOKa8SdT6D3weldAzVw",
+  },
   openGraph: {
     title: "Aditya Pratap Singh Tomar | Data Scientist & ML Engineer",
     description: "Building production-ready ML systems with deep learning, Transformers, and scalable deployment.",
