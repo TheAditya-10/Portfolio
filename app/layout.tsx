@@ -24,9 +24,6 @@ export const metadata: Metadata = {
     "TensorFlow",
   ],
   authors: [{ name: "Aditya Pratap Singh Tomar" }],
-  verification: {
-    google: "omdc3wbmImxNA17_x4PEczQXLOKa8SdT6D3weldAzVw",
-  },
   openGraph: {
     title: "Aditya Pratap Singh Tomar | Data Scientist & ML Engineer",
     description: "Building production-ready ML systems with deep learning, Transformers, and scalable deployment.",
@@ -49,6 +46,12 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en" suppressHydrationWarning>
+      <head>
+        <meta
+          name="google-site-verification"
+          content="omdc3wbmImxNA17_x4PEczQXLOKa8SdT6D3weldAzVw"
+        />
+      </head>
       <body className={`${inter.variable} ${playfair.variable} ${geistMono.variable} font-sans antialiased`}>
         <ThemeProvider attribute="class" defaultTheme="dark" enableSystem disableTransitionOnChange>
           {children}
