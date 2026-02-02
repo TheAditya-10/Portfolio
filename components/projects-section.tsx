@@ -1,206 +1,220 @@
 "use client"
 
-import { useEffect, useRef, useState } from "react"
-import { cn } from "@/lib/utils"
-import { Github, ExternalLink, Folder } from "lucide-react"
-import Link from "next/link"
+import { useEffect, useMemo, useRef, useState } from "react"
+import { ExternalLink, Heart, PlayCircle, Play, X, Github } from "lucide-react"
+import portfolio from "@/data/portfolio.json"
+import { ProjectChat } from "@/components/project-chat"
+import { useLocalLikes } from "@/components/hooks/use-local-likes"
 
-const majorProjects = [
-  {
-    title: "ForesightX: The Future Has Signals. We Decode Them.",
-    description:
-      "Designed and deployed an end-to-end ML system for stock market forecasting using Python, PyTorch-based deep time-series models, and feature-engineered pipelines processing 1M+ data points. Built scalable training, evaluation, and deployment workflows with MLflow, Docker, Kubernetes, and Airflow, enabling automated retraining, drift detection, and 30% faster inference latency.",
-    technologies: ["Python", "PyTorch", "MLflow", "DVC", "Docker", "Kubernetes", "FastAPI", "Transformers"],
-    github: "https://github.com/TheAditya-10/ForesightX",
-    date: "Dec 2025",
-    featured: true,
-  },
-  {
-    title: "Deep ECG Signal Analysis: Transformer-based Classification and Anomaly Detection",
-    description:
-      "Developed a transformer-based dual-model pipeline achieving ~91.3% F1 score for ECG anomaly detection and arrhythmia classification on MIT-BIH and PTB datasets. Engineered a scalable architecture with custom preprocessing and multi-label supervision enabling real-time inference at <150ms latency per ECG segment.",
-    technologies: ["PyTorch", "SciPy", "NumPy", "WFDB", "Torch.nn", "Scikit-learn", "Pandas"],
-    github: "https://github.com/TheAditya-10/ECG-Detection",
-    date: "Feb 2025 - Present",
-    featured: true,
-  },
-]
+const projects = portfolio.projects
 
-const hackathonProjects = [
-  {
-    title: "BinSavvy – Smart Waste Management System",
-    description:
-      "Built a drone-integrated garbage detection system with backend automation and YOLO-based image recognition to streamline waste collection.",
-    github: "https://github.com/TheAditya-10/BinSavvy",
-    date: "Feb 2025",
-  },
-  {
-    title: "MargDarshak-Mitr – Railway Travel Assistant",
-    description:
-      "Developed a full-featured web app enabling live coach tracking, food discovery, and trip planning to elevate the train travel experience.",
-    github: "https://github.com/TheAditya-10/MargDarshak-Mitr",
-    date: "Feb 2025",
-  },
-  {
-    title: "Student Lifestyle and Academic Performance Predictor",
-    description:
-      "Built an end-to-end data science pipeline to analyze student lifestyle data (2,000 records) and predict GPA & stress levels using feature engineering, preprocessing pipelines, cross-validation, and regression models.",
-    github: "https://github.com/TheAditya-10/Student-Lifestyle",
-    date: "Nov 2024",
-  },
-  {
-    title: "Restaurant Data Analytics & Cuisine Popularity Prediction",
-    description:
-      "Built an end-to-end data science pipeline to preprocess and analyze 10,000+ rows of global restaurant data, perform feature engineering, and predict cuisine popularity using Random Forest and XGBoost, achieving ~92% accuracy.",
-    github: "https://github.com/TheAditya-10/Restaurants-Data-Insights-",
-    date: "Nov 2024",
-  },
-  {
-    title: "Chess Game – Two-Player Board Game",
-    description: "Created an interactive two-player chess game with intuitive controls and core game mechanics.",
-    github: "https://scratch.mit.edu/projects/990205458/",
-    date: "Feb 2024",
-  },
-]
+type PreviewState = {
+  id: string
+  videoUrl: string
+  title: string
+}
 
-export function ProjectsSection() {
-  const [isVisible, setIsVisible] = useState(false)
-  const sectionRef = useRef<HTMLElement>(null)
+type ProjectsSectionProps = {
+  variant?: "featured" | "all" | "hackathon" | "learning"
+  title?: string
+  subtitle?: string
+  sectionId?: string
+}
+
+export function ProjectsSection({
+  variant = "featured",
+  title = "Flagship AI Systems",
+  subtitle = "Built for production, evaluated for impact, and documented for trust.",
+  sectionId = "projects",
+}: ProjectsSectionProps) {
+  const [preview, setPreview] = useState<PreviewState | null>(null)
+  const [seenPreviews, setSeenPreviews] = useState<Record<string, boolean>>({})
+  const filteredProjects = projects.filter((project) => {
+    if (variant === "all") return true
+    return project.category === variant
+  })
 
   useEffect(() => {
-    const observer = new IntersectionObserver(
-      ([entry]) => {
-        if (entry.isIntersecting) {
-          setIsVisible(true)
-        }
-      },
-      { threshold: 0.1 },
-    )
-
-    if (sectionRef.current) {
-      observer.observe(sectionRef.current)
+    if (typeof window === "undefined") return
+    const stored = window.sessionStorage.getItem("portfolio:previewed-projects")
+    if (stored) {
+      try {
+        setSeenPreviews(JSON.parse(stored) as Record<string, boolean>)
+      } catch {
+        setSeenPreviews({})
+      }
     }
-
-    return () => observer.disconnect()
   }, [])
 
+  const openPreview = (project: (typeof projects)[number]) => {
+    setPreview({ id: project.id, videoUrl: project.videoUrl, title: project.title })
+    if (typeof window !== "undefined") {
+      const next = { ...seenPreviews, [project.id]: true }
+      setSeenPreviews(next)
+      window.sessionStorage.setItem("portfolio:previewed-projects", JSON.stringify(next))
+    }
+  }
+
   return (
-    <section ref={sectionRef} id="projects" className="py-24 md:py-32">
+    <section id={sectionId} className="relative py-24">
       <div className="mx-auto max-w-6xl px-6">
-        <div
-          className={cn(
-            "text-center space-y-4 mb-16 transition-all duration-700",
-            isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-10",
-          )}
-        >
-          <p className="text-primary font-mono text-sm tracking-wider">PORTFOLIO</p>
-          <h2 className="font-serif text-3xl md:text-4xl font-bold text-foreground">Featured Projects</h2>
-          <p className="text-muted-foreground max-w-2xl mx-auto">
-            End-to-end ML systems, AI applications, and data-driven solutions built with production-grade standards.
-          </p>
-        </div>
-
-        {/* Major Projects */}
-        <div className="space-y-8 mb-16">
-          {majorProjects.map((project, index) => (
-            <div
-              key={project.title}
-              className={cn(
-                "group relative p-8 rounded-2xl border border-border bg-card hover:border-primary/50 transition-all duration-500",
-                isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-10",
-              )}
-              style={{ transitionDelay: isVisible ? `${index * 150}ms` : "0ms" }}
-            >
-              <div className="flex flex-col lg:flex-row lg:items-start gap-6">
-                <div className="flex-1 space-y-4">
-                  <div className="flex items-center gap-3">
-                    <span className="px-3 py-1 text-xs rounded-full bg-primary text-primary-foreground font-medium">
-                      Featured
-                    </span>
-                    <span className="text-sm text-muted-foreground">{project.date}</span>
-                  </div>
-
-                  <h3 className="text-xl md:text-2xl font-semibold text-foreground group-hover:text-primary transition-colors">
-                    {project.title}
-                  </h3>
-
-                  <p className="text-muted-foreground leading-relaxed">{project.description}</p>
-
-                  <div className="flex flex-wrap gap-2">
-                    {project.technologies.map((tech) => (
-                      <span
-                        key={tech}
-                        className="px-3 py-1 text-sm rounded-full bg-secondary text-secondary-foreground font-medium"
-                      >
-                        {tech}
-                      </span>
-                    ))}
-                  </div>
-                </div>
-
-                <div className="flex gap-3 lg:flex-col">
-                  <Link
-                    href={project.github}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="flex items-center gap-2 px-4 py-2 rounded-lg bg-secondary hover:bg-primary hover:text-primary-foreground transition-colors text-sm font-medium"
-                  >
-                    <Github className="h-4 w-4" />
-                    Code
-                  </Link>
-                </div>
-              </div>
-            </div>
-          ))}
-        </div>
-
-        {/* Hackathon & Learning Projects */}
-        <div
-          className={cn(
-            "space-y-6 transition-all duration-700 delay-300",
-            isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-10",
-          )}
-        >
-          <h3 className="text-xl font-semibold text-foreground mb-6">Hackathon & Learning Projects</h3>
-
-          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-4">
-            {hackathonProjects.map((project, index) => (
-              <div
-                key={project.title}
-                className={cn(
-                  "group p-5 rounded-xl border border-border bg-card hover:border-primary/50 transition-all duration-300",
-                  isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-10",
-                )}
-                style={{ transitionDelay: isVisible ? `${(index + 2) * 100}ms` : "0ms" }}
-              >
-                <div className="flex items-start justify-between mb-3">
-                  <Folder className="h-8 w-8 text-primary" />
-                  <Link
-                    href={project.github}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="text-muted-foreground hover:text-primary transition-colors"
-                  >
-                    {project.github.includes("scratch") ? (
-                      <ExternalLink className="h-5 w-5" />
-                    ) : (
-                      <Github className="h-5 w-5" />
-                    )}
-                  </Link>
-                </div>
-
-                <h4 className="font-semibold text-foreground mb-2 group-hover:text-primary transition-colors line-clamp-2">
-                  {project.title}
-                </h4>
-
-                <p className="text-sm text-muted-foreground mb-3 line-clamp-3">{project.description}</p>
-
-                <p className="text-xs text-muted-foreground">{project.date}</p>
-              </div>
-            ))}
+        <div className="flex items-end justify-between gap-6">
+          <div>
+            <p className="text-xs font-mono uppercase tracking-[0.3em] text-muted-foreground">Projects</p>
+            <h2 className="mt-3 text-3xl font-semibold text-foreground">{title}</h2>
+            <p className="mt-2 text-muted-foreground">{subtitle}</p>
+          </div>
+          <div className="hidden items-center gap-2 text-sm text-muted-foreground md:flex">
+            <PlayCircle className="h-4 w-4" />
+            Hover any card for a video preview
           </div>
         </div>
+
+        <div className="mt-10 grid gap-6 md:grid-cols-2">
+          {filteredProjects.map((project) => (
+            <ProjectCard
+              key={project.id}
+              project={project}
+              onPreviewClick={() => openPreview(project)}
+              onPreviewHover={() => openPreview(project)}
+              canHoverPreview={!seenPreviews[project.id]}
+            />
+          ))}
+        </div>
       </div>
+
+      {preview ? (
+        <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/70">
+          <div className="relative w-[80vw] max-w-5xl overflow-hidden rounded-2xl border border-border bg-black shadow-2xl">
+            <button
+              onClick={() => setPreview(null)}
+              className="absolute right-3 top-3 z-10 rounded-full border border-border/60 bg-black/60 p-2 text-white transition hover:border-primary/60"
+              aria-label="Close video preview"
+            >
+              <X className="h-4 w-4" />
+            </button>
+            <iframe
+              title={`${preview.title} preview`}
+              className="h-[75vh] w-full"
+              src={`${preview.videoUrl}?autoplay=1&mute=0&controls=1&playsinline=1`}
+              allow="autoplay; encrypted-media"
+            />
+          </div>
+        </div>
+      ) : null}
     </section>
+  )
+}
+
+type ProjectCardProps = {
+  project: (typeof projects)[number]
+  onPreviewClick: () => void
+  onPreviewHover: () => void
+  canHoverPreview: boolean
+}
+
+function ProjectCard({ project, onPreviewClick, onPreviewHover, canHoverPreview }: ProjectCardProps) {
+  const { likes, increment } = useLocalLikes(project.id)
+  const [bump, setBump] = useState(false)
+  const hoverTimerRef = useRef<number | null>(null)
+
+  const handleLike = () => {
+    increment()
+    setBump(true)
+    window.setTimeout(() => setBump(false), 280)
+  }
+
+  const startHoverTimer = () => {
+    if (!canHoverPreview) return
+    if (hoverTimerRef.current) window.clearTimeout(hoverTimerRef.current)
+    hoverTimerRef.current = window.setTimeout(() => {
+      onPreviewHover()
+    }, 1000)
+  }
+
+  const cancelHoverTimer = () => {
+    if (hoverTimerRef.current) {
+      window.clearTimeout(hoverTimerRef.current)
+      hoverTimerRef.current = null
+    }
+  }
+
+  return (
+    <article
+      onMouseEnter={startHoverTimer}
+      onMouseLeave={cancelHoverTimer}
+      onFocus={startHoverTimer}
+      onBlur={cancelHoverTimer}
+      tabIndex={0}
+      className="group relative rounded-2xl border border-border bg-card/70 p-6 transition hover:-translate-y-1 hover:border-primary/50"
+      data-story={project.id === "foresightx" ? "project-foresightx" : undefined}
+    >
+      <div className="flex items-center justify-between">
+        <div>
+          <button
+            type="button"
+            onClick={onPreviewClick}
+            className="flex items-center gap-2 text-left text-xl font-semibold text-foreground"
+            aria-label={`Play ${project.title} video`}
+          >
+            {project.title}
+            <Play className="h-4 w-4 text-primary" />
+          </button>
+          <p className="mt-2 text-sm text-muted-foreground">{project.tagline}</p>
+          <div className="mt-2 flex items-center gap-2">
+            {project.repo ? (
+              <a
+                href={project.repo}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex items-center justify-center rounded-full border border-border px-2.5 py-1 text-xs text-muted-foreground transition hover:border-primary/40 hover:text-foreground"
+                aria-label={`View ${project.title} on GitHub`}
+              >
+                <Github className="h-3.5 w-3.5" />
+              </a>
+            ) : null}
+            {project.live ? (
+              <a
+                href={project.live}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex items-center justify-center rounded-full border border-border px-2.5 py-1 text-xs text-muted-foreground transition hover:border-primary/40 hover:text-foreground"
+                aria-label={`Open live demo for ${project.title}`}
+              >
+                <ExternalLink className="h-3.5 w-3.5" />
+              </a>
+            ) : null}
+          </div>
+        </div>
+        <button
+          onClick={handleLike}
+          className="flex items-center gap-2 rounded-full border border-border px-3 py-1 text-xs text-muted-foreground transition hover:border-primary/40 hover:text-foreground"
+          aria-label={`Like ${project.title}`}
+        >
+          <Heart className={`h-4 w-4 ${bump ? "animate-pulse" : ""}`} />
+          {likes}
+        </button>
+      </div>
+
+      <p className="mt-4 text-sm text-foreground/80">{project.impact}</p>
+
+      <div className="mt-4 flex flex-wrap gap-2">
+        {project.skills.map((skill) => (
+          <span key={skill} className="rounded-full border border-border px-2 py-1 text-xs text-muted-foreground">
+            {skill}
+          </span>
+        ))}
+      </div>
+
+      <div className="mt-4 text-sm text-muted-foreground">
+        <ul className="list-disc pl-5">
+          {project.highlights.map((highlight) => (
+            <li key={highlight}>{highlight}</li>
+          ))}
+        </ul>
+      </div>
+
+      <ProjectChat projectId={project.id} projectTitle={project.title} />
+    </article>
   )
 }

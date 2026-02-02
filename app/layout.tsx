@@ -1,41 +1,40 @@
 import type React from "react"
 import type { Metadata, Viewport } from "next"
-import { Inter, Playfair_Display, Geist_Mono } from "next/font/google"
+import { Space_Grotesk, JetBrains_Mono } from "next/font/google"
 import { Analytics } from "@vercel/analytics/next"
 import { ThemeProvider } from "@/components/theme-provider"
+import { InsightsProvider } from "@/components/insights-context"
 import "./globals.css"
 
-const inter = Inter({ subsets: ["latin"], variable: "--font-inter" })
-const playfair = Playfair_Display({ subsets: ["latin"], variable: "--font-playfair" })
-const geistMono = Geist_Mono({ subsets: ["latin"], variable: "--font-geist-mono" })
+const spaceGrotesk = Space_Grotesk({ subsets: ["latin"], variable: "--font-space" })
+const jetbrainsMono = JetBrains_Mono({ subsets: ["latin"], variable: "--font-mono" })
 
 export const metadata: Metadata = {
-  title: "Aditya Pratap Singh Tomar | Data Scientist & ML Engineer",
+  title: "Aditya Pratap Singh Tomar | ML Engineer & AI Researcher",
   description:
-    "Data Scientist and MLOps Engineer with strong experience in building end-to-end, production-ready ML systems, spanning data pipelines, deep learning models (Transformers, LLMs), MLOps workflows, and scalable deployment.",
+    "AI-native portfolio of Aditya Pratap Singh Tomar: ML engineer and data scientist building production-grade AI systems, RAG pipelines, and research-driven deployments.",
   keywords: [
-    "Data Scientist",
     "ML Engineer",
-    "Machine Learning",
-    "Deep Learning",
+    "Data Scientist",
+    "AI Researcher",
+    "RAG",
+    "LLM",
     "MLOps",
-    "Python",
     "PyTorch",
-    "TensorFlow",
+    "Deployment",
   ],
   authors: [{ name: "Aditya Pratap Singh Tomar" }],
   openGraph: {
-    title: "Aditya Pratap Singh Tomar | Data Scientist & ML Engineer",
-    description: "Building production-ready ML systems with deep learning, Transformers, and scalable deployment.",
+    title: "Aditya Pratap Singh Tomar | ML Engineer & AI Researcher",
+    description: "Production AI systems, RAG pipelines, and reliable ML deployments.",
     type: "website",
   },
-    generator: 'v0.app'
 }
 
 export const viewport: Viewport = {
   themeColor: [
     { media: "(prefers-color-scheme: light)", color: "#f8fafc" },
-    { media: "(prefers-color-scheme: dark)", color: "#0f172a" },
+    { media: "(prefers-color-scheme: dark)", color: "#0b1120" },
   ],
 }
 
@@ -52,9 +51,9 @@ export default function RootLayout({
           content="omdc3wbmImxNA17_x4PEczQXLOKa8SdT6D3weldAzVw"
         />
       </head>
-      <body className={`${inter.variable} ${playfair.variable} ${geistMono.variable} font-sans antialiased`}>
+      <body className={`${spaceGrotesk.variable} ${jetbrainsMono.variable} font-sans antialiased`}>
         <ThemeProvider attribute="class" defaultTheme="dark" enableSystem disableTransitionOnChange>
-          {children}
+          <InsightsProvider>{children}</InsightsProvider>
         </ThemeProvider>
         <Analytics />
       </body>

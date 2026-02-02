@@ -3,45 +3,9 @@
 import { useEffect, useRef, useState } from "react"
 import { cn } from "@/lib/utils"
 import { BarChart3, Brain, Cpu, Database, Users, Rocket } from "lucide-react"
+import portfolio from "@/data/portfolio.json"
 
-const services = [
-  {
-    icon: Brain,
-    title: "Machine Learning Development",
-    description:
-      "End-to-end ML model development from data preprocessing to deployment. Specializing in deep learning, Transformers, and time-series analysis with production-grade code.",
-  },
-  {
-    icon: BarChart3,
-    title: "Data Analysis & Visualization",
-    description:
-      "Comprehensive data analysis pipelines using Python, Pandas, and advanced visualization tools. Transform raw data into actionable insights with compelling visual narratives.",
-  },
-  {
-    icon: Cpu,
-    title: "MLOps & Deployment",
-    description:
-      "Production-ready ML infrastructure with MLflow, Docker, Kubernetes, and CI/CD pipelines. Automated retraining, drift detection, and scalable model serving.",
-  },
-  {
-    icon: Database,
-    title: "AI-Powered Applications",
-    description:
-      "Building intelligent applications with LangChain, LangGraph, and LLMs. From AI agents to RAG systems, creating solutions that leverage cutting-edge AI capabilities.",
-  },
-  {
-    icon: Users,
-    title: "Technical Mentorship",
-    description:
-      "Guidance for students and developers in DSA, machine learning, and AI fundamentals. Workshop facilitation and hands-on training with practical projects.",
-  },
-  {
-    icon: Rocket,
-    title: "Full-Stack ML Solutions",
-    description:
-      "Complete ML solutions from frontend to backend using FastAPI, Flask, and modern frameworks. Integrating ML models into production-ready web applications.",
-  },
-]
+const iconMap = [Brain, BarChart3, Cpu, Database, Users, Rocket]
 
 export function ServicesSection() {
   const [isVisible, setIsVisible] = useState(false)
@@ -81,7 +45,9 @@ export function ServicesSection() {
         </div>
 
         <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
-          {services.map((service, index) => (
+          {portfolio.services.map((service, index) => {
+            const Icon = iconMap[index % iconMap.length]
+            return (
             <div
               key={service.title}
               className={cn(
@@ -95,7 +61,7 @@ export function ServicesSection() {
 
               <div className="relative">
                 <div className="p-3 rounded-xl bg-primary/10 text-primary w-fit mb-4 group-hover:bg-primary group-hover:text-primary-foreground transition-colors duration-300">
-                  <service.icon className="h-6 w-6" />
+                  <Icon className="h-6 w-6" />
                 </div>
 
                 <h3 className="text-lg font-semibold text-foreground mb-2 group-hover:text-primary transition-colors">
@@ -105,7 +71,7 @@ export function ServicesSection() {
                 <p className="text-sm text-muted-foreground leading-relaxed">{service.description}</p>
               </div>
             </div>
-          ))}
+          )})}
         </div>
       </div>
     </section>

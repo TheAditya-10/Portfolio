@@ -5,9 +5,10 @@ import Link from "next/link"
 import { Code2, Github } from "lucide-react"
 import { cn } from "@/lib/utils"
 import { Button } from "@/components/ui/button"
+import portfolio from "@/data/portfolio.json"
 
-const githubUsername = "TheAditya-10"
-const leetcodeUsername = "TheAditya_10"
+const githubUsername = portfolio.activities.github
+const leetcodeUsername = portfolio.activities.leetcode
 
 const githubHeatmapLightUrl = `https://ghchart.rshah.org/0ea5e9/${githubUsername}`
 const githubHeatmapDarkUrl = `https://ghchart.rshah.org/22d3ee/${githubUsername}`

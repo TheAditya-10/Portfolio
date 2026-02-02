@@ -3,33 +3,7 @@
 import { useEffect, useRef, useState } from "react"
 import { cn } from "@/lib/utils"
 import { GraduationCap, Calendar, Award } from "lucide-react"
-
-const education = [
-  {
-    degree: "Bachelor of Technology",
-    field: "Computer Science Engineering",
-    institution: "Jabalpur Engineering College",
-    period: "Sep 2023 - Apr 2027",
-    score: "8.39/10.0 CGPA",
-    highlights: ["Data Science", "Machine Learning", "Deep Learning", "MLOps"],
-  },
-  {
-    degree: "Senior Secondary (XII)",
-    field: "Science Stream",
-    institution: "CBSE Board",
-    period: "2023",
-    score: "83.4%",
-    highlights: ["Physics", "Chemistry", "Mathematics", "Computer Science"],
-  },
-  {
-    degree: "Secondary (X)",
-    field: "General Studies",
-    institution: "CBSE Board",
-    period: "2021",
-    score: "93%",
-    highlights: ["Science", "Mathematics", "English", "Social Studies"],
-  },
-]
+import portfolio from "@/data/portfolio.json"
 
 export function EducationSection() {
   const [isVisible, setIsVisible] = useState(false)
@@ -69,7 +43,7 @@ export function EducationSection() {
         </div>
 
         <div className="grid md:grid-cols-3 gap-6">
-          {education.map((edu, index) => (
+          {portfolio.education.map((edu, index) => (
             <div
               key={edu.degree}
               className={cn(

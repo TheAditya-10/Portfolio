@@ -4,36 +4,7 @@ import { useEffect, useRef, useState } from "react"
 import { cn } from "@/lib/utils"
 import { Users, Calendar, ExternalLink } from "lucide-react"
 import Link from "next/link"
-
-const leadership = [
-  {
-    role: "Tech-Team Lead",
-    organization: "MATRIX, JEC",
-    period: "Jun 2024 - Present",
-    description:
-      "Led and executed Winter-Arc month long event, mentoring a 50+ member student team to build the platform, run campaigns, secure sponsorships, and drive 400+ participants through a structured, AI-powered learning ecosystem.",
-    links: [
-      { label: "View Team", url: "https://www.matrixjec.co.in/humans" },
-      { label: "Instagram", url: "https://www.instagram.com/matrix.jec/" },
-    ],
-    highlights: ["50+ Team Members", "400+ Participants", "AI-Powered Learning"],
-  },
-  {
-    role: "Technical Member",
-    organization: "JLUG, JEC",
-    period: "Oct 2024 - Present",
-    description:
-      "Delivered a technical seminar for 100+ students on Data Structures & Algorithms (DSA) for student developers, while mentoring juniors and engaging a coding community.",
-    links: [
-      {
-        label: "View Post",
-        url: "https://www.linkedin.com/posts/aditya-pratap-singh-tomar-693444204_jlug-dsa-codingcommunity-activity-7384216866296229888-DCN3/",
-      },
-      { label: "Instagram", url: "https://www.instagram.com/p/DMKHlp6TLZx/" },
-    ],
-    highlights: ["100+ Students", "DSA Workshop", "Community Mentor"],
-  },
-]
+import portfolio from "@/data/portfolio.json"
 
 export function LeadershipSection() {
   const [isVisible, setIsVisible] = useState(false)
@@ -73,7 +44,7 @@ export function LeadershipSection() {
         </div>
 
         <div className="grid md:grid-cols-2 gap-8">
-          {leadership.map((item, index) => (
+          {portfolio.leadership.map((item, index) => (
             <div
               key={item.role}
               className={cn(

@@ -1,0 +1,717 @@
+{
+  "profile": {
+    "name": "Aditya Pratap Singh Tomar",
+    "domain": "apst.me",
+    "title": "Data Scientist | ML Engineer | AI Researcher",
+    "location": "Jabalpur, Madhya Pradesh, India",
+    "email": "aditya.pratap.singh.tomar.1082006@email.com",
+    "phone": "+91-78982-92920",
+    "headline": "Building production-ready ML systems with deep learning, Transformers, and scalable deployment.",
+    "summary": "Data Scientist and MLOps Engineer focused on end-to-end ML systems. My work spans data pipelines, deep learning, evaluation, and scalable deployment. I prioritize reliability, clear communication, and measurable impact.",
+    "socials": {
+      "github": "https://github.com/TheAditya-10",
+      "leetcode": "https://leetcode.com/TheAditya_10",
+      "linkedin": "https://www.linkedin.com/in/aditya-pratap-singh-tomar-693444204/",
+      "instagram": "https://www.instagram.com/theaditya.10/",
+      "x": "https://x.com/TheAditya_10",
+      "codeforces": "https://codeforces.com/profile/TheAditya_10",
+      "gfg": "https://auth.geeksforgeeks.org/user/theaditya10",
+      "youtube": "https://www.youtube.com/@TheAditya10",
+      "whatsapp": "https://wa.me/917898292920"
+    },
+    "stats": [
+      {
+        "value": "3+",
+        "label": "Industry Internships"
+      },
+      {
+        "value": "350+",
+        "label": "DSA Problems Solved"
+      },
+      {
+        "value": "Top 1.7%",
+        "label": "Kaggle Ranking"
+      },
+      {
+        "value": "SIH'24",
+        "label": "Finalist"
+      }
+    ]
+  },
+  "experience": [
+    {
+      "id": "exp-lead-engineer",
+      "role": "Lead Engineer",
+      "company": "CatalyzeIQ Pvt. Ltd.",
+      "period": "Jan 2026 - Present",
+      "highlights": [
+        "Designing core backend services and AI-driven workflow architecture in a zero-to-one startup.",
+        "Collaborating with founders to define scalable systems, automation pipelines, and product direction.",
+        "Leading high-impact deliverables across engineering and data teams."
+      ],
+      "stack": [
+        "AI Architecture",
+        "Backend Services",
+        "Automation Pipelines",
+        "System Design"
+      ]
+    },
+    {
+      "id": "exp-ai-research-intern",
+      "role": "AI Research Intern",
+      "company": "Suryavanshi Ventures Pvt. Ltd.",
+      "period": "Aug 2025 - Sep 2025",
+      "highlights": [
+        "Engineered AI-driven healthcare agents using LangGraph and LangChain, boosting startup growth by 15-20%.",
+        "Optimized backend workflows with FastAPI, SQLAlchemy, and Poetry, cutting API latency by 20%."
+      ],
+      "stack": [
+        "LangGraph",
+        "LangChain",
+        "FastAPI",
+        "SQLAlchemy",
+        "Poetry"
+      ]
+    },
+    {
+      "id": "exp-ml-intern",
+      "role": "ML Intern",
+      "company": "Priyam Innovations Pvt. Ltd.",
+      "period": "Jun 2025 - Jul 2025",
+      "highlights": [
+        "Built an AI-powered interview platform MVP with GPT-3.5 question generation (~80% relevance).",
+        "Implemented multi-modal sentiment analysis on 100+ interview transcripts and real-time video (~75% accuracy)."
+      ],
+      "stack": [
+        "GPT-3.5",
+        "OpenCV",
+        "HuggingFace",
+        "Sentiment Analysis"
+      ]
+    }
+  ],
+  "projects": [
+    {
+      "id": "foresightx",
+      "title": "ForesightX: The Future Has Signals. We Decode Them.",
+      "tagline": "Stock market forecasting with deep time-series models.",
+      "impact": "End-to-end ML system for stock forecasting with 1M+ data points, automated retraining, drift detection, and 30% faster inference latency.",
+      "videoUrl": "https://www.youtube.com/embed/r5NQecwZs1A",
+      "repo": "https://github.com/TheAditya-10",
+      "caseStudy": "data/projects/foresightx.md",
+      "category": "featured",
+      "skills": [
+        "Forecasting",
+        "Time-Series",
+        "MLOps"
+      ],
+      "tools": [
+        "Python",
+        "PyTorch",
+        "MLflow",
+        "Docker",
+        "Kubernetes",
+        "Airflow"
+      ],
+      "highlights": [
+        "Deep time-series pipeline with feature engineering",
+        "Automated evaluation and retraining",
+        "Production-ready deployment workflows"
+      ],
+      "live": "https://example.com"
+    },
+    {
+      "id": "ecg-insight",
+      "title": "Deep ECG Signal Analysis",
+      "tagline": "Transformer-based classification and anomaly detection.",
+      "impact": "~91.3% F1 score on MIT-BIH and PTB datasets with <150ms inference per ECG segment.",
+      "videoUrl": "https://www.youtube.com/embed/2vjPBrBU-TM",
+      "repo": "https://github.com/TheAditya-10",
+      "caseStudy": "data/projects/ecg-insight.md",
+      "category": "featured",
+      "skills": [
+        "Time-Series",
+        "PyTorch",
+        "Signal Processing",
+        "Transformers"
+      ],
+      "tools": [
+        "PyTorch",
+        "SciPy",
+        "NumPy",
+        "WFDB",
+        "Scikit-learn"
+      ],
+      "highlights": [
+        "Transformer-based dual-model pipeline",
+        "Custom preprocessing and multi-label supervision",
+        "Real-time inference readiness"
+      ],
+      "live": "https://example.com"
+    },
+    {
+      "id": "atlas-rag",
+      "title": "Atlas RAG: Private Knowledge Copilot",
+      "tagline": "Enterprise-grade RAG pipeline with adaptive retrieval and guardrails.",
+      "impact": "Improved answer faithfulness by 31% via hybrid retrieval + reranking.",
+      "videoUrl": "https://www.youtube.com/embed/k6JDeG0mMdo",
+      "repo": "https://github.com/TheAditya-10",
+      "caseStudy": "data/projects/atlas-rag.md",
+      "category": "featured",
+      "skills": [
+        "RAG",
+        "LLMs",
+        "Search",
+        "Evaluation"
+      ],
+      "tools": [
+        "FAISS",
+        "LangChain",
+        "FastAPI",
+        "Redis"
+      ],
+      "highlights": [
+        "Hybrid retrieval (BM25 + dense) with dynamic chunking",
+        "Policy-aware prompt routing",
+        "Live eval harness with human feedback hooks"
+      ],
+      "live": "https://example.com"
+    },
+    {
+      "id": "vision-foundry",
+      "title": "Vision Foundry: Defect Detection",
+      "tagline": "Computer vision pipeline for automated manufacturing QA.",
+      "impact": "Cut manual QA inspection time by 40% using active learning loops.",
+      "videoUrl": "https://www.youtube.com/embed/ysz5S6PUM-U",
+      "repo": "https://github.com/TheAditya-10",
+      "caseStudy": "data/projects/vision-foundry.md",
+      "category": "featured",
+      "skills": [
+        "Computer Vision",
+        "Active Learning",
+        "MLOps"
+      ],
+      "tools": [
+        "YOLOv8",
+        "OpenCV",
+        "WandB",
+        "Docker"
+      ],
+      "highlights": [
+        "Hard-negative mining for defect rarity",
+        "Human-in-the-loop labeling workflow",
+        "Robust deployment on low-power devices"
+      ],
+      "live": "https://example.com"
+    },
+    {
+      "id": "neuro-forecast",
+      "title": "NeuroForecast: Demand Signal Engine",
+      "tagline": "Multivariate forecasting for supply chain reliability.",
+      "impact": "Improved MAPE from 18.4% to 10.9% with attention-based models.",
+      "videoUrl": "https://www.youtube.com/embed/aqz-KE-bpKQ",
+      "repo": "https://github.com/TheAditya-10",
+      "caseStudy": "data/projects/neuro-forecast.md",
+      "category": "featured",
+      "skills": [
+        "Forecasting",
+        "Transformers",
+        "MLOps"
+      ],
+      "tools": [
+        "PyTorch",
+        "Darts",
+        "Airflow",
+        "PostgreSQL"
+      ],
+      "highlights": [
+        "Feature-store driven pipeline",
+        "Drift-aware retraining schedule",
+        "Explainable forecasts for ops teams"
+      ],
+      "live": "https://example.com"
+    },
+    {
+      "id": "safeguard-llm",
+      "title": "Safeguard LLM: Safety Layer for GenAI",
+      "tagline": "Policy-aware prompt filtering and response auditing.",
+      "impact": "Reduced unsafe responses by 62% using hybrid rules + classifier.",
+      "videoUrl": "https://www.youtube.com/embed/1w8Z0UOXVaY",
+      "repo": "https://github.com/TheAditya-10",
+      "caseStudy": "data/projects/safeguard-llm.md",
+      "category": "featured",
+      "skills": [
+        "LLM Safety",
+        "NLP",
+        "Evaluation"
+      ],
+      "tools": [
+        "Transformers",
+        "FastAPI",
+        "Redis",
+        "OpenTelemetry"
+      ],
+      "highlights": [
+        "Multi-tier policy enforcement",
+        "Streaming audit logs",
+        "Red-team harness for regressions"
+      ],
+      "live": "https://example.com"
+    },
+    {
+      "id": "binsavvy",
+      "title": "BinSavvy: Smart Waste Management System",
+      "tagline": "Drone-integrated garbage detection with YOLO.",
+      "impact": "Streamlined waste collection with automated detection and routing workflows.",
+      "videoUrl": "https://www.youtube.com/embed/pYzR5lspfnc",
+      "repo": "https://github.com/TheAditya-10",
+      "caseStudy": "data/projects/binsavvy.md",
+      "category": "hackathon",
+      "skills": [
+        "Computer Vision",
+        "YOLO",
+        "Automation"
+      ],
+      "tools": [
+        "YOLO",
+        "OpenCV",
+        "Python"
+      ],
+      "highlights": [
+        "Drone-integrated detection pipeline",
+        "Backend automation hooks",
+        "Field deployment simulations"
+      ],
+      "live": "https://example.com"
+    },
+    {
+      "id": "margdarshak-mitr",
+      "title": "MargDarshak-Mitr: Railway Travel Assistant",
+      "tagline": "Coach tracking, food discovery, and trip planning.",
+      "impact": "Built a full-featured web app to elevate railway travel experience.",
+      "videoUrl": "https://www.youtube.com/embed/V74l_zS1x8E",
+      "repo": "https://github.com/TheAditya-10",
+      "caseStudy": "data/projects/margdarshak-mitr.md",
+      "category": "hackathon",
+      "skills": [
+        "Web Apps",
+        "Routing",
+        "UX"
+      ],
+      "tools": [
+        "React",
+        "Node.js",
+        "APIs"
+      ],
+      "highlights": [
+        "Live coach tracking",
+        "Food discovery and alerts",
+        "Trip planning UX"
+      ],
+      "live": "https://example.com"
+    },
+    {
+      "id": "student-lifestyle",
+      "title": "Student Lifestyle and Academic Performance Predictor",
+      "tagline": "Predict GPA and stress using lifestyle signals.",
+      "impact": "Built a data science pipeline on 2,000 records with feature engineering and regression models.",
+      "videoUrl": "https://www.youtube.com/embed/8mAITcNt710",
+      "repo": "https://github.com/TheAditya-10",
+      "caseStudy": "data/projects/student-lifestyle.md",
+      "category": "learning",
+      "skills": [
+        "Data Analysis",
+        "Regression"
+      ],
+      "tools": [
+        "Python",
+        "Pandas",
+        "Scikit-learn"
+      ],
+      "highlights": [
+        "Cross-validation workflow",
+        "Feature engineering and preprocessing",
+        "Interpretability-focused reporting"
+      ],
+      "live": "https://example.com"
+    },
+    {
+      "id": "restaurant-analytics",
+      "title": "Restaurant Data Analytics & Cuisine Popularity Prediction",
+      "tagline": "Predict cuisine popularity from 10,000+ rows.",
+      "impact": "Random Forest and XGBoost models achieved ~92% accuracy for cuisine popularity.",
+      "videoUrl": "https://www.youtube.com/embed/N5oN7Y0Sgno",
+      "repo": "https://github.com/TheAditya-10",
+      "caseStudy": "data/projects/restaurant-analytics.md",
+      "category": "learning",
+      "skills": [
+        "Data Analysis",
+        "Classification"
+      ],
+      "tools": [
+        "Python",
+        "XGBoost",
+        "Pandas"
+      ],
+      "highlights": [
+        "Large-scale preprocessing",
+        "Feature engineering",
+        "Model comparison and evaluation"
+      ],
+      "live": "https://example.com"
+    },
+    {
+      "id": "chess-game",
+      "title": "Chess Game – Two-Player Board Game",
+      "tagline": "Interactive chess with core mechanics.",
+      "impact": "Strengthened OOP design and game-state management fundamentals.",
+      "videoUrl": "https://www.youtube.com/embed/fKxG8KjH1GQ",
+      "repo": "https://github.com/TheAditya-10",
+      "caseStudy": "data/projects/chess-game.md",
+      "category": "learning",
+      "skills": [
+        "Python",
+        "OOP"
+      ],
+      "tools": [
+        "Python",
+        "Pygame"
+      ],
+      "highlights": [
+        "Move validation and check logic",
+        "Two-player UI controls",
+        "Clean object-oriented structure"
+      ],
+      "live": "https://example.com"
+    }
+  ],
+  "skills": [
+    {
+      "id": "skill-llm",
+      "name": "LLMs & RAG",
+      "summary": "Designing retrieval + generation systems with evaluation harnesses.",
+      "projects": [
+        "atlas-rag",
+        "safeguard-llm"
+      ],
+      "tools": [
+        "LangChain",
+        "LangGraph",
+        "Transformers",
+        "FastAPI"
+      ]
+    },
+    {
+      "id": "skill-timeseries",
+      "name": "Time-Series & Signal Processing",
+      "summary": "Forecasting and biomedical signal pipelines.",
+      "projects": [
+        "ecg-insight",
+        "neuro-forecast",
+        "foresightx"
+      ],
+      "tools": [
+        "PyTorch",
+        "Darts",
+        "SciPy",
+        "WFDB"
+      ]
+    },
+    {
+      "id": "skill-vision",
+      "name": "Computer Vision",
+      "summary": "Vision systems for defect detection and waste management.",
+      "projects": [
+        "vision-foundry",
+        "binsavvy"
+      ],
+      "tools": [
+        "YOLO",
+        "OpenCV",
+        "WandB"
+      ]
+    },
+    {
+      "id": "skill-mlops",
+      "name": "MLOps & Deployment",
+      "summary": "Training pipelines, monitoring, and production readiness.",
+      "projects": [
+        "vision-foundry",
+        "neuro-forecast",
+        "safeguard-llm",
+        "foresightx"
+      ],
+      "tools": [
+        "MLflow",
+        "Docker",
+        "Kubernetes",
+        "Airflow"
+      ]
+    },
+    {
+      "id": "skill-eval",
+      "name": "Model Evaluation",
+      "summary": "Calibration, drift tracking, and human-in-the-loop feedback.",
+      "projects": [
+        "atlas-rag",
+        "ecg-insight",
+        "safeguard-llm"
+      ],
+      "tools": [
+        "Evals",
+        "SHAP",
+        "Red-Teaming"
+      ]
+    }
+  ],
+  "skillGroups": [
+    {
+      "title": "Programming Languages",
+      "items": [
+        "Python",
+        "Java",
+        "C",
+        "HTML",
+        "CSS"
+      ]
+    },
+    {
+      "title": "Data Science & ML",
+      "items": [
+        "NumPy",
+        "Pandas",
+        "Matplotlib",
+        "Seaborn",
+        "Scikit-learn",
+        "TensorFlow",
+        "Keras",
+        "PyTorch"
+      ]
+    },
+    {
+      "title": "MLOps & Cloud",
+      "items": [
+        "MLflow",
+        "DVC",
+        "AWS",
+        "Azure",
+        "Docker",
+        "Kubernetes",
+        "Prometheus",
+        "Grafana"
+      ]
+    },
+    {
+      "title": "GenAI & Development",
+      "items": [
+        "LangChain",
+        "LangGraph",
+        "Flask",
+        "FastAPI"
+      ]
+    },
+    {
+      "title": "Databases & Tools",
+      "items": [
+        "SQLAlchemy",
+        "Poetry",
+        "Git",
+        "GitHub",
+        "Postman"
+      ]
+    },
+    {
+      "title": "Other Tools",
+      "items": [
+        "Notion",
+        "Canva",
+        "Premiere Pro"
+      ]
+    }
+  ],
+  "research": [
+    {
+      "id": "research-calibration",
+      "title": "Calibration for Patient Risk Models",
+      "summary": "Studied reliability curves and temperature scaling for clinical risk prediction.",
+      "area": "Healthcare AI",
+      "year": "2024"
+    },
+    {
+      "id": "research-rag-eval",
+      "title": "RAG Evaluation Benchmarks",
+      "summary": "Built a lightweight evaluator to compare groundedness across retrieval strategies.",
+      "area": "LLM Systems",
+      "year": "2024"
+    }
+  ],
+  "achievements": [
+    {
+      "id": "ach-sih-finalist",
+      "title": "SIH'24 Finalist",
+      "detail": "Smart India Hackathon 2024 - Problem Statement PS-25189."
+    },
+    {
+      "id": "ach-kaggle",
+      "title": "Kaggle Rank 196",
+      "detail": "Top ~1.7% among 11,450 participants in Kaggle Playground Series S5E11."
+    },
+    {
+      "id": "ach-hackcrux",
+      "title": "HackCrux Runner-up",
+      "detail": "2nd place in national-level hackathon organized by LNMIIT Jaipur."
+    },
+    {
+      "id": "ach-dsa",
+      "title": "350+ DSA Problems",
+      "detail": "Solved across platforms and earned the GFG160 badge."
+    }
+  ],
+  "education": [
+    {
+      "degree": "Bachelor of Technology",
+      "field": "Computer Science Engineering",
+      "institution": "Jabalpur Engineering College",
+      "period": "Sep 2023 - Apr 2027",
+      "score": "8.39/10.0 CGPA",
+      "highlights": [
+        "Data Science",
+        "Machine Learning",
+        "Deep Learning",
+        "MLOps"
+      ]
+    },
+    {
+      "degree": "Senior Secondary (XII)",
+      "field": "Science Stream",
+      "institution": "CBSE Board",
+      "period": "2023",
+      "score": "83.4%",
+      "highlights": [
+        "Physics",
+        "Chemistry",
+        "Mathematics",
+        "Computer Science"
+      ]
+    },
+    {
+      "degree": "Secondary (X)",
+      "field": "General Studies",
+      "institution": "CBSE Board",
+      "period": "2021",
+      "score": "93%",
+      "highlights": [
+        "Science",
+        "Mathematics",
+        "English",
+        "Social Studies"
+      ]
+    }
+  ],
+  "certifications": [
+    {
+      "title": "Getting Started with Competitive Programming",
+      "issuer": "NPTEL",
+      "date": "May 2025",
+      "link": "https://internalapp.nptel.ac.in/NOC/NOC25/SEM2/Ecertificates/106/noc25-cs97/Course/NPTEL25CS97S55760019510336248.pdf"
+    },
+    {
+      "title": "Natural Language Processing",
+      "issuer": "NPTEL",
+      "date": "May 2025",
+      "link": "https://nptel.ac.in/noc/E_Certificate/NPTEL25CS51S34730010904397038"
+    },
+    {
+      "title": "Data Science",
+      "issuer": "INI (IIT Madras)",
+      "date": "Dec 2024",
+      "link": "https://onlinecourses.swayam2.ac.in/ini24_cs02/certificate?q=tDcXbu338Ulq%2BuKHbzFmFlaT9X49qijoWcQJjGLkHkiGof9MaPFyhUU9OPnyBHw8"
+    },
+    {
+      "title": "CS50x",
+      "issuer": "Harvard University",
+      "date": "Nov 2024",
+      "link": "https://cs50.harvard.edu/certificates/470bdfbf-9c89-498d-9fcc-cbc2106c7d3c"
+    },
+    {
+      "title": "Ethical Hacking",
+      "issuer": "NPTEL",
+      "date": "Dec 2024",
+      "link": "https://archive.nptel.ac.in/noc/Ecertificate/?q=NPTEL24CS94S45550049704445132"
+    }
+  ],
+  "leadership": [
+    {
+      "role": "Tech-Team Lead",
+      "organization": "MATRIX, JEC",
+      "period": "Jun 2024 - Present",
+      "description": "Led the Winter-Arc month-long event, mentoring a 50+ member student team to build the platform, run campaigns, secure sponsorships, and drive 400+ participants through an AI-powered learning ecosystem.",
+      "links": [
+        {
+          "label": "View Team",
+          "url": "https://www.matrixjec.co.in/humans"
+        },
+        {
+          "label": "Instagram",
+          "url": "https://www.instagram.com/matrix.jec/"
+        }
+      ],
+      "highlights": [
+        "50+ Team Members",
+        "400+ Participants",
+        "AI-Powered Learning"
+      ]
+    },
+    {
+      "role": "Technical Member",
+      "organization": "JLUG, JEC",
+      "period": "Oct 2024 - Present",
+      "description": "Delivered a technical seminar for 100+ students on Data Structures & Algorithms (DSA) and mentored junior developers.",
+      "links": [
+        {
+          "label": "View Post",
+          "url": "https://www.linkedin.com/posts/aditya-pratap-singh-tomar-693444204_jlug-dsa-codingcommunity-activity-7384216866296229888-DCN3/"
+        },
+        {
+          "label": "Instagram",
+          "url": "https://www.instagram.com/p/DMKHlp6TLZx/"
+        }
+      ],
+      "highlights": [
+        "100+ Students",
+        "DSA Workshop",
+        "Community Mentor"
+      ]
+    }
+  ],
+  "services": [
+    {
+      "title": "Machine Learning Development",
+      "description": "End-to-end ML model development from data preprocessing to deployment. Specializing in deep learning, Transformers, and time-series analysis with production-grade code."
+    },
+    {
+      "title": "Data Analysis & Visualization",
+      "description": "Comprehensive data analysis pipelines using Python, Pandas, and advanced visualization tools. Transform raw data into actionable insights."
+    },
+    {
+      "title": "MLOps & Deployment",
+      "description": "Production-ready ML infrastructure with MLflow, Docker, Kubernetes, and CI/CD pipelines. Automated retraining and drift detection."
+    },
+    {
+      "title": "AI-Powered Applications",
+      "description": "Building intelligent applications with LangChain, LangGraph, and LLMs. From AI agents to RAG systems."
+    },
+    {
+      "title": "Technical Mentorship",
+      "description": "Guidance for students and developers in DSA, machine learning, and AI fundamentals."
+    },
+    {
+      "title": "Full-Stack ML Solutions",
+      "description": "Complete ML solutions from frontend to backend using FastAPI, Flask, and modern frameworks."
+    }
+  ],
+  "activities": {
+    "github": "TheAditya-10",
+    "leetcode": "TheAditya_10"
+  }
+}

@@ -4,39 +4,7 @@ import { useEffect, useRef, useState } from "react"
 import { cn } from "@/lib/utils"
 import { Award, ExternalLink } from "lucide-react"
 import Link from "next/link"
-
-const certifications = [
-  {
-    title: "Getting Started with Competitive Programming",
-    issuer: "NPTEL",
-    date: "May 2025",
-    link: "https://internalapp.nptel.ac.in/NOC/NOC25/SEM2/Ecertificates/106/noc25-cs97/Course/NPTEL25CS97S55760019510336248.pdf",
-  },
-  {
-    title: "Natural Language Processing",
-    issuer: "NPTEL",
-    date: "May 2025",
-    link: "https://nptel.ac.in/noc/E_Certificate/NPTEL25CS51S34730010904397038",
-  },
-  {
-    title: "Data Science",
-    issuer: "INI (IIT Madras)",
-    date: "Dec 2024",
-    link: "https://onlinecourses.swayam2.ac.in/ini24_cs02/certificate?q=tDcXbu338Ulq%2BuKHbzFmFlaT9X49qijoWcQJjGLkHkiGof9MaPFyhUU9OPnyBHw8",
-  },
-  {
-    title: "CS50x",
-    issuer: "Harvard University",
-    date: "Nov 2024",
-    link: "https://cs50.harvard.edu/certificates/470bdfbf-9c89-498d-9fcc-cbc2106c7d3c",
-  },
-  {
-    title: "Ethical Hacking",
-    issuer: "NPTEL",
-    date: "Dec 2024",
-    link: "https://archive.nptel.ac.in/noc/Ecertificate/?q=NPTEL24CS94S45550049704445132",
-  },
-]
+import portfolio from "@/data/portfolio.json"
 
 export function CertificationsSection() {
   const [isVisible, setIsVisible] = useState(false)
@@ -76,7 +44,7 @@ export function CertificationsSection() {
         </div>
 
         <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-4">
-          {certifications.map((cert, index) => (
+          {portfolio.certifications.map((cert, index) => (
             <Link
               key={cert.title}
               href={cert.link}

@@ -1,108 +1,88 @@
 "use client"
 
-import { useEffect, useRef, useState } from "react"
-import { cn } from "@/lib/utils"
-import { Code2, Database, Brain, Cloud, Boxes, Wrench } from "lucide-react"
+import { useMemo, useState } from "react"
+import portfolio from "@/data/portfolio.json"
 
-const skillCategories = [
-  {
-    title: "Programming Languages",
-    icon: Code2,
-    skills: ["Python", "Java", "C", "HTML", "CSS"],
-  },
-  {
-    title: "Data Science & ML",
-    icon: Brain,
-    skills: ["NumPy", "Pandas", "Matplotlib", "Seaborn", "Scikit-Learn", "TensorFlow", "Keras", "PyTorch"],
-  },
-  {
-    title: "MLOps & Cloud",
-    icon: Cloud,
-    skills: ["MLflow", "DVC", "AWS", "Azure", "Docker", "Kubernetes", "Prometheus", "Grafana"],
-  },
-  {
-    title: "GenAI & Development",
-    icon: Boxes,
-    skills: ["LangChain", "LangGraph", "Flask", "FastAPI"],
-  },
-  {
-    title: "Databases & Tools",
-    icon: Database,
-    skills: ["SQLAlchemy", "Poetry", "Git", "GitHub", "Postman"],
-  },
-  {
-    title: "Other Tools",
-    icon: Wrench,
-    skills: ["Notion", "Canva", "Premiere Pro"],
-  },
-]
+const skills = portfolio.skills
+const projects = portfolio.projects
 
 export function SkillsSection() {
-  const [isVisible, setIsVisible] = useState(false)
-  const sectionRef = useRef<HTMLElement>(null)
+  const [activeSkill, setActiveSkill] = useState(skills[0])
 
-  useEffect(() => {
-    const observer = new IntersectionObserver(
-      ([entry]) => {
-        if (entry.isIntersecting) {
-          setIsVisible(true)
-        }
-      },
-      { threshold: 0.1 },
-    )
-
-    if (sectionRef.current) {
-      observer.observe(sectionRef.current)
-    }
-
-    return () => observer.disconnect()
-  }, [])
+  const relatedProjects = useMemo(() => {
+    return projects.filter((project) => activeSkill.projects.includes(project.id))
+  }, [activeSkill])
 
   return (
-    <section ref={sectionRef} id="skills" className="py-24 md:py-32">
+    <section id="skills" className="py-24">
       <div className="mx-auto max-w-6xl px-6">
-        <div
-          className={cn(
-            "text-center space-y-4 mb-16 transition-all duration-700",
-            isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-10",
-          )}
-        >
-          <p className="text-primary font-mono text-sm tracking-wider">EXPERTISE</p>
-          <h2 className="font-serif text-3xl md:text-4xl font-bold text-foreground">Technical Skills</h2>
-          <p className="text-muted-foreground max-w-2xl mx-auto">
-            A comprehensive toolkit built through hands-on experience in data science, machine learning, and
-            production-grade MLOps systems.
+        <div>
+          <p className="text-xs font-mono uppercase tracking-[0.3em] text-muted-foreground">Skill Proof</p>
+          <h2 className="mt-3 text-3xl font-semibold">Depth over buzzwords</h2>
+          <p className="mt-2 text-muted-foreground">
+            Click a skill to see evidence: projects, tools, and deployment depth.
           </p>
         </div>
 
-        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
-          {skillCategories.map((category, index) => (
-            <div
-              key={category.title}
-              className={cn(
-                "group p-6 rounded-xl border border-border bg-card hover:bg-secondary/50 transition-all duration-500 hover:border-primary/50",
-                isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-10",
-              )}
-              style={{ transitionDelay: isVisible ? `${index * 100}ms` : "0ms" }}
-            >
-              <div className="flex items-center gap-3 mb-4">
-                <div className="p-2 rounded-lg bg-primary/10 text-primary group-hover:bg-primary group-hover:text-primary-foreground transition-colors">
-                  <category.icon className="h-5 w-5" />
-                </div>
-                <h3 className="font-semibold text-foreground">{category.title}</h3>
+        <div className="mt-8 grid gap-6 md:grid-cols-[2fr_3fr]">
+          <div className="space-y-3">
+            {skills.map((skill) => (
+              <button
+                key={skill.id}
+                onClick={() => setActiveSkill(skill)}
+                className={`w-full rounded-xl border px-4 py-3 text-left transition ${
+                  activeSkill.id === skill.id
+                    ? "border-primary/60 bg-primary/10"
+                    : "border-border bg-card/50 hover:border-primary/30"
+                }`}
+              >
+                <p className="text-sm font-semibold">{skill.name}</p>
+                <p className="text-xs text-muted-foreground">{skill.summary}</p>
+              </button>
+            ))}
+          </div>
+
+          <div className="rounded-2xl border border-border bg-card/70 p-6">
+            <div className="flex items-center justify-between">
+              <div>
+                <h3 className="text-xl font-semibold">{activeSkill.name}</h3>
+                <p className="text-sm text-muted-foreground">{activeSkill.summary}</p>
               </div>
-              <div className="flex flex-wrap gap-2">
-                {category.skills.map((skill) => (
-                  <span
-                    key={skill}
-                    className="px-3 py-1 text-sm rounded-full bg-secondary text-secondary-foreground hover:bg-primary/10 hover:text-primary transition-colors cursor-default"
-                  >
-                    {skill}
-                  </span>
-                ))}
+              <div className="text-xs text-muted-foreground">
+                Evidence from {relatedProjects.length} projects
               </div>
             </div>
-          ))}
+
+            <div className="mt-6 grid gap-4 md:grid-cols-2">
+              <div>
+                <p className="text-xs font-mono uppercase tracking-[0.3em] text-muted-foreground">Projects</p>
+                <ul className="mt-3 space-y-2 text-sm">
+                  {relatedProjects.map((project) => (
+                    <li key={project.id} className="rounded-lg border border-border px-3 py-2">
+                      <p className="font-semibold">{project.title}</p>
+                      <p className="text-xs text-muted-foreground">{project.impact}</p>
+                    </li>
+                  ))}
+                </ul>
+              </div>
+              <div>
+                <p className="text-xs font-mono uppercase tracking-[0.3em] text-muted-foreground">Tools & Proof</p>
+                <div className="mt-3 flex flex-wrap gap-2">
+                  {activeSkill.tools.map((tool) => (
+                    <span key={tool} className="rounded-full border border-border px-2 py-1 text-xs text-muted-foreground">
+                      {tool}
+                    </span>
+                  ))}
+                </div>
+                <div className="mt-4 text-sm text-muted-foreground">
+                  <p className="font-semibold text-foreground">Depth indicator</p>
+                  <p className="text-xs">
+                    {relatedProjects.length} production projects, multi-stack integration, and evaluation artifacts.
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
         </div>
       </div>
     </section>

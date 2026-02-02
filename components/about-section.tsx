@@ -2,6 +2,7 @@
 
 import { useEffect, useRef, useState } from "react"
 import { cn } from "@/lib/utils"
+import portfolio from "@/data/portfolio.json"
 
 export function AboutSection() {
   const [isVisible, setIsVisible] = useState(false)
@@ -57,46 +58,34 @@ export function AboutSection() {
             <div className="space-y-2">
               <p className="text-primary font-mono text-sm tracking-wider">ABOUT ME</p>
               <h2 className="font-serif text-3xl md:text-4xl font-bold text-foreground">
-                Crafting Intelligent Systems
+                Building AI systems recruiters can trust
               </h2>
             </div>
 
             <div className="space-y-4 text-muted-foreground leading-relaxed">
               <p>
-                I'm a <span className="text-foreground font-medium">Data Scientist and MLOps Engineer</span> with strong
-                experience in building end-to-end, production-ready ML systems. My expertise spans data pipelines, deep
-                learning models including Transformers and LLMs, MLOps workflows, and scalable deployment.
+                I'm a <span className="text-foreground font-medium">Data Scientist and MLOps Engineer</span> focused on
+                production-ready ML systems. My expertise spans data pipelines, deep learning (Transformers, LLMs),
+                evaluation, and scalable deployment.
               </p>
               <p>
                 Currently pursuing my{" "}
                 <span className="text-foreground font-medium">B.Tech in Computer Science Engineering</span> at Jabalpur
-                Engineering College with a CGPA of 8.39/10.0, I combine academic excellence with hands-on industry
-                experience in AI-driven solutions.
+                Engineering College, I combine academic rigor with hands-on industry delivery.
               </p>
               <p>
-                I'm experienced in building AI agents, experiment tracking, and GPU-accelerated training for real-world
-                applications. My passion lies in solving complex problems through innovative machine learning solutions
-                that make a tangible impact.
+                I care about reliability, clear communication, and measurable outcomes when building AI-driven
+                solutions.
               </p>
             </div>
 
             <div className="grid grid-cols-2 gap-6 pt-4">
-              <div className="space-y-1">
-                <p className="text-3xl font-bold text-primary">3+</p>
-                <p className="text-sm text-muted-foreground">Industry Internships</p>
-              </div>
-              <div className="space-y-1">
-                <p className="text-3xl font-bold text-primary">350+</p>
-                <p className="text-sm text-muted-foreground">DSA Problems Solved</p>
-              </div>
-              <div className="space-y-1">
-                <p className="text-3xl font-bold text-primary">Top 1.7%</p>
-                <p className="text-sm text-muted-foreground">Kaggle Ranking</p>
-              </div>
-              <div className="space-y-1">
-                <p className="text-3xl font-bold text-primary">5+</p>
-                <p className="text-sm text-muted-foreground">NPTEL Certifications</p>
-              </div>
+              {portfolio.profile.stats.map((stat) => (
+                <div key={stat.label} className="space-y-1">
+                  <p className="text-3xl font-bold text-primary">{stat.value}</p>
+                  <p className="text-sm text-muted-foreground">{stat.label}</p>
+                </div>
+              ))}
             </div>
           </div>
         </div>
