@@ -4,7 +4,6 @@ import { useEffect, useMemo, useRef, useState } from "react"
 import { ExternalLink, Heart, PlayCircle, Play, X, Github } from "lucide-react"
 import portfolio from "@/data/portfolio.json"
 import { ProjectChat } from "@/components/project-chat"
-import { useLocalLikes } from "@/components/hooks/use-local-likes"
 
 const projects = portfolio.projects
 
@@ -29,10 +28,17 @@ export function ProjectsSection({
 }: ProjectsSectionProps) {
   const [preview, setPreview] = useState<PreviewState | null>(null)
   const [seenPreviews, setSeenPreviews] = useState<Record<string, boolean>>({})
-  const filteredProjects = projects.filter((project) => {
-    if (variant === "all") return true
-    return project.category === variant
-  })
+  const [likeCounts, setLikeCounts] = useState<Record<string, number>>({})
+  const [likingByProject, setLikingByProject] = useState<Record<string, boolean>>({})
+  const filteredProjects = useMemo(
+    () =>
+      projects.filter((project) => {
+        if (variant === "all") return true
+        return project.category === variant
+      }),
+    [variant],
+  )
+  const projectIdsParam = useMemo(() => filteredProjects.map((project) => project.id).join(","), [filteredProjects])
 
   useEffect(() => {
     if (typeof window === "undefined") return
@@ -45,6 +51,56 @@ export function ProjectsSection({
       }
     }
   }, [])
+
+  useEffect(() => {
+    if (!projectIdsParam) return
+    let isMounted = true
+
+    async function loadLikes() {
+      try {
+        const response = await fetch(`/api/project-likes?ids=${encodeURIComponent(projectIdsParam)}`, {
+          cache: "no-store",
+        })
+        if (!response.ok) return
+        const payload = (await response.json()) as { likes?: Record<string, number> }
+        if (isMounted && payload.likes) {
+          setLikeCounts(payload.likes)
+        }
+      } catch {
+        // Keep UI usable even if likes API is temporarily unavailable.
+      }
+    }
+
+    loadLikes()
+
+    return () => {
+      isMounted = false
+    }
+  }, [projectIdsParam])
+
+  const handleLike = async (projectId: string) => {
+    if (likingByProject[projectId]) return
+
+    setLikingByProject((prev) => ({ ...prev, [projectId]: true }))
+    try {
+      const response = await fetch("/api/project-likes", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ projectId }),
+        cache: "no-store",
+      })
+      if (!response.ok) return
+      const payload = (await response.json()) as { likes?: number }
+      const nextLikes = payload.likes
+      if (typeof nextLikes === "number") {
+        setLikeCounts((prev) => ({ ...prev, [projectId]: nextLikes }))
+      }
+    } catch {
+      // Ignore transient errors without breaking the project cards.
+    } finally {
+      setLikingByProject((prev) => ({ ...prev, [projectId]: false }))
+    }
+  }
 
   const openPreview = (project: (typeof projects)[number]) => {
     setPreview({ id: project.id, videoUrl: project.videoUrl, title: project.title })
@@ -75,6 +131,9 @@ export function ProjectsSection({
             <ProjectCard
               key={project.id}
               project={project}
+              likes={likeCounts[project.id] ?? 0}
+              liking={Boolean(likingByProject[project.id])}
+              onLike={() => handleLike(project.id)}
               onPreviewClick={() => openPreview(project)}
               onPreviewHover={() => openPreview(project)}
               canHoverPreview={!seenPreviews[project.id]}
@@ -108,20 +167,23 @@ export function ProjectsSection({
 
 type ProjectCardProps = {
   project: (typeof projects)[number]
+  likes: number
+  liking: boolean
+  onLike: () => Promise<void>
   onPreviewClick: () => void
   onPreviewHover: () => void
   canHoverPreview: boolean
 }
 
-function ProjectCard({ project, onPreviewClick, onPreviewHover, canHoverPreview }: ProjectCardProps) {
-  const { likes, increment } = useLocalLikes(project.id)
+function ProjectCard({ project, likes, liking, onLike, onPreviewClick, onPreviewHover, canHoverPreview }: ProjectCardProps) {
   const [bump, setBump] = useState(false)
   const hoverTimerRef = useRef<number | null>(null)
 
-  const handleLike = () => {
-    increment()
+  const handleLike = async () => {
+    if (liking) return
     setBump(true)
     window.setTimeout(() => setBump(false), 280)
+    await onLike()
   }
 
   const startHoverTimer = () => {
@@ -187,7 +249,10 @@ function ProjectCard({ project, onPreviewClick, onPreviewHover, canHoverPreview 
           </div>
         </div>
         <button
-          onClick={handleLike}
+          onClick={() => {
+            void handleLike()
+          }}
+          disabled={liking}
           className="flex items-center gap-2 rounded-full border border-border px-3 py-1 text-xs text-muted-foreground transition hover:border-primary/40 hover:text-foreground"
           aria-label={`Like ${project.title}`}
         >

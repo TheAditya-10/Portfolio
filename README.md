@@ -28,3 +28,21 @@ Continue building your app on:
 2. Deploy your chats from the v0 interface
 3. Changes are automatically pushed to this repository
 4. Vercel deploys the latest version from this repository
+
+## MySQL Metrics (Views + Likes)
+
+Global counters now use MySQL only:
+
+1. `POST /api/profile-views` increments/reads the shared profile views count.
+2. `GET /api/project-likes?ids=...` returns shared like counts.
+3. `POST /api/project-likes` increments one project's shared likes.
+
+The API auto-creates these tables on first request:
+
+1. `site_counters`
+2. `project_likes`
+
+Add MySQL config in `.env.local` and redeploy:
+
+1. `MYSQL_URL` (or `DATABASE_URL`)  
+2. or use `MYSQL_HOST`, `MYSQL_PORT`, `MYSQL_USER`, `MYSQL_PASSWORD`, `MYSQL_DATABASE`

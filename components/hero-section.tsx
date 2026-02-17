@@ -17,7 +17,7 @@ const TERMINAL_LINES = [
 export function HeroSection() {
   const [typed, setTyped] = useState("")
   const [lineIndex, setLineIndex] = useState(0)
-  const [visitCount, setVisitCount] = useState(0)
+  const [visitCount, setVisitCount] = useState<number | null>(null)
 
   useEffect(() => {
     if (lineIndex >= TERMINAL_LINES.length) return
@@ -38,13 +38,29 @@ export function HeroSection() {
   }, [lineIndex])
 
   useEffect(() => {
-    if (typeof window === "undefined") return
-    const key = "portfolio:visit-count"
-    const raw = window.localStorage.getItem(key)
-    const current = raw ? Number.parseInt(raw, 10) || 0 : 0
-    const next = current + 1
-    window.localStorage.setItem(key, String(next))
-    setVisitCount(next)
+    let isMounted = true
+
+    async function trackVisit() {
+      try {
+        const response = await fetch("/api/profile-views", {
+          method: "POST",
+          cache: "no-store",
+        })
+        if (!response.ok) return
+        const payload = (await response.json()) as { count?: number }
+        if (isMounted && typeof payload.count === "number") {
+          setVisitCount(payload.count)
+        }
+      } catch {
+        // Fail silently so the hero never breaks if the view API is unavailable.
+      }
+    }
+
+    trackVisit()
+
+    return () => {
+      isMounted = false
+    }
   }, [])
 
   return (
@@ -55,7 +71,7 @@ export function HeroSection() {
       <div className="relative mx-auto grid max-w-6xl gap-10 px-6 md:grid-cols-[1.2fr_0.8fr]">
           <div className="space-y-6">
           <p className="text-xs font-mono uppercase tracking-[0.35em] text-muted-foreground">
-            AI-Native Portfolio
+            Meet the Best
           </p>
           <h1 className="text-4xl font-semibold leading-tight md:text-5xl">
             {portfolio.profile.name}
@@ -123,7 +139,7 @@ export function HeroSection() {
           <div className="mt-4 flex items-center justify-between text-[11px] text-muted-foreground/80">
             <span></span>
             <span className="rounded-full border border-border/60 px-2 py-0.5 text-primary/90">
-              profile visits: {visitCount}
+              profile visits: {visitCount === null ? "..." : visitCount.toLocaleString("en-US")}
             </span>
           </div>
         </div>
