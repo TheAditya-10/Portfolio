@@ -14,6 +14,7 @@ export async function GET(request: NextRequest) {
     const likes = await getProjectLikes(ids)
     return NextResponse.json({ likes, source: "mysql" }, { status: 200 })
   } catch (error) {
+    console.error("[project-likes][GET] database error", error)
     const message = error instanceof Error ? error.message : "Failed to read project likes."
     return NextResponse.json({ error: message }, { status: 500 })
   }
@@ -30,6 +31,7 @@ export async function POST(request: NextRequest) {
     const likes = await incrementProjectLikes(projectId)
     return NextResponse.json({ projectId, likes, source: "mysql" }, { status: 200 })
   } catch (error) {
+    console.error("[project-likes][POST] database error", error)
     const message = error instanceof Error ? error.message : "Failed to increment project likes."
     return NextResponse.json({ error: message }, { status: 500 })
   }

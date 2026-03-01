@@ -12,6 +12,14 @@ function parsePort(value: string | undefined) {
   return port
 }
 
+function parseConnectTimeout(value: string | undefined) {
+  const timeout = Number.parseInt(value ?? "5000", 10)
+  if (!Number.isFinite(timeout) || timeout <= 0) {
+    throw new Error("Invalid MYSQL_CONNECT_TIMEOUT_MS. Expected a positive numeric value.")
+  }
+  return timeout
+}
+
 function getSslConfig() {
   if (process.env.MYSQL_SSL !== "true") return undefined
   return { rejectUnauthorized: false }
@@ -25,6 +33,8 @@ function createPool() {
     return mysql.createPool({
       uri: connectionUrl,
       ssl,
+      connectTimeout: parseConnectTimeout(process.env.MYSQL_CONNECT_TIMEOUT_MS),
+      enableKeepAlive: true,
       waitForConnections: true,
       connectionLimit: 10,
       queueLimit: 0,
@@ -48,6 +58,8 @@ function createPool() {
     password: process.env.MYSQL_PASSWORD,
     database,
     ssl,
+    connectTimeout: parseConnectTimeout(process.env.MYSQL_CONNECT_TIMEOUT_MS),
+    enableKeepAlive: true,
     waitForConnections: true,
     connectionLimit: 10,
     queueLimit: 0,

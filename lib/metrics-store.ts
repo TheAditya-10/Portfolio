@@ -45,21 +45,26 @@ async function ensureMetricsTables() {
 
   const pool = getMysqlPool()
   globalThis.__portfolioMetricsInitPromise = (async () => {
-    await pool.query(`
-      CREATE TABLE IF NOT EXISTS site_counters (
-        counter_key VARCHAR(80) PRIMARY KEY,
-        counter_value BIGINT UNSIGNED NOT NULL DEFAULT 0,
-        updated_at TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
-      ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
-    `)
+    try {
+      await pool.query(`
+        CREATE TABLE IF NOT EXISTS site_counters (
+          counter_key VARCHAR(80) PRIMARY KEY,
+          counter_value BIGINT UNSIGNED NOT NULL DEFAULT 0,
+          updated_at TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
+        ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+      `)
 
-    await pool.query(`
-      CREATE TABLE IF NOT EXISTS project_likes (
-        project_id VARCHAR(120) PRIMARY KEY,
-        likes BIGINT UNSIGNED NOT NULL DEFAULT 0,
-        updated_at TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
-      ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
-    `)
+      await pool.query(`
+        CREATE TABLE IF NOT EXISTS project_likes (
+          project_id VARCHAR(120) PRIMARY KEY,
+          likes BIGINT UNSIGNED NOT NULL DEFAULT 0,
+          updated_at TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
+        ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+      `)
+    } catch (error) {
+      globalThis.__portfolioMetricsInitPromise = undefined
+      throw error
+    }
   })()
 
   return globalThis.__portfolioMetricsInitPromise
