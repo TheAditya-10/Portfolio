@@ -1,18 +1,13 @@
 import { NextRequest, NextResponse } from "next/server"
-import { getProjectLikes, incrementProjectLikes } from "@/lib/metrics-store"
+import { proxyMetricsRequest } from "@/lib/metrics-backend"
 
 export const runtime = "nodejs"
 
 export async function GET(request: NextRequest) {
   try {
-    const rawIds = request.nextUrl.searchParams.get("ids") ?? ""
-    const ids = rawIds
-      .split(",")
-      .map((id) => id.trim())
-      .filter(Boolean)
-
-    const likes = await getProjectLikes(ids)
-    return NextResponse.json({ likes, source: "mysql" }, { status: 200 })
+    const rawQuery = request.nextUrl.searchParams.toString()
+    const path = rawQuery ? `/project-likes?${rawQuery}` : "/project-likes"
+    return await proxyMetricsRequest(path, { method: "GET" })
   } catch (error) {
     console.error("[project-likes][GET] database error", error)
     const message = error instanceof Error ? error.message : "Failed to read project likes."
@@ -28,8 +23,10 @@ export async function POST(request: NextRequest) {
       return NextResponse.json({ error: "projectId is required." }, { status: 400 })
     }
 
-    const likes = await incrementProjectLikes(projectId)
-    return NextResponse.json({ projectId, likes, source: "mysql" }, { status: 200 })
+    return await proxyMetricsRequest("/project-likes", {
+      method: "POST",
+      body: JSON.stringify({ projectId }),
+    })
   } catch (error) {
     console.error("[project-likes][POST] database error", error)
     const message = error instanceof Error ? error.message : "Failed to increment project likes."

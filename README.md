@@ -93,6 +93,14 @@ MYSQL_URL=mysql://user:password@host:3306/database
 
 # Optional for managed MySQL with SSL
 # MYSQL_SSL=true
+
+# Optional resilience settings for temporary DB network failures
+# METRICS_MEMORY_FALLBACK=true
+# MYSQL_RETRY_COOLDOWN_MS=30000
+
+# Optional: proxy metrics through private AWS backend
+# METRICS_BACKEND_URL=https://your-api-id.execute-api.ap-south-1.amazonaws.com
+# METRICS_BACKEND_SECRET=replace_with_shared_secret
 ```
 
 ### 3. Run the app
@@ -116,6 +124,10 @@ Used by:
 - `GET /api/profile-views` -> reads global profile views.
 - `GET /api/project-likes?ids=id1,id2` -> fetches shared like counts.
 - `POST /api/project-likes` with `{ "projectId": "foresightx" }` -> increments shared likes.
+
+If MySQL is temporarily unreachable, metrics endpoints can fall back to in-memory counters
+(controlled by `METRICS_MEMORY_FALLBACK`, default `true`) and retry DB access after
+`MYSQL_RETRY_COOLDOWN_MS`.
 
 ## AI Endpoints
 
