@@ -3,10 +3,8 @@ import { HeroSection } from "@/components/hero-section"
 import { ProjectsSection } from "@/components/projects-section"
 import { ExperienceSection } from "@/components/experience-section"
 import { SkillsSection } from "@/components/skills-section"
-import { ResearchSection } from "@/components/research-section"
 import { AchievementsSection } from "@/components/achievements-section"
 import { ResumeTailorSection } from "@/components/resume-tailor-section"
-import { InsightsSection } from "@/components/insights-section"
 import { ContactSection } from "@/components/contact-section"
 import { Footer } from "@/components/footer"
 import { AiChatWidget } from "@/components/ai-chat-widget"
@@ -19,13 +17,12 @@ export default function Home() {
       <Navigation />
       <HeroSection />
       <ProjectsSection
-        variant="featured"
-        title="Flagship AI Systems"
-        subtitle="Recruiter-ready projects with measurable impact and deep technical notes."
+        variant="flagship"
+        title="Flagship Projects"
+        subtitle="My strongest software engineering and data science builds, with measurable outcomes."
       />
       <ExperienceSection />
       <SkillsSection />
-      <ResearchSection />
       <AchievementsSection />
       <ResumeTailorSection />
       <ContactSection />

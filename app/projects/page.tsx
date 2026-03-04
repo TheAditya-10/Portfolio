@@ -9,22 +9,10 @@ export default function ProjectsPage() {
     <main className="min-h-screen">
       <Navigation />
       <ProjectsSection
-        variant="featured"
-        title="Flagship Projects"
-        subtitle="Production-ready AI systems and research-backed deployments."
-        sectionId="projects-featured"
-      />
-      <ProjectsSection
-        variant="hackathon"
-        title="Hackathons & Prototypes"
-        subtitle="High-velocity builds that showcase experimentation and collaboration."
-        sectionId="projects-hackathon"
-      />
-      <ProjectsSection
-        variant="learning"
-        title="Learning Builds"
-        subtitle="Projects that sharpen data analysis and engineering fundamentals."
-        sectionId="projects-learning"
+        variant="all"
+        title="All Projects"
+        subtitle="Complete project catalog with major builds, hackathon work, and learning projects."
+        sectionId="projects-all"
       />
       <ContactSection />
       <Footer />

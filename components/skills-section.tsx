@@ -1,10 +1,10 @@
 "use client"
 
 import { useMemo, useState } from "react"
-import portfolio from "@/data/portfolio.json"
+import { portfolioData } from "@/lib/content"
 
-const skills = portfolio.skills
-const projects = portfolio.projects
+const skills = portfolioData.skills
+const projects = portfolioData.projects
 
 export function SkillsSection() {
   const [activeSkill, setActiveSkill] = useState(skills[0])
@@ -20,7 +20,7 @@ export function SkillsSection() {
           <p className="text-xs font-mono uppercase tracking-[0.3em] text-muted-foreground">Skill Proof</p>
           <h2 className="mt-3 text-3xl font-semibold">Depth over buzzwords</h2>
           <p className="mt-2 text-muted-foreground">
-            Click a skill to see evidence: projects, tools, and deployment depth.
+            Click a skill to review resume-backed evidence for software engineering and data science roles.
           </p>
         </div>
 
@@ -77,7 +77,7 @@ export function SkillsSection() {
                 <div className="mt-4 text-sm text-muted-foreground">
                   <p className="font-semibold text-foreground">Depth indicator</p>
                   <p className="text-xs">
-                    {relatedProjects.length} production projects, multi-stack integration, and evaluation artifacts.
+                    {relatedProjects.length} validated project examples with implementation details recruiters can verify.
                   </p>
                 </div>
               </div>

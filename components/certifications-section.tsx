@@ -4,7 +4,7 @@ import { useEffect, useRef, useState } from "react"
 import { cn } from "@/lib/utils"
 import { Award, ExternalLink } from "lucide-react"
 import Link from "next/link"
-import portfolio from "@/data/portfolio.json"
+import certifications from "@/data/content/certifications/certifications.json"
 
 export function CertificationsSection() {
   const [isVisible, setIsVisible] = useState(false)
@@ -44,7 +44,7 @@ export function CertificationsSection() {
         </div>
 
         <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-4">
-          {portfolio.certifications.map((cert, index) => (
+          {certifications.map((cert, index) => (
             <Link
               key={cert.title}
               href={cert.link}

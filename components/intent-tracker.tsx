@@ -13,7 +13,6 @@ const SECTION_INTENT_MAP: IntentSection[] = [
   { id: "projects", intent: "tech" },
   { id: "skills", intent: "tech" },
   { id: "experience", intent: "recruiter" },
-  { id: "research", intent: "research" },
   { id: "resume", intent: "recruiter" },
 ]
 

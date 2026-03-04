@@ -1,7 +1,7 @@
 "use client"
 
 import { createContext, useCallback, useContext, useEffect, useMemo, useState } from "react"
-import portfolio from "@/data/portfolio.json"
+import { portfolioData } from "@/lib/content"
 
 export type IntentType = "general" | "recruiter" | "tech" | "research"
 
@@ -66,7 +66,7 @@ export function InsightsProvider({ children }: { children: React.ReactNode }) {
     const entries = Object.entries(state.projectCounts)
     if (!entries.length) return undefined
     const [id] = entries.sort((a, b) => b[1] - a[1])[0]
-    const project = portfolio.projects.find((item) => item.id === id)
+    const project = portfolioData.projects.find((item) => item.id === id)
     return project?.title
   }, [state.projectCounts])
 
@@ -74,7 +74,7 @@ export function InsightsProvider({ children }: { children: React.ReactNode }) {
     const entries = Object.entries(state.skillCounts)
     if (!entries.length) return undefined
     const [id] = entries.sort((a, b) => b[1] - a[1])[0]
-    const skill = portfolio.skills.find((item) => item.id === id)
+    const skill = portfolioData.skills.find((item) => item.id === id)
     return skill?.name
   }, [state.skillCounts])
 

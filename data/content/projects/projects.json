@@ -1,0 +1,197 @@
+[
+  {
+    "id": "foresightx",
+    "title": "ForesightX: The Future Has Signals. We Decode Them.",
+    "tagline": "Stock market forecasting with deep time-series models.",
+    "impact": "Built an end-to-end forecasting system over 1M+ market data points with automated retraining and 30% faster inference.",
+    "videoUrl": "https://www.youtube.com/embed/r5NQecwZs1A",
+    "repo": "https://github.com/TheAditya-10",
+    "caseStudy": "data/projects/foresightx.md",
+    "track": "major",
+    "flagship": true,
+    "skills": [
+      "Time-Series",
+      "Transformers",
+      "MLOps"
+    ],
+    "tools": [
+      "Python",
+      "PyTorch",
+      "MLflow",
+      "Docker",
+      "Kubernetes",
+      "Airflow"
+    ],
+    "highlights": [
+      "Feature-engineered forecasting pipeline for noisy financial signals",
+      "Automated evaluation, retraining, and drift checks",
+      "Deployment-focused optimization for low-latency serving"
+    ],
+    "live": ""
+  },
+  {
+    "id": "ecg-insight",
+    "title": "Deep ECG Signal Analysis",
+    "tagline": "Transformer-based classification and anomaly detection.",
+    "impact": "Achieved 91.3% F1 on MIT-BIH/PTB benchmarks with near real-time inference under 150ms per segment.",
+    "videoUrl": "https://www.youtube.com/embed/2vjPBrBU-TM",
+    "repo": "https://github.com/TheAditya-10",
+    "caseStudy": "data/projects/ecg-insight.md",
+    "track": "major",
+    "flagship": true,
+    "skills": [
+      "Deep Learning",
+      "Signal Processing",
+      "Transformers"
+    ],
+    "tools": [
+      "PyTorch",
+      "SciPy",
+      "NumPy",
+      "WFDB",
+      "Scikit-learn"
+    ],
+    "highlights": [
+      "Dual-model architecture for anomaly detection + rhythm classification",
+      "Custom ECG preprocessing and multi-label supervision",
+      "Inference path designed for clinical-style latency constraints"
+    ],
+    "live": ""
+  },
+  {
+    "id": "binsavvy",
+    "title": "BinSavvy: Smart Waste Management System",
+    "tagline": "Drone-integrated waste detection with YOLO.",
+    "impact": "Built a drone-assisted detection and routing workflow that streamlines waste monitoring and cleanup operations.",
+    "videoUrl": "https://www.youtube.com/embed/pYzR5lspfnc",
+    "repo": "https://github.com/TheAditya-10",
+    "caseStudy": "data/projects/binsavvy.md",
+    "track": "hackathon",
+    "flagship": true,
+    "skills": [
+      "Computer Vision",
+      "Automation",
+      "System Design"
+    ],
+    "tools": [
+      "YOLO",
+      "OpenCV",
+      "Python"
+    ],
+    "highlights": [
+      "Drone image ingestion pipeline for field conditions",
+      "YOLO-based object detection integrated with backend workflows",
+      "Geo-mapped outputs to support operational decisions"
+    ],
+    "live": ""
+  },
+  {
+    "id": "margdarshak-mitr",
+    "title": "MargDarshak-Mitr: Railway Travel Assistant",
+    "tagline": "Coach tracking, food discovery, and trip planning.",
+    "impact": "Developed a full-featured travel assistant web app focused on real-time utility and reliable fallback behavior.",
+    "videoUrl": "https://www.youtube.com/embed/V74l_zS1x8E",
+    "repo": "https://github.com/TheAditya-10",
+    "caseStudy": "data/projects/margdarshak-mitr.md",
+    "track": "hackathon",
+    "flagship": true,
+    "skills": [
+      "Full-Stack",
+      "Product Engineering",
+      "UX"
+    ],
+    "tools": [
+      "React",
+      "Node.js",
+      "REST APIs"
+    ],
+    "highlights": [
+      "Built coach tracking and trip planning flows end-to-end",
+      "Integrated public schedule and station datasets",
+      "Shipped user-focused interfaces for quick mobile usage"
+    ],
+    "live": ""
+  },
+  {
+    "id": "student-lifestyle",
+    "title": "Student Lifestyle and Academic Performance Predictor",
+    "tagline": "Predict GPA and stress levels using lifestyle signals.",
+    "impact": "Built a 2,000-record data science pipeline with feature engineering, cross-validation, and regression modeling.",
+    "videoUrl": "https://www.youtube.com/embed/8mAITcNt710",
+    "repo": "https://github.com/TheAditya-10",
+    "caseStudy": "data/projects/student-lifestyle.md",
+    "track": "learning",
+    "flagship": false,
+    "skills": [
+      "Data Science",
+      "Regression",
+      "Model Evaluation"
+    ],
+    "tools": [
+      "Python",
+      "Pandas",
+      "Scikit-learn"
+    ],
+    "highlights": [
+      "Structured preprocessing and feature engineering workflow",
+      "Compared Linear Regression, Random Forest, and SVR",
+      "Produced interpretable insights for stakeholder communication"
+    ],
+    "live": ""
+  },
+  {
+    "id": "restaurant-analytics",
+    "title": "Restaurant Data Analytics & Cuisine Popularity Prediction",
+    "tagline": "Cuisine popularity prediction over 10,000+ records.",
+    "impact": "Implemented an end-to-end analytics and modeling pipeline with ~92% classification accuracy.",
+    "videoUrl": "https://www.youtube.com/embed/N5oN7Y0Sgno",
+    "repo": "https://github.com/TheAditya-10",
+    "caseStudy": "data/projects/restaurant-analytics.md",
+    "track": "learning",
+    "flagship": false,
+    "skills": [
+      "Data Analytics",
+      "Classification",
+      "Visualization"
+    ],
+    "tools": [
+      "Python",
+      "XGBoost",
+      "Pandas",
+      "Matplotlib",
+      "Seaborn"
+    ],
+    "highlights": [
+      "Processed and analyzed 10,000+ global restaurant records",
+      "Trained Random Forest and XGBoost models for cuisine popularity",
+      "Built trend visualizations for city-wise and rating-based insights"
+    ],
+    "live": ""
+  },
+  {
+    "id": "chess-game",
+    "title": "Chess Game - Two-Player Board Game",
+    "tagline": "Interactive two-player chess with core mechanics.",
+    "impact": "Strengthened software engineering fundamentals through object-oriented game-state modeling.",
+    "videoUrl": "https://www.youtube.com",
+    "repo": "https://github.com/TheAditya-10",
+    "caseStudy": "data/projects/chess-game.md",
+    "track": "learning",
+    "flagship": false,
+    "skills": [
+      "Software Engineering",
+      "OOP",
+      "Problem Solving"
+    ],
+    "tools": [
+      "Python",
+      "Scratch"
+    ],
+    "highlights": [
+      "Implemented piece movement and turn-based game flow",
+      "Modeled board state and rule validation logic",
+      "Designed clean class-based architecture for maintainability"
+    ],
+    "live": ""
+  }
+]

@@ -2,6 +2,7 @@
 
 import { useEffect, useState } from "react"
 import Link from "next/link"
+import Image from "next/image"
 import { ArrowRight, Github, Linkedin, Mail } from "lucide-react"
 import { Button } from "@/components/ui/button"
 import portfolio from "@/data/portfolio.json"
@@ -9,9 +10,9 @@ import portfolio from "@/data/portfolio.json"
 const TERMINAL_LINES = [
   "$ whoami",
   "Aditya Pratap Singh Tomar",
-  "> ML Engineer | Data Scientist | AI Researcher",
+  "> Data Scientist | Software Engineer | MLOps Engineer",
   "$ focus --current",
-  "Production AI systems, RAG, healthcare ML, safety tooling",
+  "Production ML systems, forecasting, computer vision, and backend APIs",
 ]
 
 export function HeroSection() {
@@ -65,13 +66,13 @@ export function HeroSection() {
 
   return (
     <section id="hero" className="relative overflow-hidden pb-24 pt-28">
-      <div className="absolute inset-0 bg-[radial-gradient(circle_at_top,_rgba(56,189,248,0.15),_transparent_60%)]" />
-      <div className="absolute inset-0 bg-[linear-gradient(120deg,_rgba(15,23,42,0.9),_rgba(2,6,23,0.6))]" />
+      <div className="absolute inset-0 bg-[radial-gradient(circle_at_top,_rgba(14,165,233,0.18),_transparent_62%)] dark:bg-[radial-gradient(circle_at_top,_rgba(56,189,248,0.15),_transparent_60%)]" />
+      <div className="absolute inset-0 bg-[linear-gradient(120deg,_rgba(236,253,255,0.94),_rgba(239,246,255,0.9))] dark:bg-[linear-gradient(120deg,_rgba(15,23,42,0.9),_rgba(2,6,23,0.6))]" />
 
       <div className="relative mx-auto grid max-w-6xl gap-10 px-6 md:grid-cols-[1.2fr_0.8fr]">
-          <div className="space-y-6">
+        <div className="space-y-6">
           <p className="text-xs font-mono uppercase tracking-[0.35em] text-muted-foreground">
-            Meet the Best
+            Portfolio
           </p>
           <h1 className="text-4xl font-semibold leading-tight md:text-5xl">
             {portfolio.profile.name}
@@ -79,7 +80,7 @@ export function HeroSection() {
           <p className="text-lg text-muted-foreground">{portfolio.profile.headline}</p>
           <p className="text-sm text-muted-foreground">{portfolio.profile.title}</p>
           <p data-story="dominant-text" className="text-sm font-semibold text-primary/90">
-            Dominant in delivery. Precise in execution. Reliable in production.
+            Built with measurable outcomes, clean execution, and production-minded engineering.
           </p>
 
           <div className="flex flex-wrap items-center gap-3">
@@ -117,9 +118,13 @@ export function HeroSection() {
             data-story="hero-photo"
             className="overflow-hidden rounded-2xl border border-border bg-card/80 shadow-2xl"
           >
-            <img
+            <Image
               src="/professional-portrait-of-a-young-indian-male-data-.jpg"
               alt="Aditya Pratap Singh Tomar"
+              width={720}
+              height={420}
+              sizes="(max-width: 768px) 100vw, 40vw"
+              priority
               className="h-72 w-full object-cover"
             />
           </div>
@@ -127,7 +132,7 @@ export function HeroSection() {
       </div>
 
       <div className="relative mx-auto mt-10 max-w-6xl px-6">
-        <div className="rounded-2xl border border-border bg-black/60 p-6 font-mono text-sm text-green-200 shadow-2xl">
+        <div className="rounded-2xl border border-border/80 bg-background/90 p-6 font-mono text-sm text-foreground/90 shadow-2xl dark:bg-black/60 dark:text-green-200">
           <div className="mb-3 flex items-center gap-2 text-xs text-muted-foreground">
             <span className="h-2 w-2 rounded-full bg-red-400" />
             <span className="h-2 w-2 rounded-full bg-yellow-400" />

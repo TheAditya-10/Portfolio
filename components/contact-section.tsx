@@ -12,7 +12,7 @@ export function ContactSection() {
             Have a project in mind or want to discuss opportunities? I’d love to hear from you.
           </p>
           <p className="mt-2 text-sm text-muted-foreground">
-            I’m open to ML engineering, data science, and AI research roles — and new collaborations.
+            I’m open to software engineering, data science, and ML engineering roles — and new collaborations.
           </p>
           <div className="mt-6 flex flex-wrap items-center gap-6 text-sm text-muted-foreground">
             <a

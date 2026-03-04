@@ -9,7 +9,7 @@ const PROMPT_CHIPS = [
   "Best ML project?",
   "Explain ECG project",
   "Is Aditya suitable for data science roles?",
-  "What research work has Aditya done?",
+  "Which projects fit software engineering roles?",
 ]
 
 const STORAGE_KEY = "portfolio:chat-history"
@@ -56,7 +56,7 @@ export function AiChatWidget() {
       case "tech":
         return "Ask me about models, architecture decisions, and trade-offs.";
       case "research":
-        return "Happy to cover research focus and experimentation details.";
+        return "Ask about experimental depth in projects and evaluation strategy.";
       default:
         return "Ask anything about Aditya's projects, skills, or experience.";
     }
@@ -128,7 +128,7 @@ export function AiChatWidget() {
           <div className="max-h-[360px] space-y-3 overflow-y-auto px-5 py-4 text-sm">
             {messages.length === 0 ? (
               <div className="rounded-2xl border border-border/60 bg-background/60 p-4 text-sm text-muted-foreground">
-                Ask me about projects, experience, skills, or research. I’ll answer using only portfolio facts.
+                Ask me about projects, experience, or skills. I’ll answer using only portfolio facts.
               </div>
             ) : null}
             {messages.map((message) => (

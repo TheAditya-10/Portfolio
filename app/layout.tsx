@@ -10,30 +10,30 @@ const spaceGrotesk = Space_Grotesk({ subsets: ["latin"], variable: "--font-space
 const jetbrainsMono = JetBrains_Mono({ subsets: ["latin"], variable: "--font-mono" })
 
 export const metadata: Metadata = {
-  title: "Aditya Pratap Singh Tomar | ML Engineer & AI Researcher",
+  title: "Aditya Pratap Singh Tomar | Data Scientist & Software Engineer",
   description:
-    "AI-native portfolio of Aditya Pratap Singh Tomar: ML engineer and data scientist building production-grade AI systems, RAG pipelines, and research-driven deployments.",
+    "Portfolio of Aditya Pratap Singh Tomar: data scientist and software engineer building production-grade ML systems with measurable outcomes.",
   keywords: [
-    "ML Engineer",
+    "Software Engineer",
     "Data Scientist",
-    "AI Researcher",
-    "RAG",
-    "LLM",
+    "ML Engineer",
     "MLOps",
+    "Time Series",
+    "Computer Vision",
     "PyTorch",
     "Deployment",
   ],
   authors: [{ name: "Aditya Pratap Singh Tomar" }],
   openGraph: {
-    title: "Aditya Pratap Singh Tomar | ML Engineer & AI Researcher",
-    description: "Production AI systems, RAG pipelines, and reliable ML deployments.",
+    title: "Aditya Pratap Singh Tomar | Data Scientist & Software Engineer",
+    description: "Production ML systems, data-driven software engineering, and reliable deployment workflows.",
     type: "website",
   },
 }
 
 export const viewport: Viewport = {
   themeColor: [
-    { media: "(prefers-color-scheme: light)", color: "#f8fafc" },
+    { media: "(prefers-color-scheme: light)", color: "#f0f9ff" },
     { media: "(prefers-color-scheme: dark)", color: "#0b1120" },
   ],
 }

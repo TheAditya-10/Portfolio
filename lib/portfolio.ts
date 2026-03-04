@@ -2,18 +2,18 @@ import "server-only"
 
 import path from "path"
 import { promises as fs } from "fs"
-import portfolio from "@/data/portfolio.json"
+import { portfolioData } from "@/lib/content"
 
-export type PortfolioData = typeof portfolio
+export type PortfolioData = typeof portfolioData
 
 export type Project = PortfolioData["projects"][number]
 
 export function getPortfolioData(): PortfolioData {
-  return portfolio
+  return portfolioData
 }
 
 export function getProjectById(projectId: string): Project | undefined {
-  return portfolio.projects.find((project) => project.id === projectId)
+  return portfolioData.projects.find((project) => project.id === projectId)
 }
 
 export async function getProjectContext(projectId: string): Promise<string> {

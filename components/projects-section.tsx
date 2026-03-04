@@ -1,11 +1,10 @@
 "use client"
 
 import { useEffect, useMemo, useRef, useState } from "react"
+import Link from "next/link"
 import { ExternalLink, Heart, PlayCircle, Play, X, Github } from "lucide-react"
-import portfolio from "@/data/portfolio.json"
+import { getProjectsByVariant, type Project, type ProjectVariant } from "@/lib/content"
 import { ProjectChat } from "@/components/project-chat"
-
-const projects = portfolio.projects
 
 type PreviewState = {
   id: string
@@ -14,30 +13,23 @@ type PreviewState = {
 }
 
 type ProjectsSectionProps = {
-  variant?: "featured" | "all" | "hackathon" | "learning"
+  variant?: ProjectVariant
   title?: string
   subtitle?: string
   sectionId?: string
 }
 
 export function ProjectsSection({
-  variant = "featured",
-  title = "Flagship AI Systems",
-  subtitle = "Built for production, evaluated for impact, and documented for trust.",
+  variant = "flagship",
+  title = "Flagship Projects",
+  subtitle = "Resume-backed projects with technical depth and measurable outcomes.",
   sectionId = "projects",
 }: ProjectsSectionProps) {
   const [preview, setPreview] = useState<PreviewState | null>(null)
   const [seenPreviews, setSeenPreviews] = useState<Record<string, boolean>>({})
   const [likeCounts, setLikeCounts] = useState<Record<string, number>>({})
   const [likingByProject, setLikingByProject] = useState<Record<string, boolean>>({})
-  const filteredProjects = useMemo(
-    () =>
-      projects.filter((project) => {
-        if (variant === "all") return true
-        return project.category === variant
-      }),
-    [variant],
-  )
+  const filteredProjects = useMemo(() => getProjectsByVariant(variant), [variant])
   const projectIdsParam = useMemo(() => filteredProjects.map((project) => project.id).join(","), [filteredProjects])
 
   useEffect(() => {
@@ -102,7 +94,7 @@ export function ProjectsSection({
     }
   }
 
-  const openPreview = (project: (typeof projects)[number]) => {
+  const openPreview = (project: Project) => {
     setPreview({ id: project.id, videoUrl: project.videoUrl, title: project.title })
     if (typeof window !== "undefined") {
       const next = { ...seenPreviews, [project.id]: true }
@@ -140,6 +132,17 @@ export function ProjectsSection({
             />
           ))}
         </div>
+
+        {variant === "flagship" ? (
+          <div className="mt-8 text-center">
+            <Link
+              href="/projects"
+              className="inline-flex items-center rounded-full border border-border px-5 py-2 text-sm text-muted-foreground transition hover:border-primary/50 hover:text-foreground"
+            >
+              To view every project, click here.
+            </Link>
+          </div>
+        ) : null}
       </div>
 
       {preview ? (
@@ -166,7 +169,7 @@ export function ProjectsSection({
 }
 
 type ProjectCardProps = {
-  project: (typeof projects)[number]
+  project: Project
   likes: number
   liking: boolean
   onLike: () => Promise<void>

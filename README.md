@@ -59,6 +59,10 @@ lib/
   metrics-store.ts
 data/
   portfolio.json
+  content/
+    projects/projects.json
+    certifications/certifications.json
+    research/research.json
   projects/*.md
 ```
 
@@ -132,7 +136,7 @@ If MySQL is temporarily unreachable, metrics endpoints can fall back to in-memor
 ## AI Endpoints
 
 - `POST /api/ai`
-  - Portfolio assistant with lightweight retrieval from `data/portfolio.json`.
+  - Portfolio assistant with lightweight retrieval from merged content data.
 - `POST /api/ai/project`
   - Project-specific answers using case-study markdown context.
 - `POST /api/ai/resume`
@@ -140,7 +144,10 @@ If MySQL is temporarily unreachable, metrics endpoints can fall back to in-memor
 
 ## Content Updates
 
-- Update profile/experience/projects/skills data in `data/portfolio.json`.
+- Update profile/experience/skills/core content in `data/portfolio.json`.
+- Update projects in `data/content/projects/projects.json` (`flagship: true` shows on home).
+- Update certifications in `data/content/certifications/certifications.json`.
+- Add future research in `data/content/research/research.json`.
 - Update detailed project context in `data/projects/*.md`.
 - Update hero/social/contact content via the same data source + component text.
 

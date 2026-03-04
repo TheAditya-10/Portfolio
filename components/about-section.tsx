@@ -1,6 +1,7 @@
 "use client"
 
 import { useEffect, useRef, useState } from "react"
+import Image from "next/image"
 import { cn } from "@/lib/utils"
 import portfolio from "@/data/portfolio.json"
 
@@ -39,9 +40,11 @@ export function AboutSection() {
             <div className="relative">
               <div className="absolute -inset-4 bg-gradient-to-br from-primary/20 to-transparent rounded-2xl blur-xl" />
               <div className="relative aspect-[4/5] rounded-2xl overflow-hidden border border-border">
-                <img
-                  src="/professional-portrait-indian-computer-science.jpg"
+                <Image
+                  src="/professional-portrait-indian-computer-science.webp"
                   alt="Aditya working on ML projects"
+                  fill
+                  sizes="(max-width: 768px) 100vw, 50vw"
                   className="w-full h-full object-cover"
                 />
               </div>
@@ -64,9 +67,9 @@ export function AboutSection() {
 
             <div className="space-y-4 text-muted-foreground leading-relaxed">
               <p>
-                I'm a <span className="text-foreground font-medium">Data Scientist and MLOps Engineer</span> focused on
-                production-ready ML systems. My expertise spans data pipelines, deep learning (Transformers, LLMs),
-                evaluation, and scalable deployment.
+                I'm a <span className="text-foreground font-medium">Data Scientist and Software Engineer</span> focused on
+                production-ready ML products. My work spans data pipelines, deep learning, backend services, evaluation,
+                and scalable deployment.
               </p>
               <p>
                 Currently pursuing my{" "}

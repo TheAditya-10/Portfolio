@@ -1,7 +1,6 @@
 import { Navigation } from "@/components/navigation"
 import { ExperienceSection } from "@/components/experience-section"
 import { ServicesSection } from "@/components/services-section"
-import { ResearchSection } from "@/components/research-section"
 import { AchievementsSection } from "@/components/achievements-section"
 import { ContactSection } from "@/components/contact-section"
 import { Footer } from "@/components/footer"
@@ -13,7 +12,6 @@ export default function ExperiencePage() {
       <Navigation />
       <ExperienceSection />
       <ServicesSection />
-      <ResearchSection />
       <AchievementsSection />
       <ContactSection />
       <Footer />
