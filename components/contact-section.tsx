@@ -28,7 +28,7 @@ export function ContactSection() {
             </span>
             <span className="flex items-center gap-2 rounded-full border border-border px-4 py-2">
               <MapPin className="h-4 w-4" />
-              {portfolio.profile.location} (open to remote)
+              {portfolio.profile.location}
             </span>
           </div>
         </div>
