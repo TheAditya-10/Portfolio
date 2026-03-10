@@ -3,7 +3,7 @@
     "name": "Aditya Pratap Singh Tomar",
     "domain": "apst.me",
     "title": "Data Scientist | Software Engineer | MLOps Engineer",
-    "location": "Jabalpur, Madhya Pradesh, India",
+    "location": "Gwalior, Madhya Pradesh, India",
     "email": "aditya.pratap.singh.tomar.1082006@email.com",
     "phone": "+91-78982-92920",
     "headline": "Building recruiter-ready software and ML systems with measurable outcomes.",
@@ -33,7 +33,7 @@
         "label": "Kaggle Ranking"
       },
       {
-        "value": "SIH'24",
+        "value": "SIH'25",
         "label": "Finalist"
       }
     ]
@@ -98,13 +98,15 @@
       "projects": [
         "foresightx",
         "ecg-insight",
+        "intellihire",
         "student-lifestyle"
       ],
       "tools": [
         "Python",
         "PyTorch",
         "Pandas",
-        "Scikit-learn"
+        "Scikit-learn",
+        "LangChain"
       ]
     },
     {
@@ -158,7 +160,8 @@
       "projects": [
         "foresightx",
         "ecg-insight",
-        "binsavvy"
+        "binsavvy",
+        "intellihire"
       ],
       "tools": [
         "MLflow",
@@ -168,17 +171,35 @@
       ]
     },
     {
+      "id": "skill-llm-apps",
+      "name": "LLM Apps & Workflow Automation",
+      "summary": "Building production-ready AI features with grounded prompts, orchestration, and fallback paths.",
+      "projects": [
+        "intellihire",
+        "dynamic-resume"
+      ],
+      "tools": [
+        "LangChain",
+        "Gemini API",
+        "n8n",
+        "Prompt Engineering"
+      ]
+    },
+    {
       "id": "skill-software",
       "name": "Software Engineering & APIs",
       "summary": "Shipping backend services and product-focused applications with clean interfaces.",
       "projects": [
+        "intellihire",
+        "dynamic-resume",
         "margdarshak-mitr",
         "chess-game",
         "binsavvy"
       ],
       "tools": [
-        "React",
-        "Node.js",
+        "Next.js",
+        "TypeScript",
+        "Flask",
         "FastAPI",
         "Git"
       ]
@@ -252,8 +273,8 @@
   "achievements": [
     {
       "id": "ach-sih-finalist",
-      "title": "SIH'24 Finalist",
-      "detail": "Smart India Hackathon 2024 - Problem Statement PS-25189."
+      "title": "SIH'25 Finalist",
+      "detail": "Smart India Hackathon 2025 - Problem Statement PS-25189."
     },
     {
       "id": "ach-kaggle",

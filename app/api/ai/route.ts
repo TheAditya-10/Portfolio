@@ -26,7 +26,21 @@ export async function POST(request: Request) {
 
     return NextResponse.json({ response, sources: contextEntries })
   } catch (error) {
-    const message = error instanceof Error ? error.message : "Unexpected error"
+    const message = toClientErrorMessage(error)
     return NextResponse.json({ error: message }, { status: 500 })
   }
+}
+
+function toClientErrorMessage(error: unknown): string {
+  const rawMessage = error instanceof Error ? error.message : "Unexpected error"
+
+  if (/api key expired/i.test(rawMessage)) {
+    return "AI provider API key has expired. Please renew the key and update your environment variables."
+  }
+
+  if (/gemini request failed|openrouter request failed|huggingface request failed/i.test(rawMessage)) {
+    return "AI provider request failed. Check your provider URL, model, and API key configuration."
+  }
+
+  return rawMessage
 }

@@ -4,7 +4,7 @@
     "title": "ForesightX: The Future Has Signals. We Decode Them.",
     "tagline": "Stock market forecasting with deep time-series models.",
     "impact": "Built an end-to-end forecasting system over 1M+ market data points with automated retraining and 30% faster inference.",
-    "videoUrl": "https://www.youtube.com/embed/r5NQecwZs1A",
+    "videoUrl": "https://www.youtube.com/",
     "repo": "https://github.com/TheAditya-10",
     "caseStudy": "data/projects/foresightx.md",
     "track": "major",
@@ -34,7 +34,7 @@
     "title": "Deep ECG Signal Analysis",
     "tagline": "Transformer-based classification and anomaly detection.",
     "impact": "Achieved 91.3% F1 on MIT-BIH/PTB benchmarks with near real-time inference under 150ms per segment.",
-    "videoUrl": "https://www.youtube.com/embed/2vjPBrBU-TM",
+    "videoUrl": "https://www.youtube.com/",
     "repo": "https://github.com/TheAditya-10",
     "caseStudy": "data/projects/ecg-insight.md",
     "track": "major",
@@ -59,15 +59,76 @@
     "live": ""
   },
   {
+    "id": "intellihire",
+    "title": "IntelliHire: AI-Driven Interviewer Platform",
+    "tagline": "Adaptive AI interviews with resume-aware questioning and recruiter scoring.",
+    "impact": "Built a full hiring workflow that generates dynamic interview rounds, stores candidate responses, and produces recruiter-ready scored reports.",
+    "videoUrl": "https://youtu.be/mnJDEoX0Bqo",
+    "repo": "https://github.com/TheAditya-10/IntelliHire",
+    "caseStudy": "data/projects/intellihire.md",
+    "track": "major",
+    "flagship": true,
+    "skills": [
+      "Generative AI",
+      "Backend Engineering",
+      "Recruitment Automation"
+    ],
+    "tools": [
+      "Python",
+      "Flask",
+      "LangChain",
+      "Gemini API",
+      "MySQL",
+      "SQLAlchemy",
+      "Vosk"
+    ],
+    "highlights": [
+      "Generated resume and JD-aware interview questions with adaptive difficulty",
+      "Implemented end-to-end candidate workflow: apply, schedule, interview, and review",
+      "Produced sortable performance reports with question-answer logs and scoring"
+    ],
+    "live": ""
+  },
+  {
+    "id": "dynamic-resume",
+    "title": "Dynamic Resume Portfolio App",
+    "tagline": "Resume-to-portfolio workflow with job match and deploy-ready public pages.",
+    "impact": "Built a production-grade Next.js app with upload-edit-template-preview-deploy flow, autosave editing, and workflow-backed job match enhancement.",
+    "videoUrl": "",
+    "repo": "https://github.com/TheAditya-10/dynamic-Resume",
+    "caseStudy": "data/projects/dynamic-resume.md",
+    "track": "major",
+    "flagship": true,
+    "skills": [
+      "Full-Stack",
+      "Product Engineering",
+      "LLM Workflow Integration"
+    ],
+    "tools": [
+      "Next.js",
+      "TypeScript",
+      "Tailwind CSS",
+      "Framer Motion",
+      "n8n",
+      "LangChain"
+    ],
+    "highlights": [
+      "Implemented a step-based wizard from resume upload to portfolio deployment",
+      "Added split-screen live preview using a shared public portfolio renderer",
+      "Integrated n8n-first job match and resume enhancement with automatic fallback"
+    ],
+    "live": ""
+  },
+  {
     "id": "binsavvy",
     "title": "BinSavvy: Smart Waste Management System",
     "tagline": "Drone-integrated waste detection with YOLO.",
     "impact": "Built a drone-assisted detection and routing workflow that streamlines waste monitoring and cleanup operations.",
-    "videoUrl": "https://www.youtube.com/embed/pYzR5lspfnc",
+    "videoUrl": "https://www.youtube.com/",
     "repo": "https://github.com/TheAditya-10",
     "caseStudy": "data/projects/binsavvy.md",
     "track": "hackathon",
-    "flagship": true,
+    "flagship": false,
     "skills": [
       "Computer Vision",
       "Automation",
@@ -90,11 +151,11 @@
     "title": "MargDarshak-Mitr: Railway Travel Assistant",
     "tagline": "Coach tracking, food discovery, and trip planning.",
     "impact": "Developed a full-featured travel assistant web app focused on real-time utility and reliable fallback behavior.",
-    "videoUrl": "https://www.youtube.com/embed/V74l_zS1x8E",
+    "videoUrl": "https://www.youtube.com/",
     "repo": "https://github.com/TheAditya-10",
     "caseStudy": "data/projects/margdarshak-mitr.md",
     "track": "hackathon",
-    "flagship": true,
+    "flagship": false,
     "skills": [
       "Full-Stack",
       "Product Engineering",
@@ -117,7 +178,7 @@
     "title": "Student Lifestyle and Academic Performance Predictor",
     "tagline": "Predict GPA and stress levels using lifestyle signals.",
     "impact": "Built a 2,000-record data science pipeline with feature engineering, cross-validation, and regression modeling.",
-    "videoUrl": "https://www.youtube.com/embed/8mAITcNt710",
+    "videoUrl": "https://www.youtube.com/",
     "repo": "https://github.com/TheAditya-10",
     "caseStudy": "data/projects/student-lifestyle.md",
     "track": "learning",
@@ -144,7 +205,7 @@
     "title": "Restaurant Data Analytics & Cuisine Popularity Prediction",
     "tagline": "Cuisine popularity prediction over 10,000+ records.",
     "impact": "Implemented an end-to-end analytics and modeling pipeline with ~92% classification accuracy.",
-    "videoUrl": "https://www.youtube.com/embed/N5oN7Y0Sgno",
+    "videoUrl": "https://www.youtube.com/",
     "repo": "https://github.com/TheAditya-10",
     "caseStudy": "data/projects/restaurant-analytics.md",
     "track": "learning",
@@ -173,7 +234,7 @@
     "title": "Chess Game - Two-Player Board Game",
     "tagline": "Interactive two-player chess with core mechanics.",
     "impact": "Strengthened software engineering fundamentals through object-oriented game-state modeling.",
-    "videoUrl": "https://www.youtube.com",
+    "videoUrl": "",
     "repo": "https://github.com/TheAditya-10",
     "caseStudy": "data/projects/chess-game.md",
     "track": "learning",
@@ -192,6 +253,6 @@
       "Modeled board state and rule validation logic",
       "Designed clean class-based architecture for maintainability"
     ],
-    "live": ""
+    "live": "https://scratch.mit.edu/projects/990205458/"
   }
 ]

@@ -1,13 +1,12 @@
 "use client"
 
-import { useEffect, useMemo, useRef, useState } from "react"
+import { useEffect, useMemo, useState } from "react"
 import Link from "next/link"
 import { ExternalLink, Heart, PlayCircle, Play, X, Github } from "lucide-react"
 import { getProjectsByVariant, type Project, type ProjectVariant } from "@/lib/content"
 import { ProjectChat } from "@/components/project-chat"
 
 type PreviewState = {
-  id: string
   videoUrl: string
   title: string
 }
@@ -26,23 +25,10 @@ export function ProjectsSection({
   sectionId = "projects",
 }: ProjectsSectionProps) {
   const [preview, setPreview] = useState<PreviewState | null>(null)
-  const [seenPreviews, setSeenPreviews] = useState<Record<string, boolean>>({})
   const [likeCounts, setLikeCounts] = useState<Record<string, number>>({})
   const [likingByProject, setLikingByProject] = useState<Record<string, boolean>>({})
   const filteredProjects = useMemo(() => getProjectsByVariant(variant), [variant])
   const projectIdsParam = useMemo(() => filteredProjects.map((project) => project.id).join(","), [filteredProjects])
-
-  useEffect(() => {
-    if (typeof window === "undefined") return
-    const stored = window.sessionStorage.getItem("portfolio:previewed-projects")
-    if (stored) {
-      try {
-        setSeenPreviews(JSON.parse(stored) as Record<string, boolean>)
-      } catch {
-        setSeenPreviews({})
-      }
-    }
-  }, [])
 
   useEffect(() => {
     if (!projectIdsParam) return
@@ -95,12 +81,8 @@ export function ProjectsSection({
   }
 
   const openPreview = (project: Project) => {
-    setPreview({ id: project.id, videoUrl: project.videoUrl, title: project.title })
-    if (typeof window !== "undefined") {
-      const next = { ...seenPreviews, [project.id]: true }
-      setSeenPreviews(next)
-      window.sessionStorage.setItem("portfolio:previewed-projects", JSON.stringify(next))
-    }
+    if (!project.videoUrl?.trim()) return
+    setPreview({ videoUrl: project.videoUrl, title: project.title })
   }
 
   return (
@@ -114,7 +96,7 @@ export function ProjectsSection({
           </div>
           <div className="hidden items-center gap-2 text-sm text-muted-foreground md:flex">
             <PlayCircle className="h-4 w-4" />
-            Hover any card for a video preview
+            Click a project title to open its video preview
           </div>
         </div>
 
@@ -127,8 +109,6 @@ export function ProjectsSection({
               liking={Boolean(likingByProject[project.id])}
               onLike={() => handleLike(project.id)}
               onPreviewClick={() => openPreview(project)}
-              onPreviewHover={() => openPreview(project)}
-              canHoverPreview={!seenPreviews[project.id]}
             />
           ))}
         </div>
@@ -174,13 +154,10 @@ type ProjectCardProps = {
   liking: boolean
   onLike: () => Promise<void>
   onPreviewClick: () => void
-  onPreviewHover: () => void
-  canHoverPreview: boolean
 }
 
-function ProjectCard({ project, likes, liking, onLike, onPreviewClick, onPreviewHover, canHoverPreview }: ProjectCardProps) {
+function ProjectCard({ project, likes, liking, onLike, onPreviewClick }: ProjectCardProps) {
   const [bump, setBump] = useState(false)
-  const hoverTimerRef = useRef<number | null>(null)
 
   const handleLike = async () => {
     if (liking) return
@@ -189,42 +166,26 @@ function ProjectCard({ project, likes, liking, onLike, onPreviewClick, onPreview
     await onLike()
   }
 
-  const startHoverTimer = () => {
-    if (!canHoverPreview) return
-    if (hoverTimerRef.current) window.clearTimeout(hoverTimerRef.current)
-    hoverTimerRef.current = window.setTimeout(() => {
-      onPreviewHover()
-    }, 1000)
-  }
-
-  const cancelHoverTimer = () => {
-    if (hoverTimerRef.current) {
-      window.clearTimeout(hoverTimerRef.current)
-      hoverTimerRef.current = null
-    }
-  }
-
   return (
     <article
-      onMouseEnter={startHoverTimer}
-      onMouseLeave={cancelHoverTimer}
-      onFocus={startHoverTimer}
-      onBlur={cancelHoverTimer}
-      tabIndex={0}
       className="group relative rounded-2xl border border-border bg-card/70 p-6 transition hover:-translate-y-1 hover:border-primary/50"
       data-story={project.id === "foresightx" ? "project-foresightx" : undefined}
     >
       <div className="flex items-center justify-between">
         <div>
-          <button
-            type="button"
-            onClick={onPreviewClick}
-            className="flex items-center gap-2 text-left text-xl font-semibold text-foreground"
-            aria-label={`Play ${project.title} video`}
-          >
-            {project.title}
-            <Play className="h-4 w-4 text-primary" />
-          </button>
+          {project.videoUrl?.trim() ? (
+            <button
+              type="button"
+              onClick={onPreviewClick}
+              className="flex items-center gap-2 text-left text-xl font-semibold text-foreground"
+              aria-label={`Play ${project.title} video`}
+            >
+              {project.title}
+              <Play className="h-4 w-4 text-primary" />
+            </button>
+          ) : (
+            <h3 className="text-xl font-semibold text-foreground">{project.title}</h3>
+          )}
           <p className="mt-2 text-sm text-muted-foreground">{project.tagline}</p>
           <div className="mt-2 flex items-center gap-2">
             {project.repo ? (

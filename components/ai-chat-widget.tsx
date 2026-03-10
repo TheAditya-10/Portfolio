@@ -112,7 +112,7 @@ export function AiChatWidget() {
                 <MessageCircle className="h-5 w-5" />
               </span>
               <div>
-                <p className="text-sm font-semibold">Aditya's AI Portfolio Assistant</p>
+                <p className="text-sm font-semibold">Aditya's Assistant</p>
                 <p className="text-xs text-muted-foreground">{greeting}</p>
               </div>
             </div>
@@ -125,7 +125,7 @@ export function AiChatWidget() {
             </button>
           </div>
 
-          <div className="max-h-[360px] space-y-3 overflow-y-auto px-5 py-4 text-sm">
+          <div className="max-h-[360px] space-y-3 overflow-y-auto overflow-x-hidden px-5 py-4 text-sm">
             {messages.length === 0 ? (
               <div className="rounded-2xl border border-border/60 bg-background/60 p-4 text-sm text-muted-foreground">
                 Ask me about projects, experience, or skills. I’ll answer using only portfolio facts.
@@ -134,7 +134,7 @@ export function AiChatWidget() {
             {messages.map((message) => (
               <div
                 key={message.id}
-                className={`max-w-[85%] rounded-2xl px-3 py-2 ${
+                className={`max-w-[85%] whitespace-pre-wrap break-words [overflow-wrap:anywhere] rounded-2xl px-3 py-2 ${
                   message.role === "user"
                     ? "ml-auto bg-primary text-primary-foreground shadow-sm"
                     : "bg-muted/80 text-foreground"
@@ -189,7 +189,7 @@ export function AiChatWidget() {
           </span>
           <span className="text-left">
             <span className="block text-xs text-muted-foreground">Ask the assistant</span>
-            <span className="block">AI Portfolio Chat</span>
+            <span className="block">Ask about Adi</span>
           </span>
         </button>
       )}

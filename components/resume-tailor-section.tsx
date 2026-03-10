@@ -68,7 +68,7 @@ export function ResumeTailorSection() {
                 Copy
               </Button>
             </div>
-            <pre className="mt-3 max-h-[320px] whitespace-pre-wrap text-sm text-muted-foreground">
+            <pre className="mt-3 max-h-[320px] overflow-y-auto overflow-x-hidden whitespace-pre-wrap break-words [overflow-wrap:anywhere] rounded-lg bg-background/50 p-3 text-sm text-muted-foreground">
               {output || "Tailored summary will appear here."}
             </pre>
           </div>
