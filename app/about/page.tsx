@@ -1,3 +1,4 @@
+import type { Metadata } from "next"
 import { Navigation } from "@/components/navigation"
 import { AboutSection } from "@/components/about-section"
 import { ActivitySection } from "@/components/activity-section"
@@ -8,6 +9,15 @@ import { SocialsSection } from "@/components/socials-section"
 import { ContactSection } from "@/components/contact-section"
 import { Footer } from "@/components/footer"
 import { AiChatWidget } from "@/components/ai-chat-widget"
+
+export const metadata: Metadata = {
+  title: "About",
+  description:
+    "About Aditya Pratap Singh Tomar (APST): background, education, certifications, leadership, and professional journey.",
+  alternates: {
+    canonical: "/about",
+  },
+}
 
 export default function AboutPage() {
   return (

@@ -41,8 +41,8 @@ export function AboutSection() {
               <div className="absolute -inset-4 bg-gradient-to-br from-primary/20 to-transparent rounded-2xl blur-xl" />
               <div className="relative aspect-[4/5] rounded-2xl overflow-hidden border border-border">
                 <Image
-                  src="/professional-portrait-indian-computer-science.webp"
-                  alt="Aditya working on ML projects"
+                  src="/aditya-pratap-singh-tomar.webp"
+                  alt="Aditya Pratap Singh Tomar working on machine learning projects"
                   fill
                   sizes="(max-width: 768px) 100vw, 50vw"
                   className="w-full h-full object-cover"

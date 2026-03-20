@@ -4,16 +4,57 @@ import { Space_Grotesk, JetBrains_Mono } from "next/font/google"
 import { Analytics } from "@vercel/analytics/next"
 import { ThemeProvider } from "@/components/theme-provider"
 import { InsightsProvider } from "@/components/insights-context"
+import portfolio from "@/data/portfolio.json"
 import "./globals.css"
 
 const spaceGrotesk = Space_Grotesk({ subsets: ["latin"], variable: "--font-space" })
 const jetbrainsMono = JetBrains_Mono({ subsets: ["latin"], variable: "--font-mono" })
 
+const siteUrl = "https://apst.me"
+const profileName = portfolio.profile.name
+const profileHeadline = portfolio.profile.headline
+const profileSummary = portfolio.profile.summary
+const profileImagePrimary = `${siteUrl}/aditya-pratap-singh-tomar-portrait.jpg`
+const profileImageSecondary = `${siteUrl}/aditya-pratap-singh-tomar.webp`
+const profileSocials = Object.values(portfolio.profile.socials)
+
 export const metadata: Metadata = {
-  title: "Aditya Pratap Singh Tomar | Data Scientist & Software Engineer",
-  description:
-    "Portfolio of Aditya Pratap Singh Tomar: data scientist and software engineer building production-grade ML systems with measurable outcomes.",
+  metadataBase: new URL(siteUrl),
+  title: {
+    default: "Aditya Pratap Singh Tomar (APST) | Data Scientist & Software Engineer",
+    template: "%s | Aditya Pratap Singh Tomar",
+  },
+  description: profileSummary,
+  applicationName: "APST Portfolio",
+  icons: {
+    icon: [{ url: "/favicon.png", type: "image/png" }],
+    apple: [{ url: "/favicon.png", type: "image/png" }],
+    shortcut: ["/favicon.png"],
+  },
+  alternates: {
+    canonical: "/",
+  },
+  robots: {
+    index: true,
+    follow: true,
+    nocache: false,
+    googleBot: {
+      index: true,
+      follow: true,
+      "max-image-preview": "large",
+      "max-snippet": -1,
+      "max-video-preview": -1,
+    },
+  },
+  verification: {
+    google: "omdc3wbmImxNA17_x4PEczQXLOKa8SdT6D3weldAzVw",
+  },
   keywords: [
+    "Aditya Pratap Singh Tomar",
+    "APST",
+    "Aditya",
+    "Aditya Pratap",
+    "Aditya Pratap Singh",
     "Software Engineer",
     "Data Scientist",
     "ML Engineer",
@@ -23,11 +64,36 @@ export const metadata: Metadata = {
     "PyTorch",
     "Deployment",
   ],
-  authors: [{ name: "Aditya Pratap Singh Tomar" }],
+  authors: [{ name: profileName, url: siteUrl }],
+  creator: profileName,
+  publisher: profileName,
   openGraph: {
-    title: "Aditya Pratap Singh Tomar | Data Scientist & Software Engineer",
-    description: "Production ML systems, data-driven software engineering, and reliable deployment workflows.",
+    title: `${profileName} (APST) | Data Scientist & Software Engineer`,
+    description: profileHeadline,
+    url: siteUrl,
+    siteName: "APST Portfolio",
+    locale: "en_IN",
     type: "website",
+    images: [
+      {
+        url: profileImagePrimary,
+        width: 1200,
+        height: 630,
+        alt: `${profileName} portrait`,
+      },
+      {
+        url: profileImageSecondary,
+        width: 960,
+        height: 1200,
+        alt: `${profileName} working portrait`,
+      },
+    ],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: `${profileName} (APST) | Data Scientist & Software Engineer`,
+    description: profileHeadline,
+    images: [profileImagePrimary],
   },
 }
 
@@ -43,12 +109,73 @@ export default function RootLayout({
 }: Readonly<{
   children: React.ReactNode
 }>) {
+  const personStructuredData = {
+    "@context": "https://schema.org",
+    "@type": "Person",
+    name: profileName,
+    alternateName: ["APST", "Aditya", "Aditya Pratap"],
+    url: siteUrl,
+    image: [profileImagePrimary, profileImageSecondary],
+    description: profileSummary,
+    jobTitle: portfolio.profile.title,
+    email: portfolio.profile.email,
+    address: {
+      "@type": "PostalAddress",
+      addressLocality: "Gwalior",
+      addressRegion: "Madhya Pradesh",
+      addressCountry: "IN",
+    },
+    sameAs: profileSocials,
+  }
+
+  const websiteStructuredData = {
+    "@context": "https://schema.org",
+    "@type": "WebSite",
+    name: "APST Portfolio",
+    url: siteUrl,
+    author: {
+      "@type": "Person",
+      name: profileName,
+    },
+    about: {
+      "@type": "Person",
+      name: profileName,
+    },
+  }
+
+  const imageGalleryStructuredData = {
+    "@context": "https://schema.org",
+    "@type": "ItemList",
+    itemListElement: [
+      {
+        "@type": "ImageObject",
+        contentUrl: profileImagePrimary,
+        name: `${profileName} portrait`,
+        description: `${profileName} profile image used in portfolio hero section.`,
+      },
+      {
+        "@type": "ImageObject",
+        contentUrl: profileImageSecondary,
+        name: `${profileName} portrait while working on machine learning projects`,
+        description: `${profileName} profile image used in about section.`,
+      },
+    ],
+  }
+
   return (
     <html lang="en" suppressHydrationWarning>
       <head>
-        <meta
-          name="google-site-verification"
-          content="omdc3wbmImxNA17_x4PEczQXLOKa8SdT6D3weldAzVw"
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(personStructuredData) }}
+        />
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(websiteStructuredData) }}
+        />
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(imageGalleryStructuredData) }}
         />
       </head>
       <body className={`${spaceGrotesk.variable} ${jetbrainsMono.variable} font-sans antialiased`}>

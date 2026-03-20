@@ -1,4 +1,5 @@
 import portfolio from "@/data/portfolio.json"
+import Script from "next/script"
 
 const socials = portfolio.profile.socials
 
@@ -36,6 +37,10 @@ const SOCIAL_GROUPS = [
 export function SocialsSection() {
   return (
     <section id="socials" className="py-24">
+      <Script
+        src="https://platform.linkedin.com/badges/js/profile.js"
+        strategy="afterInteractive"
+      />
       <div className="mx-auto max-w-6xl px-6">
         <div>
           <p className="text-xs font-mono uppercase tracking-[0.3em] text-muted-foreground">Socials</p>
@@ -63,6 +68,29 @@ export function SocialsSection() {
               </div>
             </div>
           ))}
+        </div>
+
+        <div className="mt-8 rounded-2xl border border-border bg-card/70 p-6">
+          <p className="text-xs font-mono uppercase tracking-[0.3em] text-muted-foreground">LinkedIn</p>
+          <h3 className="mt-2 text-lg font-semibold">Public Profile Badge</h3>
+          <div className="mt-4 flex justify-center">
+            <div
+              className="badge-base LI-profile-badge"
+              data-locale="en_US"
+              data-size="medium"
+              data-theme="dark"
+              data-type="VERTICAL"
+              data-vanity="aditya-pratap-singh-tomar-693444204"
+              data-version="v1"
+            >
+              <a
+                className="badge-base__link LI-simple-link"
+                href="https://in.linkedin.com/in/aditya-pratap-singh-tomar-693444204?trk=profile-badge"
+              >
+                ADITYA PRATAP SINGH TOMAR
+              </a>
+            </div>
+          </div>
         </div>
       </div>
     </section>

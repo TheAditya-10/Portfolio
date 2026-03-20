@@ -1,8 +1,18 @@
+import type { Metadata } from "next"
 import { Navigation } from "@/components/navigation"
 import { ResumeTailorSection } from "@/components/resume-tailor-section"
 import { ContactSection } from "@/components/contact-section"
 import { Footer } from "@/components/footer"
 import { AiChatWidget } from "@/components/ai-chat-widget"
+
+export const metadata: Metadata = {
+  title: "Resume",
+  description:
+    "Resume and role-fit section of Aditya Pratap Singh Tomar (APST), featuring ATS-focused profile alignment for software and AI roles.",
+  alternates: {
+    canonical: "/resume",
+  },
+}
 
 export default function ResumePage() {
   return (

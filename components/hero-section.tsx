@@ -119,8 +119,8 @@ export function HeroSection() {
             className="overflow-hidden rounded-2xl border border-border bg-card/80 shadow-2xl"
           >
             <Image
-              src="/professional-portrait-of-a-young-indian-male-data-.jpg"
-              alt="Aditya Pratap Singh Tomar"
+              src="/aditya-pratap-singh-tomar-portrait.jpg"
+              alt="Aditya Pratap Singh Tomar portrait"
               width={720}
               height={420}
               sizes="(max-width: 768px) 100vw, 40vw"

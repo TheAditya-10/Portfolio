@@ -1,3 +1,4 @@
+import type { Metadata } from "next"
 import { Navigation } from "@/components/navigation"
 import { ExperienceSection } from "@/components/experience-section"
 import { ServicesSection } from "@/components/services-section"
@@ -5,6 +6,15 @@ import { AchievementsSection } from "@/components/achievements-section"
 import { ContactSection } from "@/components/contact-section"
 import { Footer } from "@/components/footer"
 import { AiChatWidget } from "@/components/ai-chat-widget"
+
+export const metadata: Metadata = {
+  title: "Experience",
+  description:
+    "Professional experience of Aditya Pratap Singh Tomar (APST) across AI research, ML engineering, and backend software development.",
+  alternates: {
+    canonical: "/experience",
+  },
+}
 
 export default function ExperiencePage() {
   return (
