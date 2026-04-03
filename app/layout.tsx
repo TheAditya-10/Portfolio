@@ -14,7 +14,7 @@ const siteUrl = "https://apst.me"
 const profileName = portfolio.profile.name
 const profileHeadline = portfolio.profile.headline
 const profileSummary = portfolio.profile.summary
-const profileImagePrimary = `${siteUrl}/aditya-pratap-singh-tomar-portrait.jpg`
+const profileImagePrimary = `${siteUrl}/aditya-pratap-singh-tomar-portrait.jpeg`
 const profileImageSecondary = `${siteUrl}/aditya-pratap-singh-tomar.webp`
 const profileSocials = Object.values(portfolio.profile.socials)
 

@@ -116,16 +116,16 @@ export function HeroSection() {
         <div className="space-y-6">
           <div
             data-story="hero-photo"
-            className="overflow-hidden rounded-2xl border border-border bg-card/80 shadow-2xl"
+            className="overflow-hidden rounded-2xl border border-border bg-card/80 shadow-1xl"
           >
             <Image
-              src="/aditya-pratap-singh-tomar-portrait.jpg"
+              src="/aditya-pratap-singh-tomar-portrait.jpeg"
               alt="Aditya Pratap Singh Tomar portrait"
               width={720}
               height={420}
               sizes="(max-width: 768px) 100vw, 40vw"
               priority
-              className="h-72 w-full object-cover"
+              className="h-auto w-full"
             />
           </div>
         </div>

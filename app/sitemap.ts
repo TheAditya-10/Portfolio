@@ -12,7 +12,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
       changeFrequency: "weekly",
       priority: 1,
       images: [
-        `${siteUrl}/aditya-pratap-singh-tomar-portrait.jpg`,
+        `${siteUrl}/aditya-pratap-singh-tomar-portrait.jpeg`,
         `${siteUrl}/aditya-pratap-singh-tomar.webp`,
       ],
     },
