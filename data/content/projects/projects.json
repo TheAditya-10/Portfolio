@@ -1,68 +1,82 @@
 [
   {
     "id": "foresightx",
-    "title": "ForesightX: The Future Has Signals. We Decode Them.",
-    "tagline": "Stock market forecasting with deep time-series models.",
-    "impact": "Built an end-to-end forecasting system over 1M+ market data points with automated retraining and 30% faster inference.",
+    "title": "ForesightX - The Future Has Signals. We Decode Them.",
+    "tagline": "Scalable MLOps-driven market prediction system with real-time analytics, automated retraining, and cloud-native deployment.",
+    "impact": "Engineered a production-grade financial forecasting platform processing 1M+ market data points with automated retraining pipelines, drift-aware evaluation, and low-latency cloud deployment.",
     "videoUrl": "https://www.youtube.com/",
-    "repo": "https://github.com/TheAditya-10",
+    "repo": "https://github.com/TheAditya-10/ForesightX",
     "caseStudy": "data/projects/foresightx.md",
     "track": "major",
     "flagship": true,
     "skills": [
-      "Time-Series",
-      "Transformers",
-      "MLOps"
+      "MLOps",
+      "Time-Series Forecasting",
+      "CI/CD",
+      "Microservices",
+      "Cloud Infrastructure",
+      "Distributed Systems"
     ],
     "tools": [
-      "Python",
+      "FastAPI",
       "PyTorch",
-      "MLflow",
       "Docker",
       "Kubernetes",
-      "Airflow"
+      "MLflow",
+      "GitHub Actions",
+      "AWS",
+      "Nginx"
     ],
     "highlights": [
-      "Feature-engineered forecasting pipeline for noisy financial signals",
-      "Automated evaluation, retraining, and drift checks",
-      "Deployment-focused optimization for low-latency serving"
+      "Built cloud-native forecasting platform with automated training, evaluation, and deployment workflows",
+      "Designed modular microservice architecture for scalable AI inference and analytics pipelines",
+      "Implemented CI/CD pipelines with containerized deployment and production-grade infrastructure setup",
+      "Integrated drift monitoring and retraining workflows for adaptive financial prediction systems",
+      "Optimized real-time inference pipeline for low-latency forecasting and scalable API serving"
     ],
-    "live": ""
+    "live": "https://foresightx.apst.me"
   },
   {
     "id": "ecg-insight",
-    "title": "Deep ECG Signal Analysis",
-    "tagline": "Transformer-based classification and anomaly detection.",
-    "impact": "Achieved 91.3% F1 on MIT-BIH/PTB benchmarks with near real-time inference under 150ms per segment.",
+    "title": "PulseCare AI - Intelligent Cardiac Diagnostics & Telehealth Platform",
+    "tagline": "AI-powered ECG interpretation, remote consultations, and real-time healthcare intelligence in a unified clinical platform.",
+    "impact": "Developed a full-stack healthcare AI ecosystem achieving 91.3% F1 on ECG benchmarks with sub-150ms inference alongside integrated telemedicine, patient workflows, and diagnostic assistance.",
     "videoUrl": "https://www.youtube.com/",
-    "repo": "https://github.com/TheAditya-10",
+    "repo": "https://github.com/TheAditya-10/",
     "caseStudy": "data/projects/ecg-insight.md",
     "track": "major",
     "flagship": true,
     "skills": [
+      "Healthcare AI",
       "Deep Learning",
       "Signal Processing",
-      "Transformers"
+      "Real-time Systems",
+      "Full Stack Development"
     ],
     "tools": [
       "PyTorch",
+      "React",
+      "Flask",
+      "WebRTC",
       "SciPy",
       "NumPy",
       "WFDB",
       "Scikit-learn"
     ],
     "highlights": [
-      "Dual-model architecture for anomaly detection + rhythm classification",
-      "Custom ECG preprocessing and multi-label supervision",
-      "Inference path designed for clinical-style latency constraints"
+      "Built AI-driven healthcare platform combining ECG diagnostics, telemedicine, and patient monitoring",
+      "Integrated transformer-based ECG classification pipeline with near real-time clinical inference",
+      "Implemented secure video consultations, digital health records, and AI-assisted diagnostic workflows",
+      "Designed scalable backend services and healthcare-focused system architecture for responsive care delivery",
+      "Developed anomaly detection and rhythm classification pipelines using custom ECG preprocessing workflows"
     ],
-    "live": ""
+    "live": "https://plus-eight-teal.vercel.app/"
   },
   {
     "id": "intellihire",
-    "title": "IntelliHire: AI-Driven Interviewer Platform",
-    "tagline": "Adaptive AI interviews with resume-aware questioning and recruiter scoring.",
-    "impact": "Built a full hiring workflow that generates dynamic interview rounds, stores candidate responses, and produces recruiter-ready scored reports.",
+    "title": "IntelliHire AI - Autonomous Recruitment & Interview Intelligence Platform",
+    "tagline": "LLM-powered interview automation with adaptive questioning, candidate evaluation, and recruiter-ready analytics.",
+    "impact": "Engineered an AI recruitment ecosystem capable of generating resume-aware interviews, evaluating candidate responses, and producing structured hiring insights through automated workflows.",
     "videoUrl": "https://youtu.be/mnJDEoX0Bqo",
     "repo": "https://github.com/TheAditya-10/IntelliHire",
     "caseStudy": "data/projects/intellihire.md",
@@ -70,8 +84,10 @@
     "flagship": true,
     "skills": [
       "Generative AI",
-      "Backend Engineering",
-      "Recruitment Automation"
+      "LLM Engineering",
+      "Backend Systems",
+      "Workflow Automation",
+      "Recruitment Intelligence"
     ],
     "tools": [
       "Python",
@@ -83,41 +99,83 @@
       "Vosk"
     ],
     "highlights": [
-      "Generated resume and JD-aware interview questions with adaptive difficulty",
-      "Implemented end-to-end candidate workflow: apply, schedule, interview, and review",
-      "Produced sortable performance reports with question-answer logs and scoring"
+      "Developed AI-powered interview engine with resume-aware and job-description-aware adaptive questioning",
+      "Built end-to-end recruitment workflow covering candidate onboarding, interviews, evaluation, and reporting",
+      "Implemented automated recruiter scoring and structured performance analytics using LLM-based evaluation",
+      "Integrated speech processing and conversational AI workflows for interactive interview experiences",
+      "Designed scalable backend APIs and database workflows for recruiter and candidate management"
     ],
-    "live": ""
+    "live": "https://intellihire.apst.me/"
   },
   {
-    "id": "dynamic-resume",
-    "title": "Dynamic Resume Portfolio App",
-    "tagline": "Resume-to-portfolio workflow with job match and deploy-ready public pages.",
-    "impact": "Built a production-grade Next.js app with upload-edit-template-preview-deploy flow, autosave editing, and workflow-backed job match enhancement.",
-    "videoUrl": "",
-    "repo": "https://github.com/TheAditya-10/dynamic-Resume",
-    "caseStudy": "data/projects/dynamic-resume.md",
+    "id": "Career-Copilot",
+    "title": "CareerPilot AI - Intelligent Resume & Job Matching Platform",
+    "tagline": "AI-driven resume tailoring, ATS optimization, and smart job matching for modern hiring workflows.",
+    "impact": "Built an end-to-end career intelligence platform enabling automated resume customization, ATS analysis, and AI-assisted job discovery with production-ready full-stack deployment.",
+    "videoUrl": "https://www.youtube.com/",
+    "repo": "https://github.com/TheAditya-10/dynamic-Resume/",
+    "caseStudy": "data/projects/career-copilot.md",
     "track": "major",
     "flagship": true,
     "skills": [
-      "Full-Stack",
-      "Product Engineering",
-      "LLM Workflow Integration"
+      "Generative AI",
+      "LLMs",
+      "ATS Optimization",
+      "Prompt Engineering",
+      "Full Stack Development"
     ],
     "tools": [
-      "Next.js",
-      "TypeScript",
+      "React",
+      "Flask",
+      "OpenAI API",
+      "Python",
       "Tailwind CSS",
-      "Framer Motion",
-      "n8n",
-      "LangChain"
+      "Vercel"
     ],
     "highlights": [
-      "Implemented a step-based wizard from resume upload to portfolio deployment",
-      "Added split-screen live preview using a shared public portfolio renderer",
-      "Integrated n8n-first job match and resume enhancement with automatic fallback"
+      "Developed AI-powered resume customization based on job descriptions using LLM-driven workflows",
+      "Implemented ATS scoring and keyword optimization to improve recruiter-facing resume quality",
+      "Built intelligent job-role matching system with semantic resume analysis and recommendation logic",
+      "Designed responsive full-stack platform with real-time document processing and dynamic resume generation",
+      "Integrated automated career assistance workflows for resume refinement and application preparation"
     ],
-    "live": ""
+    "live": "https://job-search-resume-customization.vercel.app/"
+  },
+  {
+    "id": "Visioninspect",
+    "title": "VisionInspect - Prompt-Conditioned Industrial Defect Segmentation System",
+    "tagline": "Multimodal computer vision pipeline for automated drywall crack and seam segmentation using prompt-aware deep learning.",
+    "impact": "Engineered a reproducible end-to-end industrial AI pipeline achieving 0.3643 macro IoU and 0.5055 Dice Score using CLIPSeg + CNN refiner architecture with prompt-conditioned segmentation and experiment-tracked ML workflows.",
+    "videoUrl": "https://www.youtube.com/",
+    "repo": "https://github.com/TheAditya-10/Segmentation_of_dry_wall",
+    "caseStudy": "data/projects/visioninspect-ai.md",
+    "track": "major",
+    "flagship": true,
+    "skills": [
+      "Computer Vision",
+      "Semantic Segmentation",
+      "Multimodal AI",
+      "MLOps",
+      "Industrial AI"
+    ],
+    "tools": [
+      "PyTorch",
+      "CLIPSeg",
+      "SAM",
+      "OpenCV",
+      "MLflow",
+      "DVC",
+      "DagsHub",
+      "NumPy"
+    ],
+    "highlights": [
+      "Built prompt-conditioned segmentation pipeline for drywall crack and seam detection using CLIPSeg and SAM",
+      "Designed reproducible ML workflow with DVC, MLflow, and DagsHub for experiment tracking and evaluation",
+      "Implemented pseudo-mask generation pipeline for weakly supervised segmentation from box-only datasets",
+      "Optimized CLIPSeg + CNN refiner architecture with Focal Tversky loss for thin-structure defect segmentation",
+      "Developed automated binary mask export system with benchmark evaluation using IoU and Dice metrics"
+    ],
+    "live": "https://drive.google.com/file/d/1meRjf02tCFxcNJe3kOcN9Ja-WBLZjtN4/view?usp=sharing"
   },
   {
     "id": "binsavvy",
