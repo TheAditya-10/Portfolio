@@ -6,6 +6,7 @@ import { ExperienceSection } from "@/components/experience-section"
 import { SkillsSection } from "@/components/skills-section"
 import { AchievementsSection } from "@/components/achievements-section"
 import { ResumeTailorSection } from "@/components/resume-tailor-section"
+import { SocialsSection } from "@/components/socials-section"
 import { ContactSection } from "@/components/contact-section"
 import { Footer } from "@/components/footer"
 import { AiChatWidget } from "@/components/ai-chat-widget"
@@ -36,6 +37,7 @@ export default function Home() {
       <AchievementsSection />
       <ResumeTailorSection />
       <ContactSection />
+      <SocialsSection />
       <Footer />
       <AiChatWidget />
     </main>

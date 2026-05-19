@@ -24,7 +24,7 @@ export function ExperienceSection() {
                     <span className="absolute top-6 h-[calc(100%_-_24px)] w-px bg-border/40" />
                   </div>
                   <article
-                    className={`w-full rounded-2xl border border-border bg-card/70 p-6 shadow-lg md:w-[460px] lg:w-[520px] ${
+                    className={`w-full rounded-2xl border border-border bg-card/70 p-6 shadow-lg md:w-[660px] lg:w-[880px] ${
                       isLeft ? "md:order-1 md:ml-auto md:text-left" : "md:order-3 md:mr-auto md:text-left"
                     }`}
                   >
