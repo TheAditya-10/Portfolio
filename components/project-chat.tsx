@@ -26,11 +26,16 @@ export function ProjectChat({ projectId, projectTitle }: ProjectChatProps) {
   const [messages, setMessages] = useState<ChatMessage[]>([])
   const [input, setInput] = useState("")
   const [loading, setLoading] = useState(false)
-  const endRef = useRef<HTMLDivElement>(null)
+  const listRef = useRef<HTMLDivElement>(null)
 
   useEffect(() => {
-    endRef.current?.scrollIntoView({ behavior: "smooth" })
-  }, [messages, loading])
+    if (!open) return
+    const container = listRef.current
+    if (!container) return
+    requestAnimationFrame(() => {
+      container.scrollTo({ top: container.scrollHeight, behavior: "smooth" })
+    })
+  }, [messages, loading, open])
 
   const sendMessage = async (content: string) => {
     const trimmed = content.trim()
@@ -82,7 +87,10 @@ export function ProjectChat({ projectId, projectTitle }: ProjectChatProps) {
       </div>
       {open ? (
         <div className="mt-3 space-y-3">
-          <div className="max-h-[200px] space-y-2 overflow-y-auto rounded-lg border border-border bg-background/60 p-3 text-sm">
+          <div
+            ref={listRef}
+            className="max-h-[200px] space-y-2 overflow-y-auto rounded-lg border border-border bg-background/60 p-3 text-sm"
+          >
             {messages.length === 0 ? (
               <p className="text-muted-foreground">Ask about architecture, datasets, or decisions.</p>
             ) : null}
@@ -97,7 +105,6 @@ export function ProjectChat({ projectId, projectTitle }: ProjectChatProps) {
               </div>
             ))}
             {loading ? <p className="text-xs text-muted-foreground">Thinking...</p> : null}
-            <div ref={endRef} />
           </div>
           <div className="flex flex-wrap gap-2">
             {DEFAULT_SUGGESTIONS.map((suggestion) => (
