@@ -21,8 +21,8 @@
     },
     "stats": [
       {
-        "value": "3+",
-        "label": "Industry Internships"
+        "value": "AIR-3930",
+        "label": "GATE'26 DA Rank"
       },
       {
         "value": "350+",
@@ -40,10 +40,27 @@
   },
   "experience": [
     {
+      "id": "exp-ai-engineer",
+      "role": "AI Engineer",
+      "company": "CronLabs Solutions Pvt. Ltd. (OneTapp Group)",
+      "period": "Feb 2026 - Present",
+      "highlights": [
+        "Developed AI-powered resume customization and portfolio generation features using LLM-based agents to tailor resumes according to job descriptions and role requirements.",
+        "Built an AI-driven resume-job matching system that analyzed job postings and generated optimized resume suggestions to improve relevance and ATS compatibility.",
+        "Worked on backend development for the company's SaaS product, designing and integrating APIs, business logic, and AI-agent workflows into the application architecture."
+      ],
+      "stack": [
+        "Agentic Backend",
+        "Django Services",
+        "LangChain Agents",
+        "N8N Workflow Orchestration"
+      ]
+    },
+    {
       "id": "exp-lead-engineer",
       "role": "Lead Engineer",
       "company": "CatalyzeIQ Pvt. Ltd.",
-      "period": "Jan 2026 - Present",
+      "period": "Jan 2026 - Feb 2026",
       "highlights": [
         "Designing core backend services and AI-driven workflow architecture in a zero-to-one startup.",
         "Collaborating with founders to define scalable systems, automation pipelines, and product direction.",
@@ -212,6 +229,7 @@
         "Python",
         "Java",
         "C",
+        "Golang",
         "HTML",
         "CSS"
       ]
@@ -235,7 +253,6 @@
         "MLflow",
         "DVC",
         "AWS",
-        "Azure",
         "Docker",
         "Kubernetes",
         "Prometheus",
@@ -283,8 +300,8 @@
     },
     {
       "id": "ach-hackcrux",
-      "title": "HackCrux Runner-up",
-      "detail": "2nd place in national-level hackathon organized by LNMIIT Jaipur."
+      "title": "GATE'26 DA",
+      "detail": "AIR-3930 in Data Science and Artificial Intelligence"
     },
     {
       "id": "ach-dsa",
