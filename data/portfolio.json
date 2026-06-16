@@ -40,10 +40,31 @@
   },
   "experience": [
     {
+      "id": "exp-gaugehow-sde-intern",
+      "role": "SDE Intern",
+      "company": "GaugeHow",
+      "period": "Jun 2026 - Present",
+      "highlights": [
+        "Architecting and developing a scalable LMS/SaaS platform using React, FastAPI, PostgreSQL, Redis, JWT authentication, and microservices-based architecture.",
+        "Designing and implementing secure backend services, database schemas, REST APIs, RBAC, caching mechanisms, and media delivery workflows for production-scale applications.",
+        "Deploying and optimizing cloud-native infrastructure with Docker, CI/CD pipelines, monitoring systems, and performance-focused engineering practices."
+      ],
+      "stack": [
+        "React",
+        "FastAPI",
+        "PostgreSQL",
+        "Redis",
+        "JWT Authentication",
+        "Microservices",
+        "Docker",
+        "CI/CD"
+      ]
+    },
+    {
       "id": "exp-ai-engineer",
       "role": "AI Engineer",
       "company": "CronLabs Solutions Pvt. Ltd. (OneTapp Group)",
-      "period": "Feb 2026 - Present",
+      "period": "Feb 2026 - May 2026",
       "highlights": [
         "Developed AI-powered resume customization and portfolio generation features using LLM-based agents to tailor resumes according to job descriptions and role requirements.",
         "Built an AI-driven resume-job matching system that analyzed job postings and generated optimized resume suggestions to improve relevance and ATS compatibility.",

@@ -3,17 +3,20 @@
 import { useEffect, useState } from "react"
 import Link from "next/link"
 import Image from "next/image"
-import { ArrowRight, Github, Linkedin, Mail } from "lucide-react"
+import { ArrowRight, Check, Github, Linkedin } from "lucide-react"
 import { Button } from "@/components/ui/button"
 import portfolio from "@/data/portfolio.json"
 
 const TERMINAL_LINES = [
-  "$ whoami",
-  "Aditya Pratap Singh Tomar",
-  "> Data Scientist | Software Engineer | MLOps Engineer",
-  "$ focus --current",
-  "Production ML systems, forecasting, computer vision, and backend APIs",
+  "$ role --current",
+  "AI & Backend Developer",
+  "$ services --focus",
+  "Generative AI apps, FastAPI backends, RAG systems, and workflow automation",
+  "$ availability",
+  "Available for freelance projects",
 ]
+
+const TRUST_INDICATORS = ["AI Solutions", "FastAPI Development", "RAG Systems", "Automation"]
 
 export function HeroSection() {
   const [typed, setTyped] = useState("")
@@ -71,37 +74,59 @@ export function HeroSection() {
 
       <div className="relative mx-auto grid max-w-6xl gap-10 px-6 md:grid-cols-[1.2fr_0.8fr]">
         <div className="space-y-6">
-          <p className="text-xs font-mono uppercase tracking-[0.35em] text-muted-foreground">
-            Portfolio
+          <div className="inline-flex items-center rounded-full border border-primary/20 bg-primary/10 px-3 py-1 text-xs font-medium text-primary">
+            <span aria-hidden="true" className="mr-2">
+              🟢
+            </span>
+            Available for Freelance Projects
+          </div>
+          <div className="space-y-3">
+            <p className="text-xs font-mono uppercase tracking-[0.35em] text-muted-foreground">
+              {portfolio.profile.name}
+            </p>
+            <h1 className="text-4xl font-semibold leading-tight md:text-5xl">
+              AI &amp; Backend Developer
+            </h1>
+          </div>
+          <p className="max-w-2xl text-lg text-muted-foreground">
+            I help startups and businesses build AI-powered products, scalable backend systems,
+            and intelligent automation solutions.
           </p>
-          <h1 className="text-4xl font-semibold leading-tight md:text-5xl">
-            {portfolio.profile.name}
-          </h1>
-          <p className="text-lg text-muted-foreground">{portfolio.profile.headline}</p>
-          <p className="text-sm text-muted-foreground">{portfolio.profile.title}</p>
+          <p className="max-w-2xl text-sm text-muted-foreground">
+            Specializing in AI Chatbots, RAG Systems, FastAPI Backends, Workflow Automation, and
+            Custom AI Applications.
+          </p>
+          <p className="max-w-2xl text-sm text-muted-foreground">
+            Freelance AI developer and FastAPI developer for founders building generative AI
+            products, AI automation workflows, and production-ready RAG systems.
+          </p>
           <p data-story="dominant-text" className="text-sm font-semibold text-primary/90">
-            Built with measurable outcomes, clean execution, and production-minded engineering.
+            Built for startups that need reliable execution, clean architecture, and fast iteration.
           </p>
 
           <div className="flex flex-wrap items-center gap-3">
             <Button asChild>
-              <Link href="#projects">
-                View Flagship Work
+              <Link href="#contact">
+                Hire Me
                 <ArrowRight className="ml-2 h-4 w-4" />
               </Link>
             </Button>
             <Button variant="outline" asChild>
-              <a href={`mailto:${portfolio.profile.email}`}>
-                <Mail className="mr-2 h-4 w-4" />
-                Contact
-              </a>
-            </Button>
-            <Button variant="secondary" asChild>
-              <a href="/resume.pdf" target="_blank" rel="noopener noreferrer">
-                View Resume
-              </a>
+              <Link href="#projects">View Projects</Link>
             </Button>
           </div>
+
+          <ul className="flex flex-wrap gap-3 text-sm text-muted-foreground" aria-label="Core services">
+            {TRUST_INDICATORS.map((indicator) => (
+              <li
+                key={indicator}
+                className="inline-flex items-center gap-2 rounded-full border border-border/80 bg-background/60 px-3 py-1"
+              >
+                <Check className="h-4 w-4 text-primary" aria-hidden="true" />
+                <span>{indicator}</span>
+              </li>
+            ))}
+          </ul>
 
           <div className="flex items-center gap-4 text-sm text-muted-foreground">
             <Link href={portfolio.profile.socials.linkedin} target="_blank">

@@ -1,6 +1,7 @@
 import type { Metadata } from "next"
 import { Navigation } from "@/components/navigation"
 import { HeroSection } from "@/components/hero-section"
+import { ServicesSection } from "@/components/services-section"
 import { ProjectsSection } from "@/components/projects-section"
 import { ExperienceSection } from "@/components/experience-section"
 import { SkillsSection } from "@/components/skills-section"
@@ -13,9 +14,17 @@ import { AiChatWidget } from "@/components/ai-chat-widget"
 import { IntentTracker } from "@/components/intent-tracker"
 
 export const metadata: Metadata = {
-  title: "Home",
+  title: "AI & Backend Developer for Startups",
   description:
-    "Official portfolio of Aditya Pratap Singh Tomar (APST), Data Scientist and Software Engineer building production-grade ML systems.",
+    "Freelance AI developer and FastAPI developer building generative AI products, scalable backend systems, RAG systems, and AI automation solutions for startups and businesses.",
+  keywords: [
+    "AI Developer",
+    "Generative AI Developer",
+    "FastAPI Developer",
+    "AI Automation",
+    "RAG Systems",
+    "Backend Developer for Startups",
+  ],
   alternates: {
     canonical: "/",
   },
@@ -27,6 +36,7 @@ export default function Home() {
       <IntentTracker />
       <Navigation />
       <HeroSection />
+      <ServicesSection />
       <ProjectsSection
         variant="flagship"
         title="Flagship Projects"
