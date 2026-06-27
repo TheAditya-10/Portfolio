@@ -4,6 +4,7 @@ import { HeroSection } from "@/components/hero-section"
 import { ServicesSection } from "@/components/services-section"
 import { ProductShowcaseSection } from "@/components/product-showcase-section"
 import { ProcessSection } from "@/components/process-section"
+import { FounderSection } from "@/components/founder-section"
 import { ProjectsSection } from "@/components/projects-section"
 import { ExperienceSection } from "@/components/experience-section"
 import { TestimonialsSection } from "@/components/testimonials-section"
@@ -45,6 +46,7 @@ export default function Home() {
       <ServicesSection />
       <ProductShowcaseSection />
       <ProcessSection />
+      <FounderSection />
       <TestimonialsSection />
       <ProjectsSection
         variant="flagship"

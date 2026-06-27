@@ -1,11 +1,12 @@
 import { NextResponse } from "next/server"
-import { proxyMetricsRequest } from "@/lib/metrics-backend"
+import { getProfileViews, incrementProfileViews } from "@/lib/metrics-store"
 
 export const runtime = "nodejs"
 
 export async function GET() {
   try {
-    return await proxyMetricsRequest("/profile-views", { method: "GET" })
+    const result = await getProfileViews()
+    return NextResponse.json({ count: result.value, source: result.source })
   } catch (error) {
     console.error("[profile-views][GET] database error", error)
     const message = error instanceof Error ? error.message : "Failed to read profile views."
@@ -15,7 +16,8 @@ export async function GET() {
 
 export async function POST() {
   try {
-    return await proxyMetricsRequest("/profile-views", { method: "POST" })
+    const result = await incrementProfileViews()
+    return NextResponse.json({ count: result.value, source: result.source })
   } catch (error) {
     console.error("[profile-views][POST] database error", error)
     const message = error instanceof Error ? error.message : "Failed to increment profile views."

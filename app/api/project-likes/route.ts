@@ -1,13 +1,14 @@
 import { NextRequest, NextResponse } from "next/server"
-import { proxyMetricsRequest } from "@/lib/metrics-backend"
+import { getProjectLikes, incrementProjectLikes } from "@/lib/metrics-store"
 
 export const runtime = "nodejs"
 
 export async function GET(request: NextRequest) {
   try {
-    const rawQuery = request.nextUrl.searchParams.toString()
-    const path = rawQuery ? `/project-likes?${rawQuery}` : "/project-likes"
-    return await proxyMetricsRequest(path, { method: "GET" })
+    const ids = request.nextUrl.searchParams.get("ids")
+    const projectIds = ids?.split(",") ?? []
+    const result = await getProjectLikes(projectIds)
+    return NextResponse.json({ likes: result.value, source: result.source })
   } catch (error) {
     console.error("[project-likes][GET] database error", error)
     const message = error instanceof Error ? error.message : "Failed to read project likes."
@@ -23,10 +24,8 @@ export async function POST(request: NextRequest) {
       return NextResponse.json({ error: "projectId is required." }, { status: 400 })
     }
 
-    return await proxyMetricsRequest("/project-likes", {
-      method: "POST",
-      body: JSON.stringify({ projectId }),
-    })
+    const result = await incrementProjectLikes(projectId)
+    return NextResponse.json({ likes: result.value, source: result.source })
   } catch (error) {
     console.error("[project-likes][POST] database error", error)
     const message = error instanceof Error ? error.message : "Failed to increment project likes."

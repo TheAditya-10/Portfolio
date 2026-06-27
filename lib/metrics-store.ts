@@ -1,20 +1,23 @@
-import type { RowDataPacket } from "mysql2"
-import { getMysqlPool } from "@/lib/mysql"
+import { getPostgresSql } from "@/lib/postgres"
 
 const PROFILE_VIEWS_KEY = "profile_views"
-const MYSQL_CONNECTION_ERROR_CODES = new Set([
+const POSTGRES_CONNECTION_ERROR_CODES = new Set([
   "ECONNREFUSED",
   "ECONNRESET",
   "ENETUNREACH",
   "ENOTFOUND",
   "EHOSTUNREACH",
   "ETIMEDOUT",
-  "PROTOCOL_CONNECTION_LOST",
-  "PROTOCOL_ENQUEUE_AFTER_FATAL_ERROR",
-  "PROTOCOL_ENQUEUE_AFTER_QUIT",
+  "57P01",
+  "57P02",
+  "57P03",
+  "08000",
+  "08003",
+  "08006",
+  "08001",
 ])
 
-export type MetricsSource = "mysql" | "memory"
+export type MetricsSource = "postgres" | "memory"
 
 type MetricResult<T> = {
   source: MetricsSource
@@ -29,11 +32,12 @@ type MetricsMemoryStore = {
 declare global {
   var __portfolioMetricsInitPromise: Promise<void> | undefined
   var __portfolioMetricsMemoryStore: MetricsMemoryStore | undefined
-  var __portfolioMetricsMysqlRetryAfter: number | undefined
+  var __portfolioMetricsPostgresRetryAfter: number | undefined
 }
 
 function toNumber(value: unknown) {
   if (typeof value === "number") return value
+  if (typeof value === "bigint") return Number(value)
   if (typeof value === "string") {
     const parsed = Number.parseInt(value, 10)
     if (Number.isFinite(parsed)) return parsed
@@ -77,7 +81,7 @@ function isMemoryFallbackEnabled() {
 }
 
 function getRetryCooldownMs() {
-  return parsePositiveInt(process.env.MYSQL_RETRY_COOLDOWN_MS, 30_000)
+  return parsePositiveInt(process.env.POSTGRES_RETRY_COOLDOWN_MS, 30_000)
 }
 
 function getMemoryStore() {
@@ -96,58 +100,61 @@ function getErrorCode(error: unknown) {
   return typeof code === "string" ? code : undefined
 }
 
-function isMysqlConnectivityError(error: unknown) {
+function isPostgresConnectivityError(error: unknown) {
   const code = getErrorCode(error)
-  if (code && MYSQL_CONNECTION_ERROR_CODES.has(code)) {
+  if (code && POSTGRES_CONNECTION_ERROR_CODES.has(code)) {
     return true
   }
 
   if (error instanceof Error) {
     const message = error.message.toLowerCase()
-    if (message.includes("timed out") || message.includes("connect")) {
-      return true
-    }
+    return (
+      message.includes("missing postgres config") ||
+      message.includes("timed out") ||
+      message.includes("connect") ||
+      message.includes("fetch failed")
+    )
   }
 
   return false
 }
 
-function inMysqlRetryCooldown() {
-  const retryAfter = globalThis.__portfolioMetricsMysqlRetryAfter
+function inPostgresRetryCooldown() {
+  const retryAfter = globalThis.__portfolioMetricsPostgresRetryAfter
   if (!retryAfter) return false
   return retryAfter > Date.now()
 }
 
-function markMysqlUnavailable(error: unknown) {
-  if (!isMysqlConnectivityError(error)) {
+function markPostgresUnavailable(error: unknown) {
+  if (!isPostgresConnectivityError(error)) {
     return false
   }
 
-  const wasCoolingDown = inMysqlRetryCooldown()
-  globalThis.__portfolioMetricsMysqlRetryAfter = Date.now() + getRetryCooldownMs()
+  const wasCoolingDown = inPostgresRetryCooldown()
+  globalThis.__portfolioMetricsPostgresRetryAfter = Date.now() + getRetryCooldownMs()
   globalThis.__portfolioMetricsInitPromise = undefined
 
   if (!wasCoolingDown) {
     const code = getErrorCode(error) ?? "UNKNOWN"
-    console.error(`[metrics-store] MySQL unavailable (${code}). Using memory fallback temporarily.`)
+    console.error(`[metrics-store] Postgres unavailable (${code}). Using memory fallback temporarily.`)
   }
 
   return true
 }
 
-async function withStorageFallback<T>(mysqlOperation: () => Promise<T>, memoryOperation: () => T) {
+async function withStorageFallback<T>(postgresOperation: () => Promise<T>, memoryOperation: () => T) {
   const canFallback = isMemoryFallbackEnabled()
 
-  if (canFallback && inMysqlRetryCooldown()) {
+  if (canFallback && inPostgresRetryCooldown()) {
     return { source: "memory", value: memoryOperation() } satisfies MetricResult<T>
   }
 
   try {
-    const value = await mysqlOperation()
-    globalThis.__portfolioMetricsMysqlRetryAfter = undefined
-    return { source: "mysql", value } satisfies MetricResult<T>
+    const value = await postgresOperation()
+    globalThis.__portfolioMetricsPostgresRetryAfter = undefined
+    return { source: "postgres", value } satisfies MetricResult<T>
   } catch (error) {
-    const connectivityFailure = markMysqlUnavailable(error)
+    const connectivityFailure = markPostgresUnavailable(error)
     if (!canFallback || !connectivityFailure) {
       throw error
     }
@@ -161,23 +168,23 @@ async function ensureMetricsTables() {
     return globalThis.__portfolioMetricsInitPromise
   }
 
-  const pool = getMysqlPool()
+  const sql = getPostgresSql()
   globalThis.__portfolioMetricsInitPromise = (async () => {
     try {
-      await pool.query(`
+      await sql.query(`
         CREATE TABLE IF NOT EXISTS site_counters (
-          counter_key VARCHAR(80) PRIMARY KEY,
-          counter_value BIGINT UNSIGNED NOT NULL DEFAULT 0,
-          updated_at TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
-        ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+          counter_key TEXT PRIMARY KEY,
+          counter_value BIGINT NOT NULL DEFAULT 0,
+          updated_at TIMESTAMPTZ NOT NULL DEFAULT NOW()
+        );
       `)
 
-      await pool.query(`
+      await sql.query(`
         CREATE TABLE IF NOT EXISTS project_likes (
-          project_id VARCHAR(120) PRIMARY KEY,
-          likes BIGINT UNSIGNED NOT NULL DEFAULT 0,
-          updated_at TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
-        ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+          project_id TEXT PRIMARY KEY,
+          likes BIGINT NOT NULL DEFAULT 0,
+          updated_at TIMESTAMPTZ NOT NULL DEFAULT NOW()
+        );
       `)
     } catch (error) {
       globalThis.__portfolioMetricsInitPromise = undefined
@@ -192,12 +199,11 @@ export async function getProfileViews(): Promise<MetricResult<number>> {
   return withStorageFallback(
     async () => {
       await ensureMetricsTables()
-      const pool = getMysqlPool()
+      const sql = getPostgresSql()
 
-      const [rows] = await pool.query<RowDataPacket[]>(
-        "SELECT counter_value AS value FROM site_counters WHERE counter_key = ? LIMIT 1",
-        [PROFILE_VIEWS_KEY],
-      )
+      const rows = await sql.query("SELECT counter_value AS value FROM site_counters WHERE counter_key = $1 LIMIT 1", [
+        PROFILE_VIEWS_KEY,
+      ])
 
       return toNumber(rows[0]?.value)
     },
@@ -209,18 +215,19 @@ export async function incrementProfileViews(): Promise<MetricResult<number>> {
   return withStorageFallback(
     async () => {
       await ensureMetricsTables()
-      const pool = getMysqlPool()
+      const sql = getPostgresSql()
 
-      await pool.query(
+      const rows = await sql.query(
         `
-          INSERT INTO site_counters (counter_key, counter_value)
-          VALUES (?, LAST_INSERT_ID(1))
-          ON DUPLICATE KEY UPDATE counter_value = LAST_INSERT_ID(counter_value + 1)
+          INSERT INTO site_counters (counter_key, counter_value, updated_at)
+          VALUES ($1, 1, NOW())
+          ON CONFLICT (counter_key)
+          DO UPDATE SET counter_value = site_counters.counter_value + 1, updated_at = NOW()
+          RETURNING counter_value AS value
         `,
         [PROFILE_VIEWS_KEY],
       )
 
-      const [rows] = await pool.query<RowDataPacket[]>("SELECT LAST_INSERT_ID() AS value")
       return toNumber(rows[0]?.value)
     },
     () => {
@@ -234,18 +241,16 @@ export async function incrementProfileViews(): Promise<MetricResult<number>> {
 export async function getProjectLikes(projectIds: string[]): Promise<MetricResult<Record<string, number>>> {
   const ids = normalizeProjectIds(projectIds)
   if (ids.length === 0) {
-    return { source: "mysql", value: {} }
+    return { source: "postgres", value: {} }
   }
 
   return withStorageFallback(
     async () => {
       await ensureMetricsTables()
-      const pool = getMysqlPool()
-      const placeholders = ids.map(() => "?").join(", ")
-      const [rows] = await pool.query<RowDataPacket[]>(
-        `SELECT project_id, likes FROM project_likes WHERE project_id IN (${placeholders})`,
+      const sql = getPostgresSql()
+      const rows = await sql.query("SELECT project_id, likes FROM project_likes WHERE project_id = ANY($1::text[])", [
         ids,
-      )
+      ])
 
       const likes: Record<string, number> = {}
       for (const id of ids) {
@@ -277,18 +282,19 @@ export async function incrementProjectLikes(projectId: string): Promise<MetricRe
   return withStorageFallback(
     async () => {
       await ensureMetricsTables()
-      const pool = getMysqlPool()
+      const sql = getPostgresSql()
 
-      await pool.query(
+      const rows = await sql.query(
         `
-          INSERT INTO project_likes (project_id, likes)
-          VALUES (?, LAST_INSERT_ID(1))
-          ON DUPLICATE KEY UPDATE likes = LAST_INSERT_ID(likes + 1)
+          INSERT INTO project_likes (project_id, likes, updated_at)
+          VALUES ($1, 1, NOW())
+          ON CONFLICT (project_id)
+          DO UPDATE SET likes = project_likes.likes + 1, updated_at = NOW()
+          RETURNING likes AS value
         `,
         [normalizedProjectId],
       )
 
-      const [rows] = await pool.query<RowDataPacket[]>("SELECT LAST_INSERT_ID() AS value")
       return toNumber(rows[0]?.value)
     },
     () => {

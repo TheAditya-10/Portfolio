@@ -1,17 +1,19 @@
-# APST.ME - AI-Native Portfolio
+# APST.ME - AI & Software Services
 
 Live: [https://apst.me](https://apst.me)
 
-Personal portfolio for **Aditya Pratap Singh Tomar** built with Next.js, TypeScript, and Tailwind CSS.
-The site combines recruiter-friendly storytelling with AI-powered project Q&A, resume-fit analysis, and universal engagement metrics backed by MySQL.
+AI app development and software services website for **Aditya Pratap Singh Tomar** built with Next.js, TypeScript, and Tailwind CSS.
+The site combines a service-first funnel with founder proof, AI-powered project Q&A, resume-fit analysis, enquiry email handling, and universal engagement metrics backed by Neon Postgres.
 
 ## Highlights
 
-- Multi-page portfolio experience: Home, About, Projects, Experience, Skills, Resume fit.
+- Service-first homepage for AI apps, chatbots, RAG systems, automation, SaaS, and backend development.
+- Founder/portfolio proof sections: About, Projects, Experience, Skills, Resume fit.
 - AI portfolio assistant with intent-aware responses (`general`, `recruiter`, `tech`, `research`).
 - Project-scoped AI chat grounded in each project case-study markdown file.
 - Resume role-fit generator from job descriptions (`/api/ai/resume`).
-- Universal counters with MySQL:
+- SMTP enquiry form that emails both the owner and the visitor.
+- Universal counters with Neon Postgres:
   - Global profile views.
   - Global project likes (shared across all users).
 - Story mode with guided scroll + narration.
@@ -24,7 +26,8 @@ The site combines recruiter-friendly storytelling with AI-powered project Q&A, r
 - `React 19`
 - `TypeScript`
 - `Tailwind CSS v4`
-- `mysql2` (server-side metrics storage)
+- `@neondatabase/serverless` (server-side metrics storage)
+- `nodemailer` (server-side enquiry emails)
 - `lucide-react`
 - `@vercel/analytics`
 
@@ -55,7 +58,7 @@ lib/
   ai-provider.ts
   rag.ts
   portfolio.ts
-  mysql.ts
+  postgres.ts
   metrics-store.ts
 data/
   portfolio.json
@@ -85,26 +88,22 @@ AI_API_KEY=your_api_key
 AI_MODEL=gemini-2.5-flash
 AI_API_URL=https://generativelanguage.googleapis.com/v1beta
 
-# MySQL (use URL form)
-MYSQL_URL=mysql://user:password@host:3306/database
+# Neon Postgres metrics
+DATABASE_URL=postgresql://user:password@ep-example-pooler.region.aws.neon.tech/dbname?sslmode=require&channel_binding=require
 
-# OR use split variables
-# MYSQL_HOST=localhost
-# MYSQL_PORT=3306
-# MYSQL_USER=root
-# MYSQL_PASSWORD=secret
-# MYSQL_DATABASE=portfolio
-
-# Optional for managed MySQL with SSL
-# MYSQL_SSL=true
-
-# Optional resilience settings for temporary DB network failures
+# Optional Postgres resilience settings
+# POSTGRES_CONNECT_TIMEOUT_MS=5000
 # METRICS_MEMORY_FALLBACK=true
-# MYSQL_RETRY_COOLDOWN_MS=30000
+# POSTGRES_RETRY_COOLDOWN_MS=30000
 
-# Optional: proxy metrics through private AWS backend
-# METRICS_BACKEND_URL=https://your-api-id.execute-api.ap-south-1.amazonaws.com
-# METRICS_BACKEND_SECRET=replace_with_shared_secret
+# SMTP enquiry emails
+SMTP_HOST=smtp.example.com
+SMTP_PORT=587
+SMTP_SECURE=false
+SMTP_USER=your_smtp_username
+SMTP_PASS=your_smtp_password
+SMTP_FROM="APST Services <your_smtp_username>"
+ENQUIRY_TO=aditya.pratap.singh.tomar.1082006@email.com
 ```
 
 ### 3. Run the app
@@ -115,7 +114,7 @@ npm run dev
 
 Visit `http://localhost:3000`.
 
-## MySQL Metrics
+## Neon Postgres Metrics
 
 The app auto-creates required tables on first metrics request:
 
@@ -129,9 +128,12 @@ Used by:
 - `GET /api/project-likes?ids=id1,id2` -> fetches shared like counts.
 - `POST /api/project-likes` with `{ "projectId": "foresightx" }` -> increments shared likes.
 
-If MySQL is temporarily unreachable, metrics endpoints can fall back to in-memory counters
+If Neon Postgres is temporarily unreachable, metrics endpoints can fall back to in-memory counters
 (controlled by `METRICS_MEMORY_FALLBACK`, default `true`) and retry DB access after
-`MYSQL_RETRY_COOLDOWN_MS`.
+`POSTGRES_RETRY_COOLDOWN_MS`.
+
+Use the pooled Neon connection string for serverless deployments. In the Neon dashboard, click
+**Connect**, enable connection pooling, and copy the `DATABASE_URL` value with `-pooler` in the hostname.
 
 ## AI Endpoints
 
@@ -159,7 +161,7 @@ For Vercel deployment:
 
 1. Import the repository into Vercel.
 2. Add environment variables from `.env.local`.
-3. Ensure MySQL is reachable from Vercel runtime.
+3. Add the Neon pooled `DATABASE_URL` in Vercel project settings.
 4. Deploy.
 
 ## Scripts
@@ -173,4 +175,4 @@ For Vercel deployment:
 
 - Keep secrets only in `.env.local` or your hosting provider's secret manager.
 - Chat history and some UI insights are stored in browser storage for session UX.
-- Global counters/likes are server-side in MySQL.
+- Global counters/likes are server-side in Neon Postgres.
