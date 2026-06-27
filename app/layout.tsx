@@ -26,7 +26,7 @@ export const metadata: Metadata = {
     template: "%s | Aditya Pratap Singh Tomar",
   },
   description:
-    "AI app development, generative AI development, AI chatbot development, RAG knowledge systems, workflow automation, SaaS web apps, and FastAPI backend services.",
+    "Custom AI development, LLM applications, AI chatbot development, RAG systems, workflow automation, SaaS web apps, and FastAPI backend services for startups and growing businesses.",
   applicationName: "APST AI & Software Services",
   icons: {
     icon: [{ url: "/favicon.jpg", type: "image/jpeg" }],
@@ -54,13 +54,21 @@ export const metadata: Metadata = {
   keywords: [
     "Aditya Pratap Singh Tomar",
     "APST",
+    "AI Consultant",
+    "AI Developer",
     "AI App Development",
+    "Custom AI Development",
     "Software Development Services",
+    "LLM Applications",
     "Generative AI Development",
+    "Generative AI Developer",
     "AI Chatbot Development",
+    "AI Automation",
     "RAG Knowledge Base",
+    "RAG Systems",
     "Workflow Automation",
     "FastAPI Developer",
+    "Python Backend Developer",
     "SaaS Development",
     "AI Automation Services",
     "MLOps Deployment",
@@ -71,7 +79,7 @@ export const metadata: Metadata = {
   openGraph: {
     title: "APST | AI App Development & Software Services",
     description:
-      "Custom AI applications, chatbots, RAG systems, automation, SaaS web apps, and FastAPI backend development.",
+      "Custom AI development, LLM applications, AI chatbots, RAG systems, automation, SaaS web apps, and FastAPI backend development.",
     url: siteUrl,
     siteName: "APST AI & Software Services",
     locale: "en_IN",
@@ -101,7 +109,7 @@ export const metadata: Metadata = {
     card: "summary_large_image",
     title: "APST | AI App Development & Software Services",
     description:
-      "AI app development, generative AI, RAG, AI chatbot, workflow automation, SaaS, and FastAPI backend services.",
+      "AI consultant for custom AI development, generative AI, RAG systems, AI chatbot development, workflow automation, SaaS, and FastAPI backend services.",
     images: [`${siteUrl}/ai-chatbot-dashboard.png`],
   },
 }
@@ -126,7 +134,7 @@ export default function RootLayout({
     url: siteUrl,
     image: [profileImagePrimary, profileImageSecondary],
     description: profileSummary,
-    jobTitle: "AI App Developer and Software Engineer",
+    jobTitle: "AI Consultant, Generative AI Developer, and Python Backend Developer",
     email: portfolio.profile.email,
     address: {
       "@type": "PostalAddress",
@@ -164,7 +172,7 @@ export default function RootLayout({
     url: siteUrl,
     image: [`${siteUrl}/ai-chatbot-dashboard.png`, ...serviceImages, profileImagePrimary],
     description:
-      "AI app development, generative AI development, chatbot development, RAG knowledge systems, workflow automation, SaaS web app development, FastAPI backend development, and MLOps deployment services.",
+      "Custom AI development, LLM applications, generative AI development, AI chatbot development, RAG systems, workflow automation, SaaS web app development, FastAPI backend development, Python backend development, and MLOps deployment services.",
     founder: {
       "@type": "Person",
       name: profileName,

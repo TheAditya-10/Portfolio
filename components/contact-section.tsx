@@ -53,13 +53,13 @@ export function ContactSection() {
     <section id="enquiry" className="border-t border-border/70 py-24">
       <div className="mx-auto grid max-w-6xl gap-10 px-6 lg:grid-cols-[0.8fr_1.2fr]">
         <div>
-          <p className="text-xs font-mono uppercase tracking-[0.3em] text-muted-foreground">Enquiry</p>
+          <p className="text-xs font-mono uppercase tracking-[0.3em] text-muted-foreground">Let's Build Your Project</p>
           <h2 className="mt-3 text-3xl font-semibold text-foreground md:text-4xl">
-            Tell me what you want to build.
+            Tell me what your product needs next.
           </h2>
           <p className="mt-4 leading-7 text-muted-foreground">
-            Use this form for AI app development, software development, chatbot, RAG, automation,
-            backend, SaaS, dashboard, or deployment enquiries.
+            Share the outcome you want: launch an AI product, reduce support work, automate a workflow,
+            build a RAG assistant, or strengthen your backend. I will reply with a practical next step.
           </p>
           <div className="mt-8 space-y-3 text-sm text-muted-foreground">
             <a
@@ -98,18 +98,18 @@ export function ContactSection() {
               <Input name="phone" type="tel" placeholder="+91 98765 43210" required autoComplete="tel" />
             </label>
             <label className="space-y-2">
-              <span className="text-sm font-medium text-foreground">Service</span>
+              <span className="text-sm font-medium text-foreground">Project type</span>
               <select
                 name="service"
                 required
                 defaultValue=""
-                className="border-input placeholder:text-muted-foreground focus-visible:border-ring focus-visible:ring-ring/50 h-9 w-full rounded-md border bg-background px-3 py-1 text-sm text-foreground shadow-xs outline-none transition-[color,box-shadow] focus-visible:ring-[3px] dark:bg-input/80"
+                className="border-input placeholder:text-muted-foreground focus-visible:border-ring focus-visible:ring-ring/50 h-9 w-full rounded-md border bg-background px-3 py-1 text-sm text-foreground shadow-xs outline-none transition-[color,box-shadow] focus-visible:ring-[3px] dark:bg-popover dark:[color-scheme:dark]"
               >
-                <option value="" disabled className="bg-background text-muted-foreground">
-                  Select a service
+                <option value="" disabled className="bg-popover text-muted-foreground">
+                  Select project type
                 </option>
                 {serviceOptions.map((service) => (
-                  <option key={service} value={service} className="bg-background text-foreground">
+                  <option key={service} value={service} className="bg-popover text-popover-foreground">
                     {service}
                   </option>
                 ))}
@@ -121,7 +121,7 @@ export function ContactSection() {
             <span className="text-sm font-medium text-foreground">Project details</span>
             <Textarea
               name="message"
-              placeholder="What do you want to build, automate, improve, or launch?"
+              placeholder="What should this AI system, automation, backend, or product help your business do?"
               className="min-h-[150px]"
               required
               minLength={10}
@@ -130,11 +130,11 @@ export function ContactSection() {
 
           <div className="mt-6 flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
             <p className="text-xs leading-5 text-muted-foreground">
-              You will get an automatic confirmation email after submission.
+              You will get an automatic confirmation email, then a direct reply with the next step.
             </p>
             <Button type="submit" disabled={state === "loading"} className="sm:min-w-[170px]">
               <Send className="h-4 w-4" />
-              {state === "loading" ? "Submitting..." : "Submit Enquiry"}
+              {state === "loading" ? "Submitting..." : "Start Your Project"}
             </Button>
           </div>
 

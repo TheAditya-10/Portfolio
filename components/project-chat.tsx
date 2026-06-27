@@ -5,9 +5,9 @@ import { MessageSquare } from "lucide-react"
 import { Button } from "@/components/ui/button"
 
 const DEFAULT_SUGGESTIONS = [
-  "Why was this tech stack chosen?",
-  "What dataset was used?",
-  "What were the trade-offs?",
+  "Can you build something similar for my business?",
+  "What would the first version include?",
+  "What trade-offs should a founder know?",
 ]
 
 type ProjectChatProps = {
@@ -77,12 +77,12 @@ export function ProjectChat({ projectId, projectTitle }: ProjectChatProps) {
     <div className="mt-4 rounded-xl border border-border bg-card/60 p-4">
       <div className="flex items-center justify-between">
         <div>
-          <p className="text-sm font-semibold">Ask this project</p>
-          <p className="text-xs text-muted-foreground">Scoped to {projectTitle}</p>
+          <p className="text-sm font-semibold">Explore this solution</p>
+          <p className="text-xs text-muted-foreground">Ask how {projectTitle} could translate to your product.</p>
         </div>
         <Button size="sm" variant="outline" onClick={() => setOpen((prev) => !prev)}>
           <MessageSquare className="mr-2 h-4 w-4" />
-          {open ? "Hide" : "Ask"}
+          {open ? "Hide" : "Ask AI"}
         </Button>
       </div>
       {open ? (
@@ -92,7 +92,7 @@ export function ProjectChat({ projectId, projectTitle }: ProjectChatProps) {
             className="max-h-[200px] space-y-2 overflow-y-auto rounded-lg border border-border bg-background/60 p-3 text-sm"
           >
             {messages.length === 0 ? (
-              <p className="text-muted-foreground">Ask about architecture, datasets, or decisions.</p>
+              <p className="text-muted-foreground">Ask about scope, business fit, architecture, or launch plan.</p>
             ) : null}
             {messages.map((message) => (
               <div
@@ -121,7 +121,7 @@ export function ProjectChat({ projectId, projectTitle }: ProjectChatProps) {
             <input
               value={input}
               onChange={(event) => setInput(event.target.value)}
-              placeholder="Ask a project question..."
+              placeholder="Ask how this could work for you..."
               className="h-9 flex-1 rounded-md border border-border bg-background px-3 text-sm focus:outline-none focus:ring-2 focus:ring-primary/40"
               onKeyDown={(event) => {
                 if (event.key === "Enter") {
@@ -131,7 +131,7 @@ export function ProjectChat({ projectId, projectTitle }: ProjectChatProps) {
               }}
             />
             <Button size="sm" onClick={() => sendMessage(input)} disabled={loading}>
-              Send
+              Ask
             </Button>
           </div>
         </div>

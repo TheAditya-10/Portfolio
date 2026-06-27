@@ -9,11 +9,11 @@ export function ServicesSection() {
         <div className="max-w-3xl">
           <p className="text-xs font-mono uppercase tracking-[0.3em] text-muted-foreground">Services</p>
           <h2 className="mt-3 text-3xl font-semibold text-foreground md:text-4xl">
-            Software and AI services built around business outcomes.
+            What can I build for your business?
           </h2>
           <p className="mt-4 text-muted-foreground">
-            The offer is service-first, but backed by hands-on product engineering, AI research,
-            backend architecture, and deployment experience.
+            Practical AI development services for founders who need working software, not a
+            technical experiment. Each service is designed to remove a business bottleneck.
           </p>
         </div>
 

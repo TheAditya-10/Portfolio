@@ -8,10 +8,9 @@ import { ThemeToggle } from "@/components/theme-toggle"
 
 const navItems = [
   { href: "/#services", label: "Services" },
-  { href: "/#solutions", label: "AI Apps" },
+  { href: "/#projects", label: "Client Stories" },
   { href: "/#process", label: "Process" },
   { href: "/#proof", label: "Proof" },
-  { href: "/projects", label: "Projects" },
   { href: "/experience", label: "Experience" },
   { href: "/founder", label: "Founder" },
 ]
@@ -44,7 +43,7 @@ export function Navigation() {
           <Button asChild size="sm" className="hidden sm:inline-flex">
             <Link href="/#enquiry">
               <Send className="h-4 w-4" />
-              Enquire
+              Let&apos;s Build
             </Link>
           </Button>
           <ThemeToggle />
@@ -87,7 +86,7 @@ export function Navigation() {
               <Button asChild size="sm">
                 <Link href="/#enquiry" onClick={() => setMobileOpen(false)}>
                   <Send className="h-4 w-4" />
-                  Enquire
+                  Let&apos;s Build
                 </Link>
               </Button>
             </div>

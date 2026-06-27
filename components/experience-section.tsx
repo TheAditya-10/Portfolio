@@ -5,10 +5,10 @@ export function ExperienceSection() {
     <section id="experience" className="py-24">
       <div className="mx-auto max-w-6xl px-6">
         <div>
-          <p className="text-xs font-mono uppercase tracking-[0.3em] text-muted-foreground">Experience</p>
-          <h2 className="mt-3 text-3xl font-semibold">Trusted to ship AI systems</h2>
+          <p className="text-xs font-mono uppercase tracking-[0.3em] text-muted-foreground">Delivery Background</p>
+          <h2 className="mt-3 text-3xl font-semibold">Relevant experience behind the work.</h2>
           <p className="mt-2 text-muted-foreground">
-            Roles focused on production ML, evaluation, and cross-functional delivery.
+            A concise look at the product, AI, and backend work that supports client delivery.
           </p>
         </div>
 

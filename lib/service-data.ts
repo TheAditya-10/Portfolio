@@ -27,70 +27,143 @@ export const serviceOptions = [
 
 export const servicePackages = [
   {
-    title: "AI App Development",
-    keywords: "custom AI applications, generative AI apps, AI SaaS development",
+    title: "Launch AI Products Faster",
+    keywords: "Custom AI Development, AI Developer, LLM Applications",
     description:
-      "End-to-end AI products with clean UX, reliable APIs, model integration, auth, dashboards, and deployment.",
+      "Turn an AI product idea into a usable application with workflows, dashboards, backend logic, and deployment handled end to end.",
     icon: BrainCircuit,
-    deliverables: ["Product scope", "Frontend + backend", "LLM/model integration", "Deployment handoff"],
+    deliverables: ["Faster MVP launch", "Clear product scope", "Production handoff"],
   },
   {
-    title: "AI Chatbot Development",
-    keywords: "AI chatbot for website, customer support chatbot, WhatsApp AI chatbot",
+    title: "AI Chatbots That Reduce Support Costs",
+    keywords: "AI Chatbot Development, Generative AI Developer, AI Consultant",
     description:
-      "Support, sales, and internal chatbots grounded in your business data with source-aware answers.",
+      "Build assistants that answer customer questions, qualify leads, reduce repeated conversations, and improve response time.",
     icon: Bot,
-    deliverables: ["Chat UI", "Knowledge grounding", "Lead capture", "Admin analytics"],
+    deliverables: ["24/7 answers", "Lead capture", "Support automation"],
   },
   {
-    title: "RAG Knowledge Systems",
-    keywords: "RAG system, knowledge base AI, document search AI",
+    title: "Turn Company Knowledge Into an AI Assistant",
+    keywords: "RAG Systems, knowledge base AI, document search AI",
     description:
-      "Private document search and question-answering systems for PDFs, docs, SOPs, support content, and teams.",
+      "Create searchable AI knowledge bases from documents, SOPs, FAQs, product docs, and internal data for your team or customers.",
     icon: Database,
-    deliverables: ["Document ingestion", "Vector search", "Citations", "Evaluation checks"],
+    deliverables: ["Faster answers", "Source citations", "Less manual lookup"],
   },
   {
-    title: "AI Automation Solutions",
-    keywords: "business workflow automation, AI agents, process automation",
+    title: "Automate Manual Workflows",
+    keywords: "AI Automation, AI agents, business process automation",
     description:
-      "Automate repetitive work across email, CRM, sheets, reports, document processing, and approvals.",
+      "Replace repetitive work in documents, reports, CRM updates, emails, and operations with reliable AI-assisted automation.",
     icon: Workflow,
-    deliverables: ["Workflow map", "Agent actions", "Human approval", "Run monitoring"],
+    deliverables: ["Less manual work", "Faster operations", "Human approvals"],
   },
   {
-    title: "SaaS & Web App Development",
+    title: "Build SaaS Features Your Users Can Trust",
     keywords: "SaaS development, web app development, MVP development",
     description:
-      "Production-minded apps for founders, with roles, subscriptions-ready architecture, dashboards, and APIs.",
+      "Ship practical product features with authentication, dashboards, database design, admin tools, and polished user flows.",
     icon: Code2,
-    deliverables: ["Next.js UI", "Auth/RBAC", "Database design", "Admin panels"],
+    deliverables: ["User workflows", "Admin controls", "Scalable foundation"],
   },
   {
-    title: "FastAPI Backend Development",
-    keywords: "FastAPI developer, backend API development, Python backend",
+    title: "Scalable Backend Systems That Grow With Your Business",
+    keywords: "FastAPI Developer, Python Backend Developer, backend API development",
     description:
-      "Scalable Python APIs, integrations, background jobs, database schemas, and secure service architecture.",
+      "Develop secure APIs, authentication, databases, integrations, and backend infrastructure designed for long-term scale.",
     icon: Server,
-    deliverables: ["REST APIs", "PostgreSQL/MySQL", "Caching", "Docker-ready code"],
+    deliverables: ["Secure APIs", "PostgreSQL", "Reliable integrations"],
   },
   {
-    title: "MLOps & Deployment",
+    title: "Move AI From Demo to Production",
     keywords: "AI deployment, ML pipeline, model monitoring",
     description:
-      "Ship models and AI features with repeatable pipelines, evaluation, monitoring, containers, and cloud readiness.",
+      "Deploy AI systems with containers, evaluation, monitoring, fallback paths, and a setup your business can maintain.",
     icon: Rocket,
-    deliverables: ["Docker setup", "CI/CD path", "Metrics", "Deployment docs"],
+    deliverables: ["Deployment path", "Monitoring", "Maintainable setup"],
   },
   {
-    title: "Data Dashboards & Analytics",
+    title: "Make Business Data Easier to Act On",
     keywords: "analytics dashboard, business intelligence dashboard, data science consulting",
     description:
-      "Dashboards and forecasting workflows that convert raw data into metrics, alerts, and decisions.",
+      "Turn raw data into dashboards, forecasts, and decision-ready reports that help your team move faster.",
     icon: LineChart,
-    deliverables: ["Data pipeline", "Charts", "KPIs", "Decision reports"],
+    deliverables: ["Clear KPIs", "Useful dashboards", "Decision reports"],
   },
 ]
+
+export const whyWorkWithMe = [
+  {
+    title: "Production Ready",
+    description: "Built with scalable architecture, maintainable code, clean deployment paths, and real users in mind.",
+    icon: Rocket,
+  },
+  {
+    title: "Business First",
+    description: "Every solution starts with your workflow, your users, and the business problem you need solved.",
+    icon: CheckCircle2,
+  },
+  {
+    title: "Modern AI Expertise",
+    description: "Focused on LLM applications, RAG systems, FastAPI backends, AI automation, and production-grade systems.",
+    icon: BrainCircuit,
+  },
+  {
+    title: "Long-Term Partnership",
+    description: "Support does not stop at deployment. Your product can keep improving as usage, data, and priorities change.",
+    icon: ShieldCheck,
+  },
+]
+
+export const projectCaseStudies: Record<
+  string,
+  {
+    problem: string
+    solution: string
+    businessImpact: string
+  }
+> = {
+  foresightx: {
+    problem:
+      "Financial workflows need reliable forecasting, monitoring, and repeatable model updates instead of one-off notebooks.",
+    solution:
+      "Built a cloud-ready forecasting platform with APIs, automated retraining, drift checks, and deployment workflows.",
+    businessImpact:
+      "Makes market signals easier to monitor and gives teams a foundation for faster data-backed decisions.",
+  },
+  "ecg-insight": {
+    problem:
+      "Healthcare teams need faster diagnostic support without forcing patients and clinicians into disconnected tools.",
+    solution:
+      "Built an AI-assisted ECG interpretation and telehealth workflow with inference, patient flows, and consultation features.",
+    businessImpact:
+      "Improves speed of review, keeps diagnostic context in one place, and creates a path for remote care experiences.",
+  },
+  intellihire: {
+    problem:
+      "Recruiters spend too much time screening resumes, preparing interviews, and converting conversations into structured insights.",
+    solution:
+      "Built an LLM-powered interview workflow that creates adaptive questions, evaluates answers, and produces recruiter-ready analytics.",
+    businessImpact:
+      "Reduces repetitive screening work and gives hiring teams a faster way to compare candidates.",
+  },
+  "Career-Copilot": {
+    problem:
+      "Job seekers need resume tailoring and ATS alignment, but doing it manually for every role is slow and inconsistent.",
+    solution:
+      "Built an AI resume and job-matching workflow that analyzes job descriptions and generates role-specific improvements.",
+    businessImpact:
+      "Helps users move faster from job discovery to application with more relevant, targeted resumes.",
+  },
+  Visioninspect: {
+    problem:
+      "Industrial inspection teams need a faster way to identify defects without relying only on manual visual review.",
+    solution:
+      "Built a prompt-conditioned computer vision pipeline for drywall crack and seam segmentation with tracked experiments.",
+    businessImpact:
+      "Creates a repeatable inspection workflow that can reduce manual review time and improve defect visibility.",
+  },
+}
 
 export const productVisuals = [
   {
@@ -158,19 +231,19 @@ export const trustPoints = [
 
 export const clientConfidencePoints = [
   {
-    title: "Built for business workflows",
+    title: "Built around business workflows",
     description:
-      "Service pages focus on client problems: support, lead capture, document search, CRM updates, reports, and approvals.",
+      "The work starts with the bottleneck you want removed: support, lead capture, document search, CRM updates, reports, or approvals.",
   },
   {
     title: "Backed by engineering depth",
     description:
-      "Your experience in AI, FastAPI, SaaS backends, data systems, and deployment stays visible as evidence behind the service offer.",
+      "AI systems, FastAPI backends, SaaS products, data workflows, and deployment experience stay visible as evidence behind the service offer.",
   },
   {
-    title: "Designed to convert enquiries",
+    title: "Designed for useful decisions",
     description:
-      "The funnel moves from service keywords to examples, process, proof, FAQ, offer prompt, and a structured enquiry form.",
+      "You can see the services, examples, process, proof, and enquiry path before deciding whether to start a project conversation.",
   },
 ]
 
@@ -178,17 +251,17 @@ export const faqs = [
   {
     question: "What services can I hire you for?",
     answer:
-      "AI app development, generative AI features, chatbots, RAG knowledge bases, AI workflow automation, SaaS web apps, FastAPI backends, dashboards, and deployment support.",
+      "You can hire me as an AI Consultant, Generative AI Developer, FastAPI Developer, or Python Backend Developer for AI app development, chatbots, RAG systems, LLM applications, automation, SaaS products, dashboards, and deployment support.",
   },
   {
     question: "Can you build a complete MVP?",
     answer:
-      "Yes. I can scope, build, and deploy a complete MVP with frontend, backend, database, AI integrations, admin views, and handoff documentation.",
+      "Yes. I can scope, build, and deploy a complete MVP with frontend, backend, database, AI integrations, admin views, and handoff documentation so your first version is usable, not just presentable.",
   },
   {
     question: "Do you work with existing products?",
     answer:
-      "Yes. I can add AI features, automate workflows, improve backend architecture, connect APIs, or create a knowledge assistant on top of existing data.",
+      "Yes. I can add custom AI development to an existing product, automate workflows, improve backend architecture, connect APIs, or create a RAG assistant on top of your existing data.",
   },
   {
     question: "How do you handle enquiry emails?",

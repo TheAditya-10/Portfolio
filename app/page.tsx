@@ -2,6 +2,7 @@ import type { Metadata } from "next"
 import { Navigation } from "@/components/navigation"
 import { HeroSection } from "@/components/hero-section"
 import { ServicesSection } from "@/components/services-section"
+import { WhyWorkSection } from "@/components/why-work-section"
 import { ProductShowcaseSection } from "@/components/product-showcase-section"
 import { ProcessSection } from "@/components/process-section"
 import { ProjectsSection } from "@/components/projects-section"
@@ -16,17 +17,26 @@ import { IntentTracker } from "@/components/intent-tracker"
 import { OfferPopup } from "@/components/offer-popup"
 
 export const metadata: Metadata = {
-  title: "AI App Development & Software Services",
+  title: "AI Consultant & Custom AI Development Services",
   description:
-    "AI app development, generative AI development, chatbot development, RAG knowledge systems, workflow automation, SaaS web apps, and FastAPI backend services by Aditya Pratap Singh Tomar.",
+    "Hire an AI Consultant, Generative AI Developer, FastAPI Developer, and Python Backend Developer for custom AI development, LLM applications, RAG systems, AI chatbot development, automation, and SaaS products.",
   keywords: [
+    "AI Consultant",
+    "AI Developer",
     "AI App Development",
+    "Custom AI Development",
     "Software Development Services",
+    "LLM Applications",
     "Generative AI Development",
+    "Generative AI Developer",
     "AI Chatbot Development",
+    "AI Automation",
     "RAG Knowledge Base",
+    "RAG Systems",
     "AI Automation Services",
     "FastAPI Backend Development",
+    "FastAPI Developer",
+    "Python Backend Developer",
     "SaaS Development",
     "MVP Development",
     "AI Agent Development",
@@ -43,15 +53,16 @@ export default function Home() {
       <Navigation />
       <HeroSection />
       <ServicesSection />
-      <ProductShowcaseSection />
-      <ProcessSection />
-      <TestimonialsSection />
+      <WhyWorkSection />
       <ProjectsSection
         variant="flagship"
-        title="Selected Builds Behind the Services"
-        subtitle="Portfolio projects that show the engineering depth behind the AI, backend, and data services."
+        title="Client Success Stories"
+        subtitle="Business problems solved with custom AI development, RAG systems, automation, and backend engineering."
       />
+      <ProductShowcaseSection />
+      <ProcessSection />
       <ExperienceSection />
+      <TestimonialsSection />
       <FAQSection />
       <ContactSection />
       <SocialsSection />

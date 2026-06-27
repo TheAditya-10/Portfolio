@@ -3,22 +3,22 @@
 import { useEffect, useState } from "react"
 import Image from "next/image"
 import Link from "next/link"
-import { ArrowRight, CheckCircle2, FileText, Send, Sparkles } from "lucide-react"
+import { ArrowRight, CheckCircle2, FileText, Send } from "lucide-react"
 import { Button } from "@/components/ui/button"
-import portfolio from "@/data/portfolio.json"
 
 const stats = [
-  { value: "AI + SaaS", label: "Product builds" },
-  { value: "FastAPI", label: "Backend specialty" },
-  { value: "RAG", label: "Knowledge systems" },
-  { value: "350+", label: "DSA problems solved" },
+  { value: "AI Products", label: "From idea to launch" },
+  { value: "FastAPI", label: "Scalable backend" },
+  { value: "RAG", label: "Company knowledge" },
+  { value: "Automation", label: "Less manual work" },
 ]
 
 const proof = [
-  "Custom AI app development",
-  "Generative AI features",
-  "RAG knowledge bases",
-  "Workflow automation",
+  "AI Products",
+  "FastAPI Backend",
+  "Generative AI",
+  "Workflow Automation",
+  "Production Ready",
 ]
 
 const terminalLines = [
@@ -67,27 +67,27 @@ export function HeroSection() {
       <div className="relative mx-auto grid max-w-6xl gap-12 px-6 lg:grid-cols-[1.02fr_0.98fr] lg:items-center">
         <div className="space-y-7">
           <div className="inline-flex items-center gap-2 rounded-full border border-primary/25 bg-background/75 px-3 py-1 text-xs font-medium text-primary shadow-sm">
-            <Sparkles className="h-3.5 w-3.5" />
-            AI, software, automation and backend services
+            <span className="h-2 w-2 rounded-full bg-green-500" />
+            Available for Freelance Projects
           </div>
 
           <div className="space-y-4">
             <p className="font-mono text-xs uppercase tracking-[0.28em] text-muted-foreground">
-              {portfolio.profile.name}
+              AI Consultant · Generative AI Developer · FastAPI Developer
             </p>
             <h1 className="max-w-4xl text-4xl font-semibold leading-tight text-foreground md:text-6xl">
-              AI app development and software services for founders who need production-ready systems.
+              Build AI products without hiring an entire engineering team.
             </h1>
             <p className="max-w-2xl text-lg leading-8 text-muted-foreground">
-              I build custom AI applications, generative AI tools, RAG knowledge systems, AI chatbots,
-              workflow automation, SaaS web apps, and scalable FastAPI backends.
+              From AI chatbot development and RAG systems to scalable Python backend infrastructure,
+              I help startups and businesses launch production-ready AI software faster.
             </p>
           </div>
 
           <div className="flex flex-wrap items-center gap-3">
             <Button asChild size="lg">
               <Link href="#enquiry">
-                Enquire Now
+                Start Your Project
                 <Send className="h-4 w-4" />
               </Link>
             </Button>
@@ -98,16 +98,16 @@ export function HeroSection() {
               </Link>
             </Button>
             <Button asChild variant="ghost" size="lg">
-              <Link href="#services">
-                Explore Services
+              <Link href="#projects">
+                Explore My Work
                 <ArrowRight className="h-4 w-4" />
               </Link>
             </Button>
           </div>
 
-          <ul className="grid gap-3 text-sm text-muted-foreground sm:grid-cols-2" aria-label="Core service keywords">
+          <ul className="flex flex-wrap gap-3 text-sm text-muted-foreground" aria-label="Core service keywords">
             {proof.map((item) => (
-              <li key={item} className="flex items-center gap-2">
+              <li key={item} className="flex items-center gap-2 rounded-full border border-border/80 bg-background/60 px-3 py-1">
                 <CheckCircle2 className="h-4 w-4 text-primary" />
                 <span>{item}</span>
               </li>

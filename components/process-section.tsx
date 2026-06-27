@@ -10,11 +10,11 @@ export function ProcessSection() {
           <div>
             <p className="text-xs font-mono uppercase tracking-[0.3em] text-muted-foreground">How Projects Run</p>
             <h2 className="mt-3 text-3xl font-semibold text-foreground md:text-4xl">
-              Clear delivery from idea to deployed product.
+              What working together looks like.
             </h2>
             <p className="mt-4 text-muted-foreground">
-              You get practical planning, visible milestones, and systems designed for real users,
-              not only prototype screenshots.
+              You get practical planning, visible milestones, and software designed for your users,
+              your team, and your next release.
             </p>
             <div className="mt-8 grid gap-4 sm:grid-cols-2">
               {portfolio.profile.stats.map((stat) => (
@@ -58,11 +58,11 @@ export function ProcessSection() {
             <div>
               <p className="text-sm font-semibold text-foreground">Best fit projects</p>
               <p className="mt-1 text-sm text-muted-foreground">
-                MVPs, internal tools, RAG assistants, AI automation, SaaS backends, dashboards, and AI feature integration.
+                MVPs, internal tools, RAG assistants, AI automation, SaaS backends, dashboards, and LLM applications.
               </p>
             </div>
             <div className="flex flex-wrap gap-2 text-sm text-muted-foreground">
-              {["Fast delivery", "Clean architecture", "SMTP enquiry flow", "SEO schema"].map((item) => (
+              {["Clear scope", "Clean architecture", "Production mindset", "Post-launch support"].map((item) => (
                 <span key={item} className="inline-flex items-center gap-2 rounded-md bg-background/70 px-3 py-2">
                   <CheckCircle2 className="h-4 w-4 text-primary" />
                   {item}

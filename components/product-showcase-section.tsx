@@ -9,20 +9,20 @@ export function ProductShowcaseSection() {
       <div className="mx-auto max-w-6xl px-6">
         <div className="flex flex-col gap-4 md:flex-row md:items-end md:justify-between">
           <div className="max-w-3xl">
-            <p className="text-xs font-mono uppercase tracking-[0.3em] text-muted-foreground">AI App Ideas</p>
+            <p className="text-xs font-mono uppercase tracking-[0.3em] text-muted-foreground">Solution Examples</p>
             <h2 className="mt-3 text-3xl font-semibold text-foreground md:text-4xl">
-              Examples of the kind of AI products you can launch.
+              What could this look like inside your product?
             </h2>
             <p className="mt-4 text-muted-foreground">
-              These visuals show common client needs: support automation, internal workflow agents,
-              and private knowledge search.
+              Most AI consulting work starts with one clear bottleneck: support, internal operations,
+              or knowledge access. These are examples of what that can become.
             </p>
           </div>
           <Link
             href="#enquiry"
             className="inline-flex items-center gap-2 rounded-md border border-border bg-background px-4 py-2 text-sm font-medium text-foreground transition hover:border-primary/50"
           >
-            Discuss a build
+            See How It Works
             <ArrowRight className="h-4 w-4" />
           </Link>
         </div>

@@ -9,11 +9,11 @@ export function TestimonialsSection() {
         <div className="max-w-3xl">
           <p className="text-xs font-mono uppercase tracking-[0.3em] text-muted-foreground">Proof</p>
           <h2 className="mt-3 text-3xl font-semibold text-foreground md:text-4xl">
-            Proof kept where clients actually need it.
+            Signals you can trust before starting.
           </h2>
           <p className="mt-4 text-muted-foreground">
-            The site still carries your achievements, projects, and experience, but presents them as reasons
-            to trust your software and AI services.
+            Before you invest in an AI developer, you need evidence that the work can move from idea
+            to reliable software. These signals support the service offer without turning the page into a resume.
           </p>
         </div>
 
