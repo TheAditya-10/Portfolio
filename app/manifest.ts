@@ -2,24 +2,24 @@ import type { MetadataRoute } from "next"
 
 export default function manifest(): MetadataRoute.Manifest {
   return {
-    name: "APST Portfolio - Aditya Pratap Singh Tomar",
-    short_name: "APST Portfolio",
+    name: "APST AI & Software Services",
+    short_name: "APST Services",
     description:
-      "Official portfolio of Aditya Pratap Singh Tomar (APST), Data Scientist and Software Engineer.",
+      "AI app development, generative AI, chatbot, RAG, automation, SaaS, and backend services by Aditya Pratap Singh Tomar.",
     start_url: "/",
     display: "standalone",
     background_color: "#0b1120",
     theme_color: "#0b1120",
     icons: [
       {
-        src: "/favicon.png",
+        src: "/favicon.jpg",
         sizes: "768x768",
-        type: "image/png",
+        type: "image/jpeg",
       },
       {
-        src: "/favicon.png",
+        src: "/favicon.jpg",
         sizes: "180x180",
-        type: "image/png",
+        type: "image/jpeg",
       },
     ],
   }

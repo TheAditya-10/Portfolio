@@ -1,100 +1,60 @@
-"use client"
-
-import { useEffect, useRef, useState } from "react"
-import { Bot, Database, Server, Workflow } from "lucide-react"
-import { cn } from "@/lib/utils"
-
-const services = [
-  {
-    title: "AI Chatbot Development",
-    description:
-      "Build intelligent AI assistants powered by modern LLMs for customer support, internal tools, and knowledge systems.",
-    icon: Bot,
-  },
-  {
-    title: "RAG & Knowledge Systems",
-    description:
-      "Create searchable documentation and AI-powered knowledge bases using Retrieval-Augmented Generation.",
-    icon: Database,
-  },
-  {
-    title: "Backend Development",
-    description:
-      "Develop scalable APIs, authentication systems, database architectures, and backend services.",
-    icon: Server,
-  },
-  {
-    title: "AI Automation Solutions",
-    description:
-      "Automate repetitive workflows, reporting, document processing, and business operations.",
-    icon: Workflow,
-  },
-]
+import Link from "next/link"
+import { ArrowRight } from "lucide-react"
+import { servicePackages } from "@/lib/service-data"
 
 export function ServicesSection() {
-  const [isVisible, setIsVisible] = useState(false)
-  const sectionRef = useRef<HTMLElement>(null)
-
-  useEffect(() => {
-    const observer = new IntersectionObserver(
-      ([entry]) => {
-        if (entry.isIntersecting) {
-          setIsVisible(true)
-        }
-      },
-      { threshold: 0.1 },
-    )
-
-    if (sectionRef.current) {
-      observer.observe(sectionRef.current)
-    }
-
-    return () => observer.disconnect()
-  }, [])
-
   return (
-    <section id="services" ref={sectionRef} className="py-24 md:py-32">
+    <section id="services" className="py-24 md:py-28">
       <div className="mx-auto max-w-6xl px-6">
-        <div
-          className={cn(
-            "mb-16 space-y-4 text-center transition-all duration-700",
-            isVisible ? "translate-y-0 opacity-100" : "translate-y-10 opacity-0",
-          )}
-        >
-          <p className="font-mono text-sm tracking-wider text-primary">SERVICES</p>
-          <h2 className="text-3xl font-semibold text-foreground md:text-4xl">Services</h2>
-          <p className="mx-auto max-w-2xl text-muted-foreground">
-            Solutions I provide for startups, businesses, and founders.
+        <div className="max-w-3xl">
+          <p className="text-xs font-mono uppercase tracking-[0.3em] text-muted-foreground">Services</p>
+          <h2 className="mt-3 text-3xl font-semibold text-foreground md:text-4xl">
+            Software and AI services built around business outcomes.
+          </h2>
+          <p className="mt-4 text-muted-foreground">
+            The offer is service-first, but backed by hands-on product engineering, AI research,
+            backend architecture, and deployment experience.
           </p>
         </div>
 
-        <div className="grid gap-6 md:grid-cols-2 xl:grid-cols-4">
-          {services.map((service, index) => {
+        <div className="mt-10 grid gap-5 md:grid-cols-2 xl:grid-cols-4">
+          {servicePackages.map((service) => {
             const Icon = service.icon
 
             return (
               <article
                 key={service.title}
-                className={cn(
-                  "group relative overflow-hidden rounded-xl border border-border bg-card p-6 transition-all duration-500 hover:-translate-y-1 hover:border-primary/50",
-                  isVisible ? "translate-y-0 opacity-100" : "translate-y-10 opacity-0",
-                )}
-                style={{ transitionDelay: isVisible ? `${index * 100}ms` : "0ms" }}
+                className="group flex min-h-[330px] flex-col rounded-xl border border-border bg-card/75 p-5 transition hover:-translate-y-1 hover:border-primary/50 hover:shadow-xl"
               >
-                <div className="absolute inset-0 bg-gradient-to-br from-primary/5 to-transparent opacity-0 transition-opacity duration-500 group-hover:opacity-100" />
-
-                <div className="relative">
-                  <div className="mb-4 w-fit rounded-xl bg-primary/10 p-3 text-primary transition-colors duration-300 group-hover:bg-primary group-hover:text-primary-foreground">
+                <div className="flex items-start justify-between gap-4">
+                  <div className="rounded-lg bg-primary/10 p-3 text-primary">
                     <Icon className="h-6 w-6" />
                   </div>
-
-                  <h3 className="mb-2 text-lg font-semibold text-foreground transition-colors group-hover:text-primary">
-                    {service.title}
-                  </h3>
-
-                  <p className="text-sm leading-relaxed text-muted-foreground">
-                    {service.description}
+                  <Link
+                    href="#enquiry"
+                    className="rounded-md border border-border p-2 text-muted-foreground transition hover:border-primary/50 hover:text-primary"
+                    aria-label={`Enquire about ${service.title}`}
+                  >
+                    <ArrowRight className="h-4 w-4" />
+                  </Link>
+                </div>
+                <h3 className="mt-5 text-lg font-semibold text-foreground">{service.title}</h3>
+                <p className="mt-1 text-xs leading-5 text-primary/90">{service.keywords}</p>
+                <p className="mt-4 text-sm leading-6 text-muted-foreground">{service.description}</p>
+                <div className="mt-auto pt-5">
+                  <p className="text-xs font-medium uppercase tracking-[0.18em] text-muted-foreground">
+                    Includes
                   </p>
+                  <div className="mt-3 flex flex-wrap gap-2">
+                    {service.deliverables.map((deliverable) => (
+                      <span
+                        key={deliverable}
+                        className="rounded-md border border-border bg-background/70 px-2 py-1 text-xs text-muted-foreground"
+                      >
+                        {deliverable}
+                      </span>
+                    ))}
+                  </div>
                 </div>
               </article>
             )

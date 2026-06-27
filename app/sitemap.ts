@@ -14,6 +14,9 @@ export default function sitemap(): MetadataRoute.Sitemap {
       images: [
         `${siteUrl}/aditya-pratap-singh-tomar-portrait.jpeg`,
         `${siteUrl}/aditya-pratap-singh-tomar.webp`,
+        `${siteUrl}/ai-chatbot-dashboard.png`,
+        `${siteUrl}/ai-workflow-automation.png`,
+        `${siteUrl}/rag-knowledge-dashboard.png`,
       ],
     },
     {

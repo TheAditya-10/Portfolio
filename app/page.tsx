@@ -2,28 +2,34 @@ import type { Metadata } from "next"
 import { Navigation } from "@/components/navigation"
 import { HeroSection } from "@/components/hero-section"
 import { ServicesSection } from "@/components/services-section"
+import { ProductShowcaseSection } from "@/components/product-showcase-section"
+import { ProcessSection } from "@/components/process-section"
 import { ProjectsSection } from "@/components/projects-section"
 import { ExperienceSection } from "@/components/experience-section"
-import { SkillsSection } from "@/components/skills-section"
-import { AchievementsSection } from "@/components/achievements-section"
-import { ResumeTailorSection } from "@/components/resume-tailor-section"
+import { TestimonialsSection } from "@/components/testimonials-section"
+import { FAQSection } from "@/components/faq-section"
 import { SocialsSection } from "@/components/socials-section"
 import { ContactSection } from "@/components/contact-section"
 import { Footer } from "@/components/footer"
 import { AiChatWidget } from "@/components/ai-chat-widget"
 import { IntentTracker } from "@/components/intent-tracker"
+import { OfferPopup } from "@/components/offer-popup"
 
 export const metadata: Metadata = {
-  title: "AI & Backend Developer for Startups",
+  title: "AI App Development & Software Services",
   description:
-    "Freelance AI developer and FastAPI developer building generative AI products, scalable backend systems, RAG systems, and AI automation solutions for startups and businesses.",
+    "AI app development, generative AI development, chatbot development, RAG knowledge systems, workflow automation, SaaS web apps, and FastAPI backend services by Aditya Pratap Singh Tomar.",
   keywords: [
-    "AI Developer",
-    "Generative AI Developer",
-    "FastAPI Developer",
-    "AI Automation",
-    "RAG Systems",
-    "Backend Developer for Startups",
+    "AI App Development",
+    "Software Development Services",
+    "Generative AI Development",
+    "AI Chatbot Development",
+    "RAG Knowledge Base",
+    "AI Automation Services",
+    "FastAPI Backend Development",
+    "SaaS Development",
+    "MVP Development",
+    "AI Agent Development",
   ],
   alternates: {
     canonical: "/",
@@ -37,19 +43,21 @@ export default function Home() {
       <Navigation />
       <HeroSection />
       <ServicesSection />
+      <ProductShowcaseSection />
+      <ProcessSection />
+      <TestimonialsSection />
       <ProjectsSection
         variant="flagship"
-        title="Flagship Projects"
-        subtitle="My strongest software engineering and data science builds, with measurable outcomes."
+        title="Selected Builds Behind the Services"
+        subtitle="Portfolio projects that show the engineering depth behind the AI, backend, and data services."
       />
       <ExperienceSection />
-      <SkillsSection />
-      <AchievementsSection />
-      <ResumeTailorSection />
+      <FAQSection />
       <ContactSection />
       <SocialsSection />
       <Footer />
       <AiChatWidget />
+      <OfferPopup />
     </main>
   )
 }
