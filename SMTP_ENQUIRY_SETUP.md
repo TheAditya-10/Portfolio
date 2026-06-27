@@ -4,6 +4,7 @@ The enquiry form posts to `/api/enquiry` and sends two emails:
 
 - one lead notification email to you
 - one confirmation email to the visitor
+- one persistent enquiry record into Neon Postgres table `service_enquiries`
 
 Add these environment variables in `.env.local` and in your hosting provider:
 
@@ -23,3 +24,4 @@ Notes:
 - For Gmail, use an app password instead of your normal account password.
 - Keep all SMTP variables server-side only. Do not prefix them with `NEXT_PUBLIC_`.
 - If SMTP is missing, the form returns an error asking the visitor to email directly.
+- If SMTP is missing, the enquiry is still saved in Neon with `email_status='smtp_not_configured'`.

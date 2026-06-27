@@ -103,13 +103,13 @@ export function ContactSection() {
                 name="service"
                 required
                 defaultValue=""
-                className="border-input placeholder:text-muted-foreground focus-visible:border-ring focus-visible:ring-ring/50 dark:bg-input/30 h-9 w-full rounded-md border bg-transparent px-3 py-1 text-sm outline-none transition-[color,box-shadow] focus-visible:ring-[3px]"
+                className="border-input placeholder:text-muted-foreground focus-visible:border-ring focus-visible:ring-ring/50 h-9 w-full rounded-md border bg-background px-3 py-1 text-sm text-foreground shadow-xs outline-none transition-[color,box-shadow] focus-visible:ring-[3px] dark:bg-input/80"
               >
-                <option value="" disabled>
+                <option value="" disabled className="bg-background text-muted-foreground">
                   Select a service
                 </option>
                 {serviceOptions.map((service) => (
-                  <option key={service} value={service}>
+                  <option key={service} value={service} className="bg-background text-foreground">
                     {service}
                   </option>
                 ))}

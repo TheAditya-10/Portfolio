@@ -2,6 +2,7 @@ import { NextResponse } from "next/server"
 import nodemailer from "nodemailer"
 import { z } from "zod"
 import portfolio from "@/data/portfolio.json"
+import { createEnquiry, updateEnquiryEmailStatus } from "@/lib/enquiry-store"
 
 export const runtime = "nodejs"
 
@@ -26,15 +27,21 @@ export async function POST(request: Request) {
   const smtpPass = process.env.SMTP_PASS
   const smtpFrom = process.env.SMTP_FROM ?? smtpUser
   const ownerEmail = process.env.ENQUIRY_TO ?? portfolio.profile.email
+  const enquiry = parsed.data
+  const enquiryId = await createEnquiry({
+    ...enquiry,
+    source: "website-enquiry-form",
+    userAgent: request.headers.get("user-agent") ?? undefined,
+  })
 
   if (!smtpHost || !smtpUser || !smtpPass || !smtpFrom) {
-    return NextResponse.json(
-      { error: "SMTP is not configured yet. Please email directly for now." },
-      { status: 500 },
-    )
+    await updateEnquiryEmailStatus(enquiryId, "smtp_not_configured", "SMTP environment variables are missing.")
+    return NextResponse.json({
+      message: "Your enquiry has been saved. SMTP is not configured yet, so I will follow up manually.",
+      enquiryId,
+    })
   }
 
-  const enquiry = parsed.data
   const submittedAt = new Date().toISOString()
   const transporter = nodemailer.createTransport({
     host: smtpHost,
@@ -95,9 +102,11 @@ export async function POST(request: Request) {
       }),
     ])
 
-    return NextResponse.json({ message: "Your enquiry has been sent. I will contact you soon." })
+    await updateEnquiryEmailStatus(enquiryId, "sent")
+    return NextResponse.json({ message: "Your enquiry has been sent. I will contact you soon.", enquiryId })
   } catch (error) {
     console.error("Unable to send enquiry email", error)
+    await updateEnquiryEmailStatus(enquiryId, "failed", error instanceof Error ? error.message : "Unknown email error.")
     return NextResponse.json(
       { error: "Unable to send enquiry right now. Please email directly for now." },
       { status: 500 },

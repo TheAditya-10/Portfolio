@@ -21,6 +21,15 @@ const proof = [
   "Workflow automation",
 ]
 
+const terminalLines = [
+  "$ apst services --scan",
+  "AI apps | RAG knowledge bases | chatbots | SaaS backends | workflow automation",
+  "$ delivery --mode",
+  "Scope fast, build clean, deploy with metrics, handoff with documentation",
+  "$ enquire --next",
+  "Share your service, phone, email, and project goal. I will respond with a practical build path.",
+]
+
 export function HeroSection() {
   const [visitCount, setVisitCount] = useState<number | null>(null)
 
@@ -147,6 +156,27 @@ export function HeroSection() {
           <div className="absolute right-4 top-4 rounded-full border border-border bg-background/90 px-3 py-1 text-xs text-muted-foreground shadow">
             visits: {visitCount === null ? "..." : visitCount.toLocaleString("en-US")}
           </div>
+        </div>
+      </div>
+
+      <div className="relative mx-auto mt-14 max-w-6xl px-6">
+        <div className="rounded-xl border border-border/80 bg-background/92 p-5 font-mono text-sm text-foreground/90 shadow-2xl backdrop-blur dark:bg-black/60 dark:text-green-200">
+          <div className="mb-4 flex flex-wrap items-center justify-between gap-3 text-xs">
+            <div className="flex items-center gap-2 text-muted-foreground">
+              <span className="h-2.5 w-2.5 rounded-full bg-red-400" />
+              <span className="h-2.5 w-2.5 rounded-full bg-yellow-400" />
+              <span className="h-2.5 w-2.5 rounded-full bg-green-400" />
+              <span className="ml-2">service-terminal</span>
+            </div>
+            <span className="rounded-full border border-border/60 bg-background/70 px-2 py-1 text-primary dark:bg-black/40">
+              profile visits: {visitCount === null ? "..." : visitCount.toLocaleString("en-US")}
+            </span>
+          </div>
+          <pre className="min-h-[142px] whitespace-pre-wrap leading-7">
+            {terminalLines.join("\n")}
+            {"\n"}
+            <span className="animate-pulse">▌</span>
+          </pre>
         </div>
       </div>
     </section>

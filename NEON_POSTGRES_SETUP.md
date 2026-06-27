@@ -44,6 +44,24 @@ CREATE TABLE IF NOT EXISTS project_likes (
   likes BIGINT NOT NULL DEFAULT 0,
   updated_at TIMESTAMPTZ NOT NULL DEFAULT NOW()
 );
+
+CREATE TABLE IF NOT EXISTS service_enquiries (
+  id UUID PRIMARY KEY DEFAULT gen_random_uuid(),
+  name TEXT NOT NULL,
+  email TEXT NOT NULL,
+  phone TEXT NOT NULL,
+  service TEXT NOT NULL,
+  message TEXT NOT NULL,
+  source TEXT,
+  user_agent TEXT,
+  email_status TEXT NOT NULL DEFAULT 'pending',
+  email_error TEXT,
+  created_at TIMESTAMPTZ NOT NULL DEFAULT NOW(),
+  updated_at TIMESTAMPTZ NOT NULL DEFAULT NOW()
+);
+
+CREATE INDEX IF NOT EXISTS service_enquiries_created_at_idx
+ON service_enquiries (created_at DESC);
 ```
 
 ## Preserve Existing RDS Counts
