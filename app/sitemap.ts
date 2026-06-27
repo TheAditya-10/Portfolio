@@ -27,6 +27,16 @@ export default function sitemap(): MetadataRoute.Sitemap {
       images: [`${siteUrl}/aditya-pratap-singh-tomar.webp`],
     },
     {
+      url: `${siteUrl}/founder`,
+      lastModified,
+      changeFrequency: "monthly",
+      priority: 0.85,
+      images: [
+        `${siteUrl}/aditya-pratap-singh-tomar-portrait.jpeg`,
+        `${siteUrl}/aditya-pratap-singh-tomar.webp`,
+      ],
+    },
+    {
       url: `${siteUrl}/projects`,
       lastModified,
       changeFrequency: "weekly",

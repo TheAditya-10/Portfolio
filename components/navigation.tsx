@@ -10,10 +10,10 @@ const navItems = [
   { href: "/#services", label: "Services" },
   { href: "/#solutions", label: "AI Apps" },
   { href: "/#process", label: "Process" },
-  { href: "/#founder", label: "Founder" },
   { href: "/#proof", label: "Proof" },
   { href: "/projects", label: "Projects" },
   { href: "/experience", label: "Experience" },
+  { href: "/founder", label: "Founder" },
 ]
 
 export function Navigation() {

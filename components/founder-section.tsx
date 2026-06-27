@@ -1,25 +1,26 @@
 import Image from "next/image"
 import Link from "next/link"
-import { ArrowRight, BriefcaseBusiness, GraduationCap, Trophy } from "lucide-react"
+import { ArrowRight, Code2, GraduationCap, Users } from "lucide-react"
 import portfolio from "@/data/portfolio.json"
 
 export function FounderSection() {
   const education = portfolio.education[0]
-  const topExperience = portfolio.experience.slice(0, 3)
   const skillGroups = portfolio.skillGroups.slice(0, 4)
+  const leadership = portfolio.leadership.slice(0, 2)
 
   return (
-    <section id="founder" className="py-24">
+    <section id="founder" className="border-b border-border/70 py-24">
       <div className="mx-auto max-w-6xl px-6">
         <div className="grid gap-10 lg:grid-cols-[0.9fr_1.1fr] lg:items-center">
           <div className="relative">
             <div className="overflow-hidden rounded-xl border border-border bg-card shadow-xl">
               <Image
-                src="/aditya-pratap-singh-tomar.webp"
+                src="/aditya-pratap-singh-tomar-portrait.jpeg"
                 alt="Aditya Pratap Singh Tomar founder portrait"
-                width={960}
-                height={1200}
+                width={720}
+                height={420}
                 sizes="(max-width: 1024px) 100vw, 42vw"
+                priority
                 className="aspect-[4/5] w-full object-cover"
               />
             </div>
@@ -32,17 +33,17 @@ export function FounderSection() {
           <div>
             <p className="text-xs font-mono uppercase tracking-[0.3em] text-muted-foreground">About the Founder</p>
             <h2 className="mt-3 text-3xl font-semibold text-foreground md:text-4xl">
-              The portfolio depth behind the service business.
+              Builder, AI engineer, and student founder behind APST.
             </h2>
             <div className="mt-5 space-y-4 leading-7 text-muted-foreground">
               <p>
                 I am a data scientist and software engineer focused on production-ready AI products,
-                backend systems, and deployment. The service site now leads with client outcomes, but
-                the work is still backed by hands-on engineering across ML, APIs, RAG, automation, and SaaS.
+                backend systems, and deployment. APST is built around the same habit I bring to client work:
+                consistent practice, measurable proof, and shipping useful software.
               </p>
               <p>
                 I am pursuing B.Tech in Computer Science Engineering at Jabalpur Engineering College
-                and have worked across AI engineering, backend development, SaaS architecture, and ML systems.
+                while building across AI engineering, backend systems, SaaS architecture, data science, and MLOps.
               </p>
             </div>
 
@@ -57,17 +58,17 @@ export function FounderSection() {
 
             <div className="mt-6 grid gap-4 md:grid-cols-3">
               <article className="rounded-xl border border-border bg-card/70 p-4">
-                <BriefcaseBusiness className="h-5 w-5 text-primary" />
-                <h3 className="mt-3 font-semibold text-foreground">Experience</h3>
+                <Code2 className="h-5 w-5 text-primary" />
+                <h3 className="mt-3 font-semibold text-foreground">Daily Practice</h3>
                 <p className="mt-2 text-sm text-muted-foreground">
-                  AI Engineer, SDE Intern, Lead Engineer, and ML intern roles across startup product work.
+                  Active on GitHub, LeetCode, GFG, and competitive programming platforms.
                 </p>
               </article>
               <article className="rounded-xl border border-border bg-card/70 p-4">
-                <Trophy className="h-5 w-5 text-primary" />
-                <h3 className="mt-3 font-semibold text-foreground">Achievements</h3>
+                <Users className="h-5 w-5 text-primary" />
+                <h3 className="mt-3 font-semibold text-foreground">Leadership</h3>
                 <p className="mt-2 text-sm text-muted-foreground">
-                  SIH finalist, Kaggle top ranking, GATE DA rank, and consistent DSA practice.
+                  Tech-team lead and community mentor for technical student initiatives.
                 </p>
               </article>
               <article className="rounded-xl border border-border bg-card/70 p-4">
@@ -80,17 +81,17 @@ export function FounderSection() {
             </div>
 
             <div className="mt-6 rounded-xl border border-border bg-card/70 p-5">
-              <p className="text-sm font-semibold text-foreground">Recent roles</p>
+              <p className="text-sm font-semibold text-foreground">Community work</p>
               <div className="mt-3 space-y-3">
-                {topExperience.map((item) => (
-                  <div key={item.id} className="flex flex-col gap-1 border-b border-border pb-3 last:border-0 last:pb-0">
+                {leadership.map((item) => (
+                  <div key={item.role} className="flex flex-col gap-1 border-b border-border pb-3 last:border-0 last:pb-0">
                     <div className="flex flex-wrap items-center justify-between gap-2">
                       <p className="text-sm font-medium text-foreground">
-                        {item.role}, {item.company}
+                        {item.role}, {item.organization}
                       </p>
                       <p className="text-xs text-muted-foreground">{item.period}</p>
                     </div>
-                    <p className="text-xs leading-5 text-muted-foreground">{item.highlights[0]}</p>
+                    <p className="text-xs leading-5 text-muted-foreground">{item.description}</p>
                   </div>
                 ))}
               </div>
@@ -106,18 +107,20 @@ export function FounderSection() {
 
             <div className="mt-7 flex flex-wrap gap-3">
               <Link
-                href="/about"
+                href={portfolio.profile.socials.github}
+                target="_blank"
+                rel="noopener noreferrer"
                 className="inline-flex items-center gap-2 rounded-md border border-border px-4 py-2 text-sm font-medium transition hover:border-primary/50"
               >
-                Full founder profile
+                GitHub
                 <ArrowRight className="h-4 w-4" />
               </Link>
               <Link
-                href="/resume.pdf"
+                href={portfolio.profile.socials.leetcode}
                 target="_blank"
                 className="inline-flex items-center gap-2 rounded-md bg-primary px-4 py-2 text-sm font-medium text-primary-foreground"
               >
-                View resume
+                LeetCode
                 <ArrowRight className="h-4 w-4" />
               </Link>
             </div>
