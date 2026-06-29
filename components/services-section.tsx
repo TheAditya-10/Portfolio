@@ -31,9 +31,9 @@ export function ServicesSection() {
                     <Icon className="h-6 w-6" />
                   </div>
                   <Link
-                    href="#enquiry"
+                    href={`/services/${service.slug}`}
                     className="rounded-md border border-border p-2 text-muted-foreground transition hover:border-primary/50 hover:text-primary"
-                    aria-label={`Enquire about ${service.title}`}
+                    aria-label={`Explore ${service.title}`}
                   >
                     <ArrowRight className="h-4 w-4" />
                   </Link>
@@ -41,6 +41,12 @@ export function ServicesSection() {
                 <h3 className="mt-5 text-lg font-semibold text-foreground">{service.title}</h3>
                 <p className="mt-1 text-xs leading-5 text-primary/90">{service.keywords}</p>
                 <p className="mt-4 text-sm leading-6 text-muted-foreground">{service.description}</p>
+                <Link
+                  href={`/services/${service.slug}`}
+                  className="mt-4 inline-flex text-sm font-medium text-primary transition hover:text-primary/80"
+                >
+                  Explore Solution
+                </Link>
                 <div className="mt-auto pt-5">
                   <p className="text-xs font-medium uppercase tracking-[0.18em] text-muted-foreground">
                     Includes

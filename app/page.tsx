@@ -9,6 +9,7 @@ import { ProjectsSection } from "@/components/projects-section"
 import { ExperienceSection } from "@/components/experience-section"
 import { TestimonialsSection } from "@/components/testimonials-section"
 import { FAQSection } from "@/components/faq-section"
+import { LeadMagnetSection } from "@/components/lead-magnet-section"
 import { SocialsSection } from "@/components/socials-section"
 import { ContactSection } from "@/components/contact-section"
 import { Footer } from "@/components/footer"
@@ -63,6 +64,7 @@ export default function Home() {
       <ProcessSection />
       <ExperienceSection />
       <TestimonialsSection />
+      <LeadMagnetSection />
       <FAQSection />
       <ContactSection />
       <SocialsSection />

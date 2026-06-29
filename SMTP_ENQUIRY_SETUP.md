@@ -18,6 +18,14 @@ SMTP_FROM="APST Services <your_smtp_username>"
 ENQUIRY_TO=aditya.pratap.singh.tomar.1082006@email.com
 ```
 
+Optional scheduling CTA:
+
+```env
+NEXT_PUBLIC_CALENDLY_URL=https://calendly.com/your-username/project-call
+```
+
+When `NEXT_PUBLIC_CALENDLY_URL` is set, the enquiry section shows a direct scheduling link above email and phone.
+
 Notes:
 
 - Use `SMTP_PORT=465` and `SMTP_SECURE=true` for SSL SMTP providers.

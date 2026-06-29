@@ -11,6 +11,8 @@ import { serviceOptions } from "@/lib/service-data"
 
 type EnquiryState = "idle" | "loading" | "success" | "error"
 
+const calendlyUrl = process.env.NEXT_PUBLIC_CALENDLY_URL
+
 export function ContactSection() {
   const [state, setState] = useState<EnquiryState>("idle")
   const [message, setMessage] = useState("")
@@ -62,6 +64,17 @@ export function ContactSection() {
             build a RAG assistant, or strengthen your backend. I will reply with a practical next step.
           </p>
           <div className="mt-8 space-y-3 text-sm text-muted-foreground">
+            {calendlyUrl ? (
+              <a
+                className="flex items-center gap-3 rounded-xl border border-primary/30 bg-primary/10 px-4 py-3 font-medium text-primary transition hover:border-primary/60"
+                href={calendlyUrl}
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                <Send className="h-4 w-4" />
+                Schedule a project call
+              </a>
+            ) : null}
             <a
               className="flex items-center gap-3 rounded-xl border border-border bg-card/70 px-4 py-3 transition hover:border-primary/40"
               href={`mailto:${portfolio.profile.email}`}

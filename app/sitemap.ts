@@ -1,9 +1,23 @@
 import type { MetadataRoute } from "next"
+import { getProjectsByVariant } from "@/lib/content"
+import { servicePackages } from "@/lib/service-data"
 
 const siteUrl = "https://apst.me"
 
 export default function sitemap(): MetadataRoute.Sitemap {
   const lastModified = new Date()
+  const serviceUrls = servicePackages.map((service) => ({
+    url: `${siteUrl}/services/${service.slug}`,
+    lastModified,
+    changeFrequency: "monthly" as const,
+    priority: 0.85,
+  }))
+  const caseStudyUrls = getProjectsByVariant("all").map((project) => ({
+    url: `${siteUrl}/case-studies/${project.id}`,
+    lastModified,
+    changeFrequency: "monthly" as const,
+    priority: project.flagship ? 0.85 : 0.7,
+  }))
 
   return [
     {
@@ -37,6 +51,12 @@ export default function sitemap(): MetadataRoute.Sitemap {
       ],
     },
     {
+      url: `${siteUrl}/services`,
+      lastModified,
+      changeFrequency: "weekly",
+      priority: 0.95,
+    },
+    {
       url: `${siteUrl}/projects`,
       lastModified,
       changeFrequency: "weekly",
@@ -60,5 +80,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
       changeFrequency: "monthly",
       priority: 0.7,
     },
+    ...serviceUrls,
+    ...caseStudyUrls,
   ]
 }
